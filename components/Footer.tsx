@@ -163,7 +163,13 @@ export function Footer() {
                     <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-center p-0 relative shrink-0 w-full">
                       <div className="basis-0 font-['Onest:Regular',_sans-serif] grow min-h-px min-w-px relative shrink-0 text-center text-neutral-600">
                         <p className="leading-[24px] text-[16px]">
-                          ©2020-2025 Feathers Creative Ltd.
+                          ©2020-2026 Feathers Creative Ltd.
+                          <span 
+                            className="ml-2 opacity-0 hover:opacity-100 cursor-pointer text-[10px]"
+                            onClick={() => (window as any).navigateToAdmin?.()}
+                          >
+                            Admin
+                          </span>
                         </p>
                       </div>
                     </div>

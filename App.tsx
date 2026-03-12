@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Toaster } from "sonner";
 import { Home } from "./components/Home";
 import { Preview } from "./components/Preview";
 import { Portfolio } from "./components/Portfolio";
 import { Blog } from "./components/Blog";
+import { AdminPortfolio } from "./components/admin/AdminPortfolio";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -18,7 +20,13 @@ const pageTransition = {
 };
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'preview' | 'portfolio' | 'blog'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'preview' | 'portfolio' | 'blog' | 'admin'>('home');
+
+  // Expose for hidden footer link
+  useEffect(() => {
+    (window as any).navigateToAdmin = () => setCurrentPage('admin');
+    return () => { delete (window as any).navigateToAdmin; };
+  }, []);
 
   return (
     <AnimatePresence mode="wait">
@@ -31,7 +39,7 @@ export default function App() {
           variants={pageVariants}
           transition={pageTransition}
         >
-          <Preview 
+          <Preview
             currentPage="preview"
             onNavigateHome={() => setCurrentPage('home')}
             onNavigatePreview={() => setCurrentPage('preview')}
@@ -47,7 +55,7 @@ export default function App() {
           variants={pageVariants}
           transition={pageTransition}
         >
-          <Portfolio 
+          <Portfolio
             onNavigateHome={() => setCurrentPage('home')}
             onNavigatePreview={() => setCurrentPage('preview')}
             onNavigateBlog={() => setCurrentPage('blog')}
@@ -62,12 +70,34 @@ export default function App() {
           variants={pageVariants}
           transition={pageTransition}
         >
-          <Blog 
+          <Blog
             currentPage="blog"
             onNavigateHome={() => setCurrentPage('home')}
             onNavigatePreview={() => setCurrentPage('preview')}
             onNavigateBlog={() => setCurrentPage('blog')}
           />
+        </motion.div>
+      ) : currentPage === 'admin' ? (
+        <motion.div
+          key="admin"
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={pageVariants}
+          transition={pageTransition}
+        >
+          <div className="min-h-screen bg-white">
+            <div className="p-4 border-b flex justify-between items-center">
+              <button
+                onClick={() => setCurrentPage('home')}
+                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors"
+              >
+                ← Back to Site
+              </button>
+              <span className="text-sm font-bold tracking-tighter">FEATHERS ADMIN</span>
+            </div>
+            <AdminPortfolio />
+          </div>
         </motion.div>
       ) : (
         <motion.div
@@ -78,7 +108,7 @@ export default function App() {
           variants={pageVariants}
           transition={pageTransition}
         >
-          <Home 
+          <Home
             currentPage="home"
             onNavigateHome={() => setCurrentPage('home')}
             onNavigatePreview={() => setCurrentPage('preview')}
@@ -87,6 +117,7 @@ export default function App() {
           />
         </motion.div>
       )}
+      <Toaster position="top-center" />
     </AnimatePresence>
   );
 }
