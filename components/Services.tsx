@@ -1,3 +1,5 @@
+import { useServices } from '../hooks/useSupabase'
+
 function ServiceCard({ title, description, services }: { title: string; description: string; services: string[] }) {
   return (
     <div className="basis-0 grow max-w-[380px] min-h-px min-w-[250px] relative shrink-0">
@@ -23,6 +25,12 @@ function ServiceCard({ title, description, services }: { title: string; descript
 }
 
 export function Services() {
+  const { services, loading, error } = useServices();
+
+  if (error) {
+    console.error('Error loading services:', error);
+  }
+
   return (
     <div className="relative shrink-0 w-full bg-white">
       <div className="flex flex-col items-center justify-center overflow-clip relative size-full">
@@ -60,61 +68,30 @@ export function Services() {
                     </div>
                   </div>
 
-                  {/* Service Cards */}
+                  {/* Service Cards - Dynamic from Supabase */}
                   <div className="[flex-flow:wrap] box-border content-start flex gap-6 items-start justify-start p-0 relative shrink-0 w-full">
-                    <div className="[flex-flow:wrap] basis-0 box-border content-start flex gap-6 grow items-start justify-start min-h-px min-w-[500px] p-0 relative shrink-0">
-                      <ServiceCard
-                        title="Brand Audit<br />& Market Research"
-                        description="We assess your current brand and study the market to uncover insights, gaps, and opportunities for clarity and differentiation."
-                        services={[
-                          "Brand Performance Assessment",
-                          "Competitive Analysis",
-                          "Market Trend Analysis",
-                          "Stakeholder Interviews",
-                          "Perception Audit"
-                        ]}
-                      />
-                      
-                      <ServiceCard
-                        title="Brand Strategy<br />& Positioning"
-                        description="We define your brand's voice, values, and audience — building a focused strategy that helps you stand out and scale with purpose."
-                        services={[
-                          "Big Idea Development",
-                          "Positioning Strategy",
-                          "Brand Story & Strategic Narrative",
-                          "Tone & Voice",
-                          "Brand Personality",
-                          "Brand Tagline"
-                        ]}
-                      />
-                    </div>
-                    
-                    <div className="[flex-flow:wrap] basis-0 box-border content-start flex gap-6 grow items-start justify-start min-h-px min-w-[500px] p-0 relative shrink-0">
-                      <ServiceCard
-                        title="Brand Identity<br />& Design"
-                        description="From naming to logo, typography to visuals, we design cohesive brand systems that express who you are and what you stand for."
-                        services={[
-                          "Visual Identity Design",
-                          "Verbal Identity & Messaging",
-                          "Brand & Product Naming",
-                          "Motion System Development",
-                          "Brand Architecture"
-                        ]}
-                      />
-                      
-                      <ServiceCard
-                        title="Web & Product<br />Development"
-                        description="We design and build functional, user-centered websites and digital products that reflect your brand and drive engagement."
-                        services={[
-                          "UI/UX Design",
-                          "Website Design & Development",
-                          "Mobile App Design",
-                          "Product Prototyping",
-                          "Digital Experience Design",
-                          "Content Management Systems"
-                        ]}
-                      />
-                    </div>
+                    {loading ? (
+                      <div className="flex gap-6 w-full overflow-hidden">
+                        {[...Array(3)].map((_, i) => (
+                          <div key={i} className="basis-0 grow h-[300px] bg-neutral-100 animate-pulse rounded-2xl" />
+                        ))}
+                      </div>
+                    ) : services && services.length > 0 ? (
+                      <div className="[flex-flow:wrap] flex gap-6 w-full">
+                        {services.map((service) => (
+                          <ServiceCard
+                            key={service.id}
+                            title={service.title}
+                            description={service.description}
+                            services={service.features}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-12 w-full">
+                        <p className="text-neutral-500">No services found.</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -124,4 +101,6 @@ export function Services() {
       </div>
     </div>
   );
+}
+
 }

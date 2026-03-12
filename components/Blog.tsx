@@ -3,11 +3,7 @@ import { UnifiedHeader } from "./UnifiedHeader";
 import { BlogHero } from "./blog/BlogHero";
 import { BlogPost } from "./blog/BlogPost";
 import { Footer } from "./Footer";
-import imgBlogImage from "figma:asset/073942923964aeb6f24c219317ffe9268dd288eb.png";
-import imgBlogImage1 from "figma:asset/28678cbf959186ceeeb5a85ee09a72a1519f96f5.png";
-import imgBlogImage2 from "figma:asset/d223ca7cc66495a3d4f34b9514c77380077e0e70.png";
-import imgBlogImage3 from "figma:asset/55ce54ee95d8893681ecdd2fb248c610f65fdf6c.png";
-
+import { useBlog } from "../hooks/useSupabase";
 interface BlogProps {
   currentPage: 'home' | 'preview' | 'blog';
   onNavigateHome: () => void;
@@ -43,34 +39,13 @@ const sectionVariants = {
   }
 };
 
-const blogPosts = [
-  {
-    image: imgBlogImage,
-    category: "news",
-    title: "We turn ideas into scalable experiences",
-    description: "We define your brand's voice, values, and audience — building a focused strategy that helps you stand out and scale with purpose."
-  },
-  {
-    image: imgBlogImage1,
-    category: "opinion",
-    title: "We turn ideas into scalable experiences",
-    description: "We define your brand's voice, values, and audience — building a focused strategy that helps you stand out and scale with purpose."
-  },
-  {
-    image: imgBlogImage2,
-    category: "news",
-    title: "We turn ideas into scalable experiences",
-    description: "We define your brand's voice, values, and audience — building a focused strategy that helps you stand out and scale with purpose."
-  },
-  {
-    image: imgBlogImage3,
-    category: "press",
-    title: "We turn ideas into scalable experiences",
-    description: "We define your brand's voice, values, and audience — building a focused strategy that helps you stand out and scale with purpose."
-  }
-];
-
 export function Blog({ currentPage, onNavigateHome, onNavigatePreview, onNavigateBlog }: BlogProps) {
+  const { posts, loading, error } = useBlog();
+
+  if (error) {
+    console.error('Error loading blog posts:', error);
+  }
+
   return (
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
@@ -104,19 +79,29 @@ export function Blog({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
               <div className="max-w-[1440px] relative shrink-0 w-full">
                 <div className="flex flex-col items-center justify-center max-w-inherit overflow-clip relative size-full">
                   <div className="box-border content-stretch flex flex-col gap-0 items-center justify-center max-w-inherit px-0 py-0 relative w-full">
-                    {blogPosts.map((post, index) => (
-                      <motion.div
-                        key={index}
-                        variants={sectionVariants}
-                      >
-                        <BlogPost
-                          image={post.image}
-                          category={post.category}
-                          title={post.title}
-                          description={post.description}
-                        />
-                      </motion.div>
-                    ))}
+                    {loading ? (
+                      <div className="py-20 text-center w-full">
+                        <p className="text-neutral-500 animate-pulse">Loading posts...</p>
+                      </div>
+                    ) : posts && posts.length > 0 ? (
+                      posts.map((post) => (
+                        <motion.div
+                          key={post.id}
+                          variants={sectionVariants}
+                        >
+                          <BlogPost
+                            image={post.featured_image}
+                            category={post.category}
+                            title={post.title}
+                            description={post.excerpt}
+                          />
+                        </motion.div>
+                      ))
+                    ) : (
+                      <div className="py-20 text-center w-full">
+                        <p className="text-neutral-500">No blog posts found.</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -129,4 +114,4 @@ export function Blog({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
       </motion.div>
     </div>
   );
-}
+}

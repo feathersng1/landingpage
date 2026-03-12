@@ -1,14 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Fallback to placeholder values if environment variables are not set
-// In a real deployment, these should be set in your environment
-const supabaseUrl = typeof window !== 'undefined' 
-  ? (window as any).ENV?.NEXT_PUBLIC_SUPABASE_URL || 'https://your-project.supabase.co'
-  : 'https://your-project.supabase.co'
-
-const supabaseAnonKey = typeof window !== 'undefined'
-  ? (window as any).ENV?.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key-here'
-  : 'your-anon-key-here'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://your-project.supabase.co'
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key-here'
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 

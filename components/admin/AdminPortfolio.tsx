@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Switch } from '../ui/switch';
 import { supabase, PortfolioItem } from '../../lib/supabase';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 export function AdminPortfolio() {
   const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
@@ -82,9 +82,9 @@ export function AdminPortfolio() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+
     const tagsArray = formData.tags.split(',').map(tag => tag.trim()).filter(Boolean);
-    
+
     const portfolioData = {
       title: formData.title,
       description: formData.description,
@@ -103,18 +103,18 @@ export function AdminPortfolio() {
           .from('portfolio_items')
           .update(portfolioData)
           .eq('id', editingItem.id);
-        
+
         if (error) throw error;
         toast.success('Portfolio item updated successfully');
       } else {
         const { error } = await supabase
           .from('portfolio_items')
           .insert([portfolioData]);
-        
+
         if (error) throw error;
         toast.success('Portfolio item created successfully');
       }
-      
+
       fetchPortfolio();
       resetForm();
     } catch (error) {
@@ -165,7 +165,7 @@ export function AdminPortfolio() {
                   <Input
                     id="title"
                     value={formData.title}
-                    onChange={(e) => setFormData({...formData, title: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     required
                   />
                 </div>
@@ -174,7 +174,7 @@ export function AdminPortfolio() {
                   <Input
                     id="client_name"
                     value={formData.client_name}
-                    onChange={(e) => setFormData({...formData, client_name: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, client_name: e.target.value })}
                     required
                   />
                 </div>
@@ -183,7 +183,7 @@ export function AdminPortfolio() {
                   <Input
                     id="category"
                     value={formData.category}
-                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     required
                   />
                 </div>
@@ -193,7 +193,7 @@ export function AdminPortfolio() {
                     id="project_year"
                     type="number"
                     value={formData.project_year}
-                    onChange={(e) => setFormData({...formData, project_year: parseInt(e.target.value)})}
+                    onChange={(e) => setFormData({ ...formData, project_year: parseInt(e.target.value) })}
                     required
                   />
                 </div>
@@ -202,7 +202,7 @@ export function AdminPortfolio() {
                   <Input
                     id="image_url"
                     value={formData.image_url}
-                    onChange={(e) => setFormData({...formData, image_url: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
                     required
                   />
                 </div>
@@ -211,41 +211,41 @@ export function AdminPortfolio() {
                   <Input
                     id="slug"
                     value={formData.slug}
-                    onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     placeholder="Auto-generated if empty"
                   />
                 </div>
               </div>
-              
+
               <div>
                 <Label htmlFor="description">Description</Label>
                 <Textarea
                   id="description"
                   value={formData.description}
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={3}
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="tags">Tags (comma-separated)</Label>
                 <Input
                   id="tags"
                   value={formData.tags}
-                  onChange={(e) => setFormData({...formData, tags: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
                   placeholder="web design, branding, mobile"
                 />
               </div>
-              
+
               <div className="flex items-center space-x-2">
                 <Switch
                   id="featured"
                   checked={formData.featured}
-                  onCheckedChange={(checked) => setFormData({...formData, featured: checked})}
+                  onCheckedChange={(checked: any) => setFormData({ ...formData, featured: checked })}
                 />
                 <Label htmlFor="featured">Featured Project</Label>
               </div>
-              
+
               <div className="flex gap-2">
                 <Button type="submit">{editingItem ? 'Update' : 'Create'} Project</Button>
                 <Button type="button" variant="outline" onClick={resetForm}>Cancel</Button>
