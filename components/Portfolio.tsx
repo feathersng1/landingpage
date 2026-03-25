@@ -78,19 +78,19 @@ export function Portfolio({ onNavigateHome, onNavigatePreview, onNavigateBlog }:
           </motion.div>
           
           <motion.div variants={sectionVariants}>
-            <PortfolioGallery1 />
+            <PortfolioGallery3 />
           </motion.div>
-          
+
           <motion.div variants={sectionVariants}>
             <PortfolioText />
           </motion.div>
-          
+
+          <motion.div variants={sectionVariants}>
+            <PortfolioGallery1 />
+          </motion.div>
+
           <motion.div variants={sectionVariants}>
             <PortfolioGallery2 />
-          </motion.div>
-          
-          <motion.div variants={sectionVariants}>
-            <PortfolioGallery3 />
           </motion.div>
           
           <motion.div variants={sectionVariants}>

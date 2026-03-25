@@ -19,15 +19,15 @@ export function PortfolioText() {
               <div className="box-border content-stretch flex flex-col gap-2.5 items-center justify-center max-w-inherit px-0 py-[60px] relative w-full">
                 <div className="box-border content-stretch flex flex-col gap-6 items-center justify-start leading-[0] max-w-[920px] p-0 relative shrink-0 text-[#141414] text-center w-full">
                   <div className="font-['Onest:Medium',_sans-serif] font-medium relative shrink-0 text-[32px] tracking-[-1.28px] w-full">
-                    <p className="block leading-[40px]">THE EMOTION IN EVERY HUE</p>
+                    <p className="block leading-[40px]">A WEBSITE DESIGNED FOR CLARITY AND ACTION</p>
                   </div>
                   <div className="font-['Onest:Regular',_sans-serif] font-normal leading-[32px] relative shrink-0 text-[24px] tracking-[-0.96px] w-full">
                     <p className="block mb-0">
-                      Color was the emotional cornerstone of the visual identity. The primary tone, a deep and saturated red (#B80733), evokes passion, urgency, and high energy—a visual heartbeat of the brand. It demands attention without shouting, and when paired with charcoal black and warm ivory tones, it grounds the brand in sophistication and clarity.
+                      Our website designs are built around a single principle: every element should either inform or convert. For All In One, we created a homepage that immediately communicates trust—featuring their core value proposition, social proof, and a direct path to booking, all above the fold on both mobile and desktop.
                     </p>
                     <p className="block mb-0">&nbsp;</p>
                     <p className="block">
-                      Design elements were stripped to their essence. We opted for a bold, custom sans-serif logotype that commands attention, clean iconography that translates seamlessly across devices, and a layout system that prioritizes negative space. Every detail—from grid structure to motion behaviors—was crafted to feel premium yet raw, timeless yet distinctly modern.
+                      Typography, spacing, and colour were all tuned to reinforce the brand's promise of thoroughness and care. The result is a site that feels professional without feeling cold, and approachable without sacrificing authority.
                     </p>
                   </div>
                 </div>
