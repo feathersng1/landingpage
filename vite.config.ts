@@ -29,6 +29,7 @@ function figmaAssetPlugin(): Plugin {
 }
 
 export default defineConfig({
+  base: '/landingpage/',
   plugins: [figmaAssetPlugin(), react(), tailwindcss()],
   server: {
     host: true,
