@@ -39,7 +39,7 @@ export function Services() {
             <div className="flex flex-col items-center justify-center max-w-inherit overflow-clip relative size-full">
               <div className="box-border content-stretch flex flex-col gap-2.5 items-center justify-center max-w-inherit px-0 py-[60px] relative w-full">
                 <div className="box-border content-stretch flex flex-col gap-16 items-start justify-start p-0 relative shrink-0 w-full">
-                  
+
                   {/* Header */}
                   <div className="box-border content-stretch flex flex-col gap-10 items-start justify-start p-0 relative shrink-0 w-full">
                     <div className="relative rounded-lg shrink-0">
@@ -52,7 +52,7 @@ export function Services() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="font-['Monarque:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#141414] text-[0px] text-left tracking-[-3.2px]">
                       <p className="leading-[80px] text-[64px] md:text-[80px]">
                         <span className="font-['Monarque:Regular',_sans-serif] not-italic tracking-[-3.2px]">
@@ -101,6 +101,4 @@ export function Services() {
       </div>
     </div>
   );
-}
-
 }

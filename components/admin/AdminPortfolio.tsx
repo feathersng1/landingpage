@@ -146,9 +146,9 @@ export function AdminPortfolio() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-0">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Portfolio Management</h1>
+        <h2 className="text-xl font-bold">Portfolio Management</h2>
         <Button onClick={() => setShowForm(true)}>Add New Project</Button>
       </div>
 
