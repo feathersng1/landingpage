@@ -5,7 +5,7 @@ import { Home } from "./components/Home";
 import { Preview } from "./components/Preview";
 import { Portfolio } from "./components/Portfolio";
 import { Blog } from "./components/Blog";
-import { AdminPortfolio } from "./components/admin/AdminPortfolio";
+import { AdminDashboard } from "./components/admin/AdminDashboard";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -22,8 +22,14 @@ const pageTransition = {
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'preview' | 'portfolio' | 'blog' | 'admin'>('home');
 
-  // Expose for hidden footer link
+  // Handle URL-based navigation and expose for hidden footer link
   useEffect(() => {
+    // Check for ?admin in URL
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('admin')) {
+      setCurrentPage('admin');
+    }
+
     (window as any).navigateToAdmin = () => setCurrentPage('admin');
     return () => { delete (window as any).navigateToAdmin; };
   }, []);
@@ -96,7 +102,7 @@ export default function App() {
               </button>
               <span className="text-sm font-bold tracking-tighter">FEATHERS ADMIN</span>
             </div>
-            <AdminPortfolio />
+            <AdminDashboard />
           </div>
         </motion.div>
       ) : (
