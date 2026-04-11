@@ -174,15 +174,47 @@ function PortfolioSkeleton() {
 }
 
 interface PortfolioSectionProps {
-  onNavigatePortfolio: () => void;
+  onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
 }
 
+const STATIC_PROJECTS = [
+  {
+    id: 'all-in-one',
+    title: 'Your home inspection, done right',
+    client_name: 'ALL-IN-ONE',
+    image_url: '/landingpage/aio/aio-hero.svg',
+    projectKey: 'all-in-one'
+  },
+  {
+    id: 'neochildcare',
+    title: 'Digital Health for the Next Generation',
+    client_name: 'NEOCHILDCARE',
+    image_url: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&h=600&fit=crop', // Placeholder for now
+    projectKey: 'neochildcare'
+  },
+  {
+    id: 'notrify',
+    title: 'Smart Notifications, Seamless Flow',
+    client_name: 'NOTRIFY',
+    image_url: 'https://images.unsplash.com/photo-1594736797933-d0c71e0249cc?w=800&h=600&fit=crop', // Placeholder for now
+    projectKey: 'notrify'
+  }
+];
+
 export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps) {
-  const { portfolio, loading, error } = useFeaturedPortfolio(5);
+  const { portfolio: dynamicPortfolio, loading, error } = useFeaturedPortfolio(5);
 
   if (error) {
     console.error('Error loading portfolio:', error);
   }
+
+  // Merge static projects with dynamic ones, ensuring static ones come first
+  const displayPortfolio = [
+    ...STATIC_PROJECTS,
+    ...(dynamicPortfolio || []).filter(item => 
+      !STATIC_PROJECTS.some(p => p.client_name === item.client_name || p.title === item.title)
+    )
+  ].slice(0, 5);
 
   // Grid areas for bento layout
   const gridAreas = [
@@ -206,43 +238,45 @@ export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps)
             <div className="flex flex-row items-center max-w-inherit relative size-full">
               <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-start max-w-inherit px-0 py-20 md:py-20 sm:py-12 relative w-full">
                 
-                {loading ? (
+                {loading && displayPortfolio.length < 3 ? (
                   <PortfolioSkeleton />
-                ) : portfolio && portfolio.length > 0 ? (
+                ) : (
                   <>
                     {/* Desktop & Tablet: Bento Layout Container - 12-column grid system */}
                     <div className="aspect-[1440/2088] basis-0 box-border gap-6 grid grid-cols-[repeat(12,_minmax(0px,_1fr))] grid-rows-[repeat(3,_minmax(0px,_1fr))] grow min-h-px min-w-px overflow-visible p-0 relative shrink-0 hidden md:grid">
-                      {portfolio.slice(0, 5).map((item, index) => (
-                        <ProjectCard
-                          key={item.id}
-                          image={item.image_url}
-                          title={item.title}
-                          brand={item.client_name}
-                          gridArea={gridAreas[index]}
-                          index={index}
-                          onClick={onNavigatePortfolio}
-                        />
-                      ))}
+                      {displayPortfolio.map((item, index) => {
+                        const projectKey = (item as any).projectKey || 'all-in-one';
+                        return (
+                          <ProjectCard
+                            key={item.id}
+                            image={item.image_url}
+                            title={item.title}
+                            brand={item.client_name}
+                            gridArea={gridAreas[index]}
+                            index={index}
+                            onClick={() => onNavigatePortfolio(projectKey as any)}
+                          />
+                        );
+                      })}
                     </div>
 
                     {/* Mobile: Single Column Stack Layout */}
                     <div className="flex flex-col gap-6 w-full md:hidden">
-                      {portfolio.slice(0, 5).map((item, index) => (
-                        <MobileProjectCard
-                          key={item.id}
-                          image={item.image_url}
-                          title={item.title}
-                          brand={item.client_name}
-                          index={index}
-                          onClick={onNavigatePortfolio}
-                        />
-                      ))}
+                      {displayPortfolio.map((item, index) => {
+                        const projectKey = (item as any).projectKey || 'all-in-one';
+                        return (
+                          <MobileProjectCard
+                            key={item.id}
+                            image={item.image_url}
+                            title={item.title}
+                            brand={item.client_name}
+                            index={index}
+                            onClick={() => onNavigatePortfolio(projectKey as any)}
+                          />
+                        );
+                      })}
                     </div>
                   </>
-                ) : (
-                  <div className="text-center py-12 w-full">
-                    <p className="text-neutral-500">No portfolio items found.</p>
-                  </div>
                 )}
               </div>
             </div>

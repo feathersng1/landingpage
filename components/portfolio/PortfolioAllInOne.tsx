@@ -1,15 +1,11 @@
 import { motion } from "framer-motion";
-import { UnifiedHeader } from "./UnifiedHeader";
-import { HomeHero } from "./home/HomeHero";
-import { PortfolioSection } from "./home/PortfolioSection";
-import { HomeServices } from "./home/HomeServices";
-import { Footer } from "./Footer";
+import { UnifiedHeader } from "../UnifiedHeader";
+import { Footer } from "../Footer";
+import { AllInOneHero } from "./all-in-one/AllInOneHero";
 
-interface HomeProps {
-  currentPage: 'home' | 'preview' | 'blog';
+interface PortfolioAllInOneProps {
   onNavigateHome: () => void;
   onNavigatePreview: () => void;
-  onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
   onNavigateBlog: () => void;
 }
 
@@ -28,7 +24,7 @@ const sectionVariants = {
   hidden: { 
     opacity: 0, 
     y: 30,
-    scale: 0.98
+    scale: 1
   },
   visible: { 
     opacity: 1, 
@@ -41,7 +37,7 @@ const sectionVariants = {
   }
 };
 
-export function Home({ currentPage, onNavigateHome, onNavigatePreview, onNavigatePortfolio, onNavigateBlog }: HomeProps) {
+export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigateBlog }: PortfolioAllInOneProps) {
   return (
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
@@ -55,10 +51,10 @@ export function Home({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
         animate="visible"
       >
         {/* All content sections with solid white background */}
-        <div className="bg-[#ffffff]">
+        <div className="bg-[#ffffff] rounded-none shadow-none" style={{ borderRadius: 0 }}>
           <motion.div variants={sectionVariants}>
             <UnifiedHeader 
-              currentPage={currentPage}
+              currentPage="home"
               onNavigateHome={onNavigateHome}
               onNavigatePreview={onNavigatePreview}
               onNavigateBlog={onNavigateBlog}
@@ -66,16 +62,11 @@ export function Home({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
           </motion.div>
           
           <motion.div variants={sectionVariants}>
-            <HomeHero />
+            <AllInOneHero />
           </motion.div>
+
+          {/* Further sections will be added here one by one */}
           
-          <motion.div variants={sectionVariants}>
-            <PortfolioSection onNavigatePortfolio={onNavigatePortfolio} />
-          </motion.div>
-          
-          <motion.div variants={sectionVariants}>
-            <HomeServices />
-          </motion.div>
         </div>
         
         {/* Spacer to reveal footer - matches footer height exactly */}

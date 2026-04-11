@@ -4,16 +4,16 @@ import { PortfolioItem, TeamMember, BlogPost, Service, Testimonial } from './sup
 export const mockPortfolioItems: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Statement first; lifestyle always',
-    description: 'A comprehensive brand identity project that captures the essence of streetwear culture.',
-    category: 'Branding',
-    image_url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+    title: 'Your home inspection, done right',
+    description: 'A comprehensive digital experience and branding for a leading home inspection service.',
+    category: 'Branding & Digital',
+    image_url: '/aio/aio-hero.svg',
     gallery_images: [],
-    client_name: 'SUPREME',
+    client_name: 'ALL-IN-ONE',
     project_year: 2024,
-    tags: ['branding', 'identity', 'streetwear'],
+    tags: ['branding', 'digital', 'service'],
     featured: true,
-    slug: 'supreme-statement-lifestyle',
+    slug: 'all-in-one-inspection',
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-01-01T00:00:00Z'
   },

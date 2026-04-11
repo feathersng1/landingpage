@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Toaster } from "sonner";
 import { Home } from "./components/Home";
 import { Preview } from "./components/Preview";
-import { Portfolio } from "./components/Portfolio";
+import { PortfolioAllInOne } from "./components/portfolio/PortfolioAllInOne";
 import { Blog } from "./components/Blog";
 import { AdminDashboard } from "./components/admin/AdminDashboard";
 
@@ -21,6 +21,7 @@ const pageTransition = {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'preview' | 'portfolio' | 'blog' | 'admin'>('home');
+  const [selectedProject, setSelectedProject] = useState<'all-in-one' | 'neochildcare' | 'notrify' | null>(null);
 
   // Handle URL-based navigation and expose for hidden footer link
   useEffect(() => {
@@ -54,18 +55,25 @@ export default function App() {
         </motion.div>
       ) : currentPage === 'portfolio' ? (
         <motion.div
-          key="portfolio"
+          key={`portfolio-${selectedProject}`}
           initial="initial"
           animate="in"
           exit="out"
           variants={pageVariants}
           transition={pageTransition}
         >
-          <Portfolio
-            onNavigateHome={() => setCurrentPage('home')}
-            onNavigatePreview={() => setCurrentPage('preview')}
-            onNavigateBlog={() => setCurrentPage('blog')}
-          />
+          {selectedProject === 'all-in-one' ? (
+            <PortfolioAllInOne
+              onNavigateHome={() => setCurrentPage('home')}
+              onNavigatePreview={() => setCurrentPage('preview')}
+              onNavigateBlog={() => setCurrentPage('blog')}
+            />
+          ) : (
+            <div className="min-h-screen flex items-center justify-center">
+              <p className="text-neutral-500">Coming Soon: {selectedProject}</p>
+              <button onClick={() => setCurrentPage('home')} className="ml-4 text-black underline">Back Home</button>
+            </div>
+          )}
         </motion.div>
       ) : currentPage === 'blog' ? (
         <motion.div
@@ -118,7 +126,10 @@ export default function App() {
             currentPage="home"
             onNavigateHome={() => setCurrentPage('home')}
             onNavigatePreview={() => setCurrentPage('preview')}
-            onNavigatePortfolio={() => setCurrentPage('portfolio')}
+            onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
+              setSelectedProject(project);
+              setCurrentPage('portfolio');
+            }}
             onNavigateBlog={() => setCurrentPage('blog')}
           />
         </motion.div>

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import svgPaths from "../imports/svg-ojio9iwcmh";
 
 interface UnifiedHeaderProps {
@@ -28,6 +29,25 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.4,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
+
+const menuVariants = {
+  closed: { 
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  },
+  open: { 
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1]
     }
   }
@@ -98,6 +118,27 @@ function NavigationButton({
   );
 }
 
+function MobileMenuButton({ isOpen, onClick }: { isOpen: boolean, onClick: () => void }) {
+  return (
+    <button 
+      onClick={onClick}
+      className="md:hidden p-2 text-[#525252] hover:bg-neutral-100 rounded-lg transition-colors border border-transparent active:border-neutral-200"
+    >
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+         {isOpen ? (
+           <path d="M18 6L6 18M6 6l12 12" />
+         ) : (
+           <>
+             <line x1="4" y1="12" x2="20" y2="12" />
+             <line x1="4" y1="6" x2="20" y2="6" />
+             <line x1="4" y1="18" x2="20" y2="18" />
+           </>
+         )}
+       </svg>
+    </button>
+  );
+}
+
 function StartProjectButton() {
   return (
     <motion.div
@@ -133,20 +174,28 @@ function StartProjectButton() {
 }
 
 export function UnifiedHeader({ currentPage, onNavigateHome, onNavigatePreview, onNavigateBlog }: UnifiedHeaderProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleNavigate = (navFn: () => void) => {
+    navFn();
+    setIsMenuOpen(false);
+  };
+
   return (
     <motion.div 
-      className="bg-[#ffffff] relative shrink-0 w-full"
+      className="bg-[#ffffff] relative shrink-0 w-full z-50 border-b border-neutral-50 md:border-none rounded-none"
+      style={{ borderRadius: 0 }}
       variants={headerVariants}
       initial="hidden"
       animate="visible"
     >
       <div className="relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-2.5 items-start justify-start p-[24px] relative size-full">
+        <div className="box-border content-stretch flex flex-col gap-2.5 items-start justify-start px-6 py-4 md:p-6 relative size-full">
           <div className="box-border content-stretch flex flex-row items-center justify-between p-0 relative shrink-0 w-full">
             <motion.div 
               className="cursor-pointer"
               variants={itemVariants}
-              onClick={onNavigateHome}
+              onClick={() => handleNavigate(onNavigateHome)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -154,21 +203,22 @@ export function UnifiedHeader({ currentPage, onNavigateHome, onNavigatePreview, 
               <FeathersLogo />
             </motion.div>
             
+            {/* Desktop Navigation */}
             <motion.div 
-              className="box-border content-stretch flex flex-row gap-8 items-center justify-start p-0 relative shrink-0"
+              className="hidden md:flex box-border content-stretch flex-row gap-8 items-center justify-start p-0 relative shrink-0"
               variants={itemVariants}
             >
               <div className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 relative shrink-0">
                 <NavigationButton 
                   isActive={currentPage === 'preview'}
-                  onClick={onNavigatePreview}
+                  onClick={() => handleNavigate(onNavigatePreview)}
                 >
                   the people
                 </NavigationButton>
                 
                 <NavigationButton 
                   isActive={currentPage === 'blog'}
-                  onClick={onNavigateBlog}
+                  onClick={() => handleNavigate(onNavigateBlog)}
                 >
                   our blogs
                 </NavigationButton>
@@ -176,9 +226,45 @@ export function UnifiedHeader({ currentPage, onNavigateHome, onNavigatePreview, 
               
               <StartProjectButton />
             </motion.div>
+
+            {/* Mobile Menu Toggle */}
+            <MobileMenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
           </div>
+
+          {/* Mobile Navigation Drawer */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div 
+                className="md:hidden w-full overflow-hidden"
+                variants={menuVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
+                <div className="flex flex-col gap-4 pt-8 pb-4">
+                  <NavigationButton 
+                    isActive={currentPage === 'preview'}
+                    onClick={() => handleNavigate(onNavigatePreview)}
+                  >
+                    the people
+                  </NavigationButton>
+                  
+                  <NavigationButton 
+                    isActive={currentPage === 'blog'}
+                    onClick={() => handleNavigate(onNavigateBlog)}
+                  >
+                    our blogs
+                  </NavigationButton>
+                  
+                  <div className="pt-2">
+                    <StartProjectButton />
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.div>
   );
-}
+}
