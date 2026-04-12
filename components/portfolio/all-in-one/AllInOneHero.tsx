@@ -27,7 +27,7 @@ export function AllInOneHero() {
           className="relative w-full rounded-none lg:rounded-[16px] overflow-hidden shadow-none"
           style={{ borderRadius: 0 }}
         >
-          {/* Mobile Hero Image -optimized dedicated asset */}
+          {/* Mobile Hero Image - optimized dedicated asset */}
           <img
             src="/landingpage/aio/aio-mobile-hero.svg"
             alt="All In One Hero Mobile"
