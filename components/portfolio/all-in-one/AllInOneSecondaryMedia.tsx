@@ -43,14 +43,14 @@ export function AllInOneSecondaryMedia() {
           className="relative w-full md:px-6"
         >
           <div
-            className="relative w-full md:min-h-[600px] flex items-center justify-center overflow-hidden rounded-none md:rounded-[16px]"
+            className="relative w-full md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] flex items-end justify-center overflow-hidden rounded-none md:rounded-[16px]"
             style={{
               backgroundImage: "url('/landingpage/aio/homepage-win-bg.svg')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: '100% auto',
+              backgroundPosition: 'top center'
             }}
           >
-            <div className="w-full h-full px-6 sm:px-12 md:px-20 pt-6 sm:pt-12 md:pt-20 pb-0 flex items-end justify-center text-bottom">
+            <div className="w-full h-full px-6 sm:px-12 md:px-20 pt-6 sm:pt-12 md:pt-20 pb-0 flex items-end justify-center">
               <img
                 src="/landingpage/aio/homepage.png"
                 alt="Homepage Preview"
@@ -72,7 +72,7 @@ export function AllInOneSecondaryMedia() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="w-full rounded-[16px] overflow-hidden flex items-center justify-center aspect-square md:aspect-[4/3] lg:aspect-square"
+                className="w-full rounded-[16px] overflow-hidden flex items-center justify-center aspect-square md:aspect-[3/4] lg:aspect-square"
               >
                 <img
                   src={item.src}
