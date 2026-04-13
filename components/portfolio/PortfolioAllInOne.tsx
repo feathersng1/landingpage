@@ -6,6 +6,8 @@ import { AllInOneProjectDetails } from "./all-in-one/AllInOneProjectDetails";
 import { AllInOneGallery } from "./all-in-one/AllInOneGallery";
 import { AllInOneDesignApproach } from "./all-in-one/AllInOneDesignApproach";
 import { AllInOneSecondaryMedia } from "./all-in-one/AllInOneSecondaryMedia";
+import { AllInOneBookingExperience } from "./all-in-one/AllInOneBookingExperience";
+import { AllInOneResults } from "./all-in-one/AllInOneResults";
 
 interface PortfolioAllInOneProps {
   onNavigateHome: () => void;
@@ -25,13 +27,13 @@ const containerVariants = {
 };
 
 const sectionVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 30,
     scale: 1
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -46,9 +48,9 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
       <Footer />
-      
+
       {/* Main content that scrolls over the footer */}
-      <motion.div 
+      <motion.div
         className="relative z-10"
         variants={containerVariants}
         initial="hidden"
@@ -57,14 +59,14 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
         {/* All content sections with solid white background */}
         <div className="bg-[#ffffff] rounded-none shadow-none" style={{ borderRadius: 0 }}>
           <motion.div variants={sectionVariants}>
-            <UnifiedHeader 
+            <UnifiedHeader
               currentPage="home"
               onNavigateHome={onNavigateHome}
               onNavigatePreview={onNavigatePreview}
               onNavigateBlog={onNavigateBlog}
             />
           </motion.div>
-          
+
           <motion.div variants={sectionVariants}>
             <AllInOneHero />
           </motion.div>
@@ -85,10 +87,18 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
             <AllInOneSecondaryMedia />
           </motion.div>
 
+          <motion.div variants={sectionVariants}>
+            <AllInOneBookingExperience />
+          </motion.div>
+
+          {/* <motion.div variants={sectionVariants}>
+            <AllInOneResults />
+          </motion.div> */}
+
           {/* Further sections will be added here one by one */}
-          
+
         </div>
-        
+
         {/* Spacer to reveal footer - matches footer height exactly */}
         <div className="h-[700px] bg-transparent"></div>
       </motion.div>

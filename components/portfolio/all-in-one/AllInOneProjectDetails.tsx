@@ -29,7 +29,7 @@ const itemVariants = {
 export function AllInOneProjectDetails() {
   return (
     <motion.section 
-      className="relative w-full bg-white px-6 md:px-0 py-20 md:py-32"
+      className="relative w-full bg-white px-6 py-20 md:py-32"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"

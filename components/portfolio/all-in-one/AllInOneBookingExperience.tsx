@@ -26,7 +26,7 @@ const itemVariants = {
   }
 };
 
-export function AllInOneDesignApproach() {
+export function AllInOneBookingExperience() {
   return (
     <motion.section 
       className="relative w-full bg-white px-6 py-20 md:py-32"
@@ -43,7 +43,7 @@ export function AllInOneDesignApproach() {
             variants={itemVariants}
             className="font-onest text-[24px] md:text-[32px] font-medium leading-[32px] md:leading-[40px] tracking-tight text-[#141414] uppercase mb-6 md:mb-[24px]"
           >
-            A WEBSITE DESIGNED FOR CLARITY AND ACTION
+            FRICTIONLESS BOOKING EXPERIENCE
           </motion.h2>
 
           {/* Body Text */}
@@ -52,13 +52,7 @@ export function AllInOneDesignApproach() {
               variants={itemVariants}
               className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#525252]"
             >
-              The website redesign centered on eliminating friction in the user journey. Research revealed that visitors needed immediate clarity on three key points: services offered, audience served, and how to book. The structure was optimized to guide users—primarily homebuyers, agents, and homeowners in the DMV—toward conversion with minimal steps. A prominent inspection cost calculator was integrated into the homepage, reducing barriers to scheduling while setting clear expectations.
-            </motion.p>
-            <motion.p 
-              variants={itemVariants}
-              className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#525252]"
-            >
-              Strategic visual hierarchy directs attention to core services and CTAs, with a bold "Book Inspection" button consistently accessible. The calculator serves as a primary entry point, while service pages distill information into scannable sections. Simplified navigation and intentional white space ensure focus remains on conversion, turning passive browsing into actionable engagement. Every design choice reinforces the goal: making trust and efficiency visible.
+              The "Book an Inspection" flow was optimized for speed and clarity. Bulky forms were replaced with a step-by-step approach, requesting only essential details upfront. Bold, straightforward headers guide users, while a clean layout eliminates distractions. Key access points—like the cost calculator—feed directly into scheduling, maintaining momentum from quote to confirmation. Every design choice minimizes cognitive load, helping users complete bookings in seconds, not minutes.
             </motion.p>
           </div>
 
