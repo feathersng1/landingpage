@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { UnifiedHeader } from "../UnifiedHeader";
 import { Footer } from "../Footer";
 import { AllInOneHero } from "./all-in-one/AllInOneHero";
+import { AllInOneProjectDetails } from "./all-in-one/AllInOneProjectDetails";
+import { AllInOneGallery } from "./all-in-one/AllInOneGallery";
+import { AllInOneDesignApproach } from "./all-in-one/AllInOneDesignApproach";
 
 interface PortfolioAllInOneProps {
   onNavigateHome: () => void;
@@ -63,6 +66,18 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
           
           <motion.div variants={sectionVariants}>
             <AllInOneHero />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <AllInOneProjectDetails />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <AllInOneGallery />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <AllInOneDesignApproach />
           </motion.div>
 
           {/* Further sections will be added here one by one */}
