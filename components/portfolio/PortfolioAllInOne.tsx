@@ -7,7 +7,10 @@ import { AllInOneGallery } from "./all-in-one/AllInOneGallery";
 import { AllInOneDesignApproach } from "./all-in-one/AllInOneDesignApproach";
 import { AllInOneSecondaryMedia } from "./all-in-one/AllInOneSecondaryMedia";
 import { AllInOneBookingExperience } from "./all-in-one/AllInOneBookingExperience";
-import { AllInOneResults } from "./all-in-one/AllInOneResults";
+import { AllInOneThirdMedia } from "./all-in-one/AllInOneThirdMedia";
+import { AllInOneTestimonial } from "./all-in-one/AllInOneTestimonial";
+import { AllInOneDevicePreview } from "./all-in-one/AllInOneDevicePreview";
+import { AllInOneMoreWorks } from "./all-in-one/AllInOneMoreWorks";
 
 interface PortfolioAllInOneProps {
   onNavigateHome: () => void;
@@ -91,9 +94,21 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
             <AllInOneBookingExperience />
           </motion.div>
 
-          {/* <motion.div variants={sectionVariants}>
-            <AllInOneResults />
-          </motion.div> */}
+          <motion.div variants={sectionVariants}>
+            <AllInOneThirdMedia />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <AllInOneTestimonial />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <AllInOneDevicePreview />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <AllInOneMoreWorks />
+          </motion.div>
 
           {/* Further sections will be added here one by one */}
 
