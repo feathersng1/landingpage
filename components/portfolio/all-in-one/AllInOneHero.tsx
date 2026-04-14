@@ -29,14 +29,14 @@ export function AllInOneHero() {
         >
           {/* Mobile Hero Image - optimized dedicated asset */}
           <img
-            src="/landingpage/aio/aio-mobile-hero.svg"
+            src="/aio/aio-mobile-hero.svg"
             alt="All In One Hero Mobile"
             className="w-full h-auto block md:hidden"
             style={{ borderRadius: 0 }}
           />
           {/* Desktop Hero Image */}
           <img
-            src="/landingpage/aio/aio-hero.svg"
+            src="/aio/aio-hero.svg"
             alt="All In One Hero"
             className="w-full h-auto hidden md:block"
             style={{ borderRadius: 'inherit' }}

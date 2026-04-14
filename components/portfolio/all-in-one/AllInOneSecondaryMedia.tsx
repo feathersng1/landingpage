@@ -45,14 +45,14 @@ export function AllInOneSecondaryMedia() {
           <div
             className="relative w-full md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] flex items-end justify-center overflow-hidden rounded-none md:rounded-[16px]"
             style={{
-              backgroundImage: "url('/landingpage/aio/homepage-win-bg.svg')",
+              backgroundImage: "url('/aio/homepage-win-bg.svg')",
               backgroundSize: '100% auto',
               backgroundPosition: 'top center'
             }}
           >
             <div className="w-full h-full px-6 sm:px-12 md:px-20 pt-6 sm:pt-12 md:pt-20 pb-0 flex items-end justify-center">
               <img
-                src="/landingpage/aio/homepage.png"
+                src="/aio/homepage.png"
                 alt="Homepage Preview"
                 className="w-full h-auto max-w-[1100px] rounded-t-[16px]"
               />
@@ -64,10 +64,10 @@ export function AllInOneSecondaryMedia() {
         <div className="px-6 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { src: "/landingpage/aio/inspection-calculator.svg", alt: "Inspection Calculator" },
-              { src: "/landingpage/aio/hand-holding-phone.svg", alt: "Hand Holding Phone" },
-              { src: "/landingpage/aio/menu.svg", alt: "Menu Interface" },
-              { src: "/landingpage/aio/services.svg", alt: "Services Section" }
+              { src: "/aio/inspection-calculator.svg", alt: "Inspection Calculator" },
+              { src: "/aio/hand-holding-phone.svg", alt: "Hand Holding Phone" },
+              { src: "/aio/menu.svg", alt: "Menu Interface" },
+              { src: "/aio/services.svg", alt: "Services Section" }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -93,7 +93,7 @@ export function AllInOneSecondaryMedia() {
             className="relative w-full bg-[#CEDAE0] rounded-none md:rounded-[16px] overflow-hidden px-6 sm:px-12 md:px-20 pt-6 sm:pt-12 md:pt-20 pb-0 flex items-end justify-center"
           >
             <img
-              src="/landingpage/aio/the-team.svg"
+              src="/aio/the-team.svg"
               alt="The AIO Team"
               className="w-full h-auto max-w-[1200px] block rounded-t-[16px]"
             />

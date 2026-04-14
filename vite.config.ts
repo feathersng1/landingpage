@@ -8,9 +8,9 @@ function figmaAssetPlugin(): Plugin {
     'data:image/svg+xml;base64,' +
     Buffer.from(
       `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" fill="#e2e2e2">` +
-        `<rect width="400" height="300"/>` +
-        `<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#999" font-size="16" font-family="sans-serif">Image placeholder</text>` +
-        `</svg>`
+      `<rect width="400" height="300"/>` +
+      `<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#999" font-size="16" font-family="sans-serif">Image placeholder</text>` +
+      `</svg>`
     ).toString('base64');
 
   return {
@@ -29,7 +29,7 @@ function figmaAssetPlugin(): Plugin {
 }
 
 export default defineConfig({
-  base: '/landingpage/',
+  base: '/',
   plugins: [figmaAssetPlugin(), react(), tailwindcss()],
   server: {
     host: true,

@@ -16,13 +16,13 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 20, // Reduced from 40px for subtlety
     scale: 0.98 // Much subtler scale effect
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -32,17 +32,17 @@ const cardVariants = {
   }
 };
 
-function ProjectCard({ 
-  image, 
-  title, 
-  brand, 
+function ProjectCard({
+  image,
+  title,
+  brand,
   gridArea,
   index,
   onClick
-}: { 
-  image: string; 
-  title: string; 
-  brand: string; 
+}: {
+  image: string;
+  title: string;
+  brand: string;
   gridArea: string;
   index: number;
   onClick?: () => void;
@@ -65,7 +65,7 @@ function ProjectCard({
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </motion.div>
-      <motion.div 
+      <motion.div
         className="box-border content-stretch flex flex-col font-onest gap-1 items-start justify-start p-0 relative shadow-[4px_4px_24px_0px_rgba(224,224,224,0.24)] shrink-0 text-[#141414] text-left w-full"
         whileHover={{ y: -2 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -83,16 +83,16 @@ function ProjectCard({
   );
 }
 
-function MobileProjectCard({ 
-  image, 
-  title, 
-  brand, 
+function MobileProjectCard({
+  image,
+  title,
+  brand,
   index,
   onClick
-}: { 
-  image: string; 
-  title: string; 
-  brand: string; 
+}: {
+  image: string;
+  title: string;
+  brand: string;
   index: number;
   onClick?: () => void;
 }) {
@@ -114,7 +114,7 @@ function MobileProjectCard({
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </motion.div>
-      <motion.div 
+      <motion.div
         className="flex flex-col font-onest gap-1 text-[#141414] text-left w-full"
         whileHover={{ y: -2 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -140,13 +140,12 @@ function PortfolioSkeleton() {
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className={`${
-              i === 0 ? '[grid-area:1_/_1_/_auto_/_span_12]' :
-              i === 1 ? '[grid-area:2_/_1_/_auto_/_span_7]' :
-              i === 2 ? '[grid-area:2_/_8_/_auto_/_span_5]' :
-              i === 3 ? '[grid-area:3_/_1_/_auto_/_span_5]' :
-              '[grid-area:3_/_6_/_auto_/_span_7]'
-            } flex flex-col gap-4 animate-pulse`}
+            className={`${i === 0 ? '[grid-area:1_/_1_/_auto_/_span_12]' :
+                i === 1 ? '[grid-area:2_/_1_/_auto_/_span_7]' :
+                  i === 2 ? '[grid-area:2_/_8_/_auto_/_span_5]' :
+                    i === 3 ? '[grid-area:3_/_1_/_auto_/_span_5]' :
+                      '[grid-area:3_/_6_/_auto_/_span_7]'
+              } flex flex-col gap-4 animate-pulse`}
           >
             <div className="bg-neutral-200 rounded-2xl flex-1 min-h-[200px]" />
             <div className="flex flex-col gap-2">
@@ -182,7 +181,7 @@ const STATIC_PROJECTS = [
     id: 'all-in-one',
     title: 'Your home inspection, done right',
     client_name: 'ALL-IN-ONE',
-    image_url: '/landingpage/aio/aio-hero.svg',
+    image_url: '/aio/aio-hero.svg',
     projectKey: 'all-in-one'
   },
   {
@@ -211,7 +210,7 @@ export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps)
   // Merge static projects with dynamic ones, ensuring static ones come first
   const displayPortfolio = [
     ...STATIC_PROJECTS,
-    ...(dynamicPortfolio || []).filter(item => 
+    ...(dynamicPortfolio || []).filter(item =>
       !STATIC_PROJECTS.some(p => p.client_name === item.client_name || p.title === item.title)
     )
   ].slice(0, 5);
@@ -226,7 +225,7 @@ export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps)
   ];
 
   return (
-    <motion.div 
+    <motion.div
       className="relative shrink-0 w-full bg-white"
       variants={containerVariants}
       initial="hidden"
@@ -237,7 +236,7 @@ export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps)
           <div className="basis-0 grow max-w-[1440px] min-h-px min-w-px relative shrink-0">
             <div className="flex flex-row items-center max-w-inherit relative size-full">
               <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-start max-w-inherit px-0 py-20 md:py-20 sm:py-12 relative w-full">
-                
+
                 {loading && displayPortfolio.length < 3 ? (
                   <PortfolioSkeleton />
                 ) : (
