@@ -41,7 +41,7 @@ export function NeochildHero() {
               alt="Neochild Healthcare Background"
               className="w-full h-auto block"
             />
-            {/* Hero 1 Overlay(Phone Mockup) */}
+            {/* Hero 1 Overlay (Phone Mockup) */}
             <motion.div
               className="absolute right-[5%] bottom-[5%] w-[40%] lg:w-[35%]"
               initial={{ y: 50, opacity: 0 }}
