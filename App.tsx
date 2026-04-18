@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { Home } from "./components/Home";
 import { Preview } from "./components/Preview";
 import { PortfolioAllInOne } from "./components/portfolio/PortfolioAllInOne";
+import { PortfolioNeochild } from "./components/portfolio/PortfolioNeochild";
 import { Blog } from "./components/Blog";
 import { AdminDashboard } from "./components/admin/AdminDashboard";
 
@@ -64,6 +65,12 @@ export default function App() {
         >
           {selectedProject === 'all-in-one' ? (
             <PortfolioAllInOne
+              onNavigateHome={() => setCurrentPage('home')}
+              onNavigatePreview={() => setCurrentPage('preview')}
+              onNavigateBlog={() => setCurrentPage('blog')}
+            />
+          ) : selectedProject === 'neochildcare' ? (
+            <PortfolioNeochild
               onNavigateHome={() => setCurrentPage('home')}
               onNavigatePreview={() => setCurrentPage('preview')}
               onNavigateBlog={() => setCurrentPage('blog')}

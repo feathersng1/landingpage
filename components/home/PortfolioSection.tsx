@@ -188,7 +188,7 @@ const STATIC_PROJECTS = [
     id: 'neochildcare',
     title: 'Digital Health for the Next Generation',
     client_name: 'NEOCHILDCARE',
-    image_url: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&h=600&fit=crop', // Placeholder for now
+    image_url: '/neochild/neochild-hero2.svg',
     projectKey: 'neochildcare'
   },
   {
