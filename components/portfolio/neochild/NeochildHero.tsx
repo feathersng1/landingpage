@@ -26,12 +26,25 @@ export function NeochildHero() {
           className="relative w-full overflow-hidden shadow-none rounded-none md:rounded-[16px] lg:rounded-[16px]"
         >
           {/* Mobile Hero Image - Edge to edge */}
-          <div className="block md:hidden w-full">
+          <div className="block md:hidden relative w-full overflow-hidden">
             <img
               src="/neochild/neochild-hero2mobile.svg"
               alt="Neochild Healthcare Mobile"
               className="w-full h-auto block"
             />
+            {/* Mobile Hero 1 Overlay (Phone Mockup) */}
+            <motion.div
+              className="absolute left-[-28%] bottom-0 w-[90%]"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
+            >
+              <img
+                src="/neochild/neochild-hero1.png"
+                alt="Neochild App Mockup"
+                className="w-full h-auto drop-shadow-2xl"
+              />
+            </motion.div>
           </div>
 
           {/* Desktop Hero Image - Rounded corners on md+ */}
@@ -43,7 +56,7 @@ export function NeochildHero() {
             />
             {/* Hero 1 Overlay (Phone Mockup) */}
             <motion.div
-              className="absolute right-[5%] bottom-[5%] w-[40%] lg:w-[35%]"
+              className="absolute right-[-1%] bottom-0 w-[50%] lg:w-[48%]"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
