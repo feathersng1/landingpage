@@ -33,15 +33,16 @@ interface ColorStripProps {
   textColor?: string;
   height: string;
   rounded: string;
+  isCentered?: boolean;
 }
 
-const ColorStrip = ({ label, bgColor, textColor = "#FFFFFF", height, rounded }: ColorStripProps) => (
+const ColorStrip = ({ label, bgColor, textColor = "#FFFFFF", height, rounded, isCentered }: ColorStripProps) => (
   <motion.div
     variants={itemVariants}
-    className={`w-full ${height} ${rounded} flex items-start p-4 transition-transform hover:scale-[1.02] duration-500`}
+    className={`w-full ${height} ${rounded} flex ${isCentered ? 'items-center justify-start' : 'items-start justify-start'} p-4 transition-transform hover:scale-[1.02] duration-500`}
     style={{ backgroundColor: bgColor }}
   >
-    <span 
+    <span
       className="font-dmsans text-[14px] md:text-[19px] font-normal uppercase tracking-[4px]"
       style={{ color: textColor }}
     >
@@ -61,95 +62,107 @@ export function NeochildSecondaryMedia() {
     >
       <div className="max-w-[1440px] mx-auto flex flex-col gap-6 px-6">
 
-        {/* Row 1: Logo Card */}
+        {/* Row 1: Logo Card - Synchronized height with All-In-One project */}
         <motion.div
           variants={itemVariants}
-          className="relative w-full bg-[#F8FBEE] border-[2px] border-[#F2F2F3] rounded-[16px] py-20 flex items-center justify-center overflow-hidden"
+          className="relative w-full bg-[#F8FBEE] border-[2px] border-[#F2F2F3] rounded-[16px] flex items-center justify-center overflow-hidden md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px]"
         >
           <img
             src="/neochild/neochildcare-logo.svg"
             alt="Neochildcare Logo"
-            className="w-full max-w-[280px] md:max-w-[380px] h-auto block drop-shadow-sm transition-transform hover:scale-105 duration-700"
+            className="w-full max-w-[280px] md:max-w-[380px] lg:max-w-[480px] h-auto block drop-shadow-sm transition-transform hover:scale-105 duration-700"
           />
         </motion.div>
 
         {/* Row 2: Color Palette & Typography Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          
+
           {/* Column A: Color Strips */}
           <div className="flex flex-col gap-3">
-            <ColorStrip 
-              label="TEAL" 
-              bgColor="#008387" 
-              height="h-[180px] md:h-[240px]" 
-              rounded="rounded-t-[16px] rounded-b-[4px]" 
+            <ColorStrip
+              label="TEAL"
+              bgColor="#008387"
+              height="h-[180px] md:h-[240px]"
+              rounded="rounded-t-[16px] rounded-b-[4px]"
             />
-            <ColorStrip 
-              label="PUMPKIN SPICE" 
-              bgColor="#F97513" 
-              height="h-[100px] md:h-[130px]" 
-              rounded="rounded-[4px]" 
+            <ColorStrip
+              label="PUMPKIN SPICE"
+              bgColor="#F97513"
+              height="h-[100px] md:h-[130px]"
+              rounded="rounded-[4px]"
             />
-            <ColorStrip 
-              label="YELLOW GREEN" 
-              bgColor="#9BC607" 
-              textColor="#000000" 
-              height="h-[60px] md:h-[70px]" 
-              rounded="rounded-[4px]" 
+            <ColorStrip
+              label="YELLOW GREEN"
+              bgColor="#9BC607"
+              textColor="#000000"
+              height="h-[60px] md:h-[70px]"
+              rounded="rounded-[4px]"
+              isCentered
             />
-            <ColorStrip 
-              label="SLATE GREY" 
-              bgColor="#707880" 
-              height="h-[120px] md:h-[160px]" 
-              rounded="rounded-t-[4px] rounded-b-[16px]" 
+            <ColorStrip
+              label="SLATE GREY"
+              bgColor="#707880"
+              height="h-[120px] md:h-[160px]"
+              rounded="rounded-t-[4px] rounded-b-[16px]"
             />
           </div>
 
-          {/* Column B: Inter Breakage Card */}
+          {/* Column B: Inter Breakage Card - Final Top-Left Layout */}
           <motion.div
             variants={itemVariants}
-            className="w-full bg-[#008387] rounded-[16px] relative flex flex-col items-center justify-center min-h-[400px] md:min-h-full overflow-hidden"
+            className="w-full bg-[#008387] rounded-[16px] relative flex flex-col items-start justify-start min-h-[450px] md:min-h-full overflow-hidden p-6 md:p-4"
           >
-            {/* Breakage Typography Container */}
-            <div className="relative w-full h-full flex flex-col items-center justify-center py-12">
-              <h3 
-                className="font-inter font-black text-[120px] md:text-[180px] lg:text-[220px] leading-[0.8] tracking-tighter text-[#004E51]"
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%), repeating-linear-gradient(to bottom, black 0 4px, transparent 4px 12px)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 45%, transparent 45%), repeating-linear-gradient(to bottom, black 0 4px, transparent 4px 15px)',
-                }}
-              >
-                Inter
-              </h3>
-              
-              {/* Additional "bars" to reinforce the breakage at the bottom */}
-              <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 pointer-events-none">
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                    className="w-[80%] h-[2px] md:h-[3px] bg-[#004E51]/30 mt-[8px] md:mt-[12px]"
-                    style={{ width: `${80 - i * 8}%` }}
-                  />
-                ))}
-              </div>
+            {/* Solid Main Header */}
+            <h3
+              className="font-inter font-black text-[130px] md:text-[220px] lg:text-[240px] leading-[0.7] tracking-tighter text-[#004E51] relative z-10"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              Inter
+            </h3>
+
+            {/* Cascading Breakage Beneath */}
+            <div className="flex flex-col items-start -mt-4 md:-mt-8">
+              {[...Array(12)].map((_, i) => (
+                <motion.h3
+                  key={i}
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: (1 - (i * 0.08)) * 0.7, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.04, duration: 0.6 }}
+                  className="font-inter font-black text-[130px] md:text-[200px] lg:text-[260px] leading-[0.1] tracking-tighter text-[#004E51] pointer-events-none"
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    maskImage: `linear-gradient(to bottom, transparent ${40 + i * 2}%, black ${40 + i * 2}% ${40 + i * 2 + 1}%, transparent ${40 + i * 2 + 1}%)`,
+                    WebkitMaskImage: `linear-gradient(to bottom, transparent ${40 + i * 2}%, black ${40 + i * 2}% ${40 + i * 2 + 1}%, transparent ${40 + i * 2 + 1}%)`,
+                  }}
+                >
+                  Inter
+                </motion.h3>
+              ))}
+            </div>
+
+            {/* Bottom Accent Decor - reinforced descending look */}
+            <div className="absolute bottom-8 left-14 w-full flex flex-col items-start pointer-events-none opacity-10">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-[2px] bg-[#004E51] mb-4"
+                  style={{ width: `${80 - i * 12}%` }}
+                />
+              ))}
             </div>
           </motion.div>
         </div>
 
-        {/* Row 3: Icons Row */}
+        {/* Row 3: Icons Row - Synchronized height with Row 1 */}
         <motion.div
           variants={itemVariants}
-          className="relative w-full bg-[#F9F9F9] rounded-[16px] py-20 px-6 overflow-hidden flex items-center justify-center"
+          className="relative w-full bg-[#F9F9F9] rounded-[16px] flex items-center justify-center overflow-hidden md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] px-6"
         >
           {/* Desktop Asset */}
           <img
             src="/neochild/neochild-icons.svg"
             alt="Neochildcare Icons"
-            className="hidden md:block w-full max-w-[1000px] h-auto transition-all duration-700 hover:opacity-80"
+            className="hidden md:block w-full max-w-[800px] lg:max-w-[1000px] h-auto transition-all duration-700 hover:opacity-80"
           />
           {/* Mobile Asset */}
           <img
