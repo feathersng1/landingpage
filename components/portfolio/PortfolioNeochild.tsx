@@ -3,6 +3,8 @@ import { UnifiedHeader } from "../UnifiedHeader";
 import { Footer } from "../Footer";
 import { NeochildHero } from "./neochild/NeochildHero";
 import { NeochildProjectDetails } from "./neochild/NeochildProjectDetails";
+import { NeochildGallery } from "./neochild/NeochildGallery";
+import { NeochildDesignApproach } from "./neochild/NeochildDesignApproach";
 
 interface PortfolioNeochildProps {
   onNavigateHome: () => void;
@@ -70,7 +72,13 @@ export function PortfolioNeochild({ onNavigateHome, onNavigatePreview, onNavigat
             <NeochildProjectDetails />
           </motion.div>
 
-          {/* Further sections will be added here one by one */}
+          <motion.div variants={sectionVariants}>
+            <NeochildGallery />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NeochildDesignApproach />
+          </motion.div>
 
         </div>
 
