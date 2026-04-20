@@ -5,6 +5,7 @@ import { NeochildHero } from "./neochild/NeochildHero";
 import { NeochildProjectDetails } from "./neochild/NeochildProjectDetails";
 import { NeochildGallery } from "./neochild/NeochildGallery";
 import { NeochildDesignApproach } from "./neochild/NeochildDesignApproach";
+import { NeochildSecondaryMedia } from "./neochild/NeochildSecondaryMedia";
 
 interface PortfolioNeochildProps {
   onNavigateHome: () => void;
@@ -78,6 +79,10 @@ export function PortfolioNeochild({ onNavigateHome, onNavigatePreview, onNavigat
 
           <motion.div variants={sectionVariants}>
             <NeochildDesignApproach />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NeochildSecondaryMedia />
           </motion.div>
 
         </div>
