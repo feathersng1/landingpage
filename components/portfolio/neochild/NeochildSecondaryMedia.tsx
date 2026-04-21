@@ -60,116 +60,110 @@ export function NeochildSecondaryMedia() {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
     >
-      <div className="max-w-[1440px] mx-auto flex flex-col gap-6 px-6">
-
-        {/* Row 1: Logo Card - Synchronized height with All-In-One project */}
+      <div className="max-w-[1440px] mx-auto flex flex-col gap-6">
+        
+        {/* Row 1: Logo Card - Edge-to-edge on mobile */}
         <motion.div
           variants={itemVariants}
-          className="relative w-full bg-[#F8FBEE] border-[2px] border-[#F2F2F3] rounded-[16px] flex items-center justify-center overflow-hidden md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px]"
+          className="relative w-full md:px-6"
         >
-          <img
-            src="/neochild/neochildcare-logo.svg"
-            alt="Neochildcare Logo"
-            className="w-full max-w-[280px] md:max-w-[380px] lg:max-w-[480px] h-auto block drop-shadow-sm transition-transform hover:scale-105 duration-700"
-          />
-        </motion.div>
-
-        {/* Row 2: Color Palette & Typography Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-
-          {/* Column A: Color Strips */}
-          <div className="flex flex-col gap-3">
-            <ColorStrip
-              label="TEAL"
-              bgColor="#008387"
-              height="h-[180px] md:h-[240px]"
-              rounded="rounded-t-[16px] rounded-b-[4px]"
-            />
-            <ColorStrip
-              label="PUMPKIN SPICE"
-              bgColor="#F97513"
-              height="h-[100px] md:h-[130px]"
-              rounded="rounded-[4px]"
-            />
-            <ColorStrip
-              label="YELLOW GREEN"
-              bgColor="#9BC607"
-              textColor="#000000"
-              height="h-[60px] md:h-[70px]"
-              rounded="rounded-[4px]"
-              isCentered
-            />
-            <ColorStrip
-              label="SLATE GREY"
-              bgColor="#707880"
-              height="h-[120px] md:h-[160px]"
-              rounded="rounded-t-[4px] rounded-b-[16px]"
+          <div className="w-full bg-[#F8FBEE] border-y md:border-[2px] border-[#F2F2F3] rounded-none md:rounded-[16px] flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px]">
+            <img
+              src="/neochild/neochildcare-logo.svg"
+              alt="Neochildcare Logo"
+              className="w-full max-w-[200px] md:max-w-[380px] lg:max-w-[480px] h-auto block drop-shadow-sm transition-transform hover:scale-105 duration-700"
             />
           </div>
+        </motion.div>
 
-          {/* Column B: Inter Breakage Card - Final Top-Left Layout */}
-          <motion.div
-            variants={itemVariants}
-            className="w-full bg-[#008387] rounded-[16px] relative flex flex-col items-start justify-start min-h-[450px] md:min-h-full overflow-hidden p-6 md:p-4"
-          >
-            {/* Solid Main Header */}
-            <h3
-              className="font-inter font-black text-[130px] md:text-[220px] lg:text-[240px] leading-[0.7] tracking-tighter text-[#004E51] relative z-10"
-              style={{ fontFamily: 'Inter, sans-serif' }}
-            >
-              Inter
-            </h3>
-
-            {/* Cascading Breakage Beneath */}
-            <div className="flex flex-col items-start -mt-4 md:-mt-8">
-              {[...Array(12)].map((_, i) => (
-                <motion.h3
-                  key={i}
-                  initial={{ opacity: 0, y: -10 }}
-                  whileInView={{ opacity: (1 - (i * 0.08)) * 0.7, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.04, duration: 0.6 }}
-                  className="font-inter font-black text-[130px] md:text-[200px] lg:text-[260px] leading-[0.1] tracking-tighter text-[#004E51] pointer-events-none"
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    maskImage: `linear-gradient(to bottom, transparent ${40 + i * 2}%, black ${40 + i * 2}% ${40 + i * 2 + 1}%, transparent ${40 + i * 2 + 1}%)`,
-                    WebkitMaskImage: `linear-gradient(to bottom, transparent ${40 + i * 2}%, black ${40 + i * 2}% ${40 + i * 2 + 1}%, transparent ${40 + i * 2 + 1}%)`,
-                  }}
-                >
-                  Inter
-                </motion.h3>
-              ))}
+        {/* Row 2: Color Palette & Typography Grid - Inside padding for grid consistency */}
+        <div className="px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {/* Column A: Color Strips */}
+            <div className="flex flex-col gap-3">
+              <ColorStrip
+                label="TEAL"
+                bgColor="#008387"
+                height="h-[180px] md:h-[240px]"
+                rounded="rounded-t-[16px] rounded-b-[4px]"
+              />
+              <ColorStrip
+                label="PUMPKIN SPICE"
+                bgColor="#F97513"
+                height="h-[100px] md:h-[130px]"
+                rounded="rounded-[4px]"
+              />
+              <ColorStrip
+                label="YELLOW GREEN"
+                bgColor="#9BC607"
+                textColor="#000000"
+                height="h-[60px] md:h-[70px]"
+                rounded="rounded-[4px]"
+                isCentered
+              />
+              <ColorStrip
+                label="SLATE GREY"
+                bgColor="#707880"
+                height="h-[120px] md:h-[160px]"
+                rounded="rounded-t-[4px] rounded-b-[16px]"
+              />
             </div>
 
-            {/* Bottom Accent Decor - reinforced descending look */}
-            <div className="absolute bottom-8 left-14 w-full flex flex-col items-start pointer-events-none opacity-10">
-              {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-[2px] bg-[#004E51] mb-4"
-                  style={{ width: `${80 - i * 12}%` }}
+            {/* Column B: Inter Breakage Card - High-Fidelity SVG Implementation */}
+            <motion.div
+              variants={itemVariants}
+              className="w-full bg-[#008387] rounded-[16px] relative flex flex-col items-start justify-between min-h-[340px] md:min-h-full overflow-hidden p-6 md:p-8"
+            >
+              {/* Main Typography SVG - Pinned to top padding */}
+              <motion.img
+                src="/neochild/inter-main.svg"
+                alt="Inter Main"
+                variants={itemVariants}
+                className="w-full h-auto max-w-full"
+              />
+
+              {/* Cascading Breakage SVGs - Distributed to hit bottom padding */}
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((num, i) => (
+                <motion.img
+                  key={num}
+                  src={`/neochild/inter${num}.svg`}
+                  alt={`Inter Piece ${num}`}
+                  initial={{ opacity: 0 }}
+                  whileInView={{
+                    opacity: 1,
+                    transition: {
+                      delay: 0.1 + i * 0.05,
+                      duration: 0.6,
+                      ease: "easeOut"
+                    }
+                  }}
+                  viewport={{ once: true }}
+                  className="w-[90.5%] h-auto"
                 />
               ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Row 3: Icons Row - Synchronized height with Row 1 */}
+        {/* Row 3: Icons Row - Edge-to-edge on mobile */}
         <motion.div
           variants={itemVariants}
-          className="relative w-full bg-[#F9F9F9] rounded-[16px] flex items-center justify-center overflow-hidden md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] px-6"
+          className="relative w-full md:px-6"
         >
-          {/* Desktop Asset */}
-          <img
-            src="/neochild/neochild-icons.svg"
-            alt="Neochildcare Icons"
-            className="hidden md:block w-full max-w-[800px] lg:max-w-[1000px] h-auto transition-all duration-700 hover:opacity-80"
-          />
-          {/* Mobile Asset */}
-          <img
-            src="/neochild/neochild-icons-m.svg"
-            alt="Neochildcare Icons Mobile"
-            className="block md:hidden w-full max-w-[340px] h-auto"
-          />
+          <div className="w-full bg-[#F9F9F9] rounded-none md:rounded-[16px] flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] px-6">
+            {/* Desktop Asset */}
+            <img
+              src="/neochild/neochild-icons.svg"
+              alt="Neochildcare Icons"
+              className="hidden md:block w-full max-w-[800px] lg:max-w-[1000px] h-auto transition-all duration-700 hover:opacity-80"
+            />
+            {/* Mobile Asset */}
+            <img
+              src="/neochild/neochild-icons-m.svg"
+              alt="Neochildcare Icons Mobile"
+              className="block md:hidden w-full max-w-[340px] h-auto"
+            />
+          </div>
         </motion.div>
 
       </div>
