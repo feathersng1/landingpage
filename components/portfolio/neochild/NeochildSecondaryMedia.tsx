@@ -84,27 +84,27 @@ export function NeochildSecondaryMedia() {
               <ColorStrip
                 label="TEAL"
                 bgColor="#008387"
-                height="h-[180px] md:h-[240px]"
+                height="h-[160px] md:h-[150px] lg:h-[240px]"
                 rounded="rounded-t-[16px] rounded-b-[4px]"
               />
               <ColorStrip
                 label="PUMPKIN SPICE"
                 bgColor="#F97513"
-                height="h-[100px] md:h-[130px]"
+                height="h-[90px] md:h-[80px] lg:h-[130px]"
                 rounded="rounded-[4px]"
               />
               <ColorStrip
                 label="YELLOW GREEN"
                 bgColor="#9BC607"
                 textColor="#000000"
-                height="h-[60px] md:h-[70px]"
+                height="h-[50px] md:h-[40px] lg:h-[70px]"
                 rounded="rounded-[4px]"
                 isCentered
               />
               <ColorStrip
                 label="SLATE GREY"
                 bgColor="#707880"
-                height="h-[120px] md:h-[160px]"
+                height="h-[100px] md:h-[100px] lg:h-[160px]"
                 rounded="rounded-t-[4px] rounded-b-[16px]"
               />
             </div>
@@ -112,7 +112,7 @@ export function NeochildSecondaryMedia() {
             {/* Column B: Inter Breakage Card - High-Fidelity SVG Implementation */}
             <motion.div
               variants={itemVariants}
-              className="w-full bg-[#008387] rounded-[16px] relative flex flex-col items-start justify-between min-h-[340px] md:min-h-full overflow-hidden p-6 md:p-8"
+              className="w-full bg-[#008387] rounded-[16px] relative flex flex-col items-start justify-between min-h-[400px] md:h-full overflow-hidden p-6 md:p-8"
             >
               {/* Main Typography SVG - Pinned to top padding */}
               <motion.img

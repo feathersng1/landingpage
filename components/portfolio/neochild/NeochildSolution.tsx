@@ -100,9 +100,13 @@ export function NeochildSolution() {
       <section className="w-full px-6 max-w-[1440px] mx-auto mb-10 md:mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
 
-          {/* Community Card - Perfect Stretch Animation */}
+          {/* Community Card - Fixed height & hover animation */}
           <motion.div
-            className="bg-[#FDF7F2] rounded-[16px] flex items-center justify-center relative min-h-[340px] h-auto group cursor-pointer overflow-hidden p-8"
+            className="bg-[#FDF7F2] rounded-[16px] flex items-center justify-center relative h-[436px] md:h-[406px] lg:h-[636px] group cursor-pointer overflow-hidden p-8"
+            initial="hidden"
+            whileInView="visible"
+            whileHover="hover"
+            viewport={{ once: true }}
             variants={itemVariants}
           >
             <div className="relative flex items-center h-full w-full justify-center">
@@ -112,21 +116,14 @@ export function NeochildSolution() {
                 style={{ height: 48, width: 48 }}
                 variants={{
                   hover: {
-                    width: [48, 280, 48],
-                    borderRadius: ["9999px", "24px", "9999px"],
-                    transition: { duration: 1.2, times: [0, 0.6, 1], ease: "easeInOut" }
+                    width: 280,
+                    borderRadius: "24px",
+                    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
                   }
                 }}
-                whileHover="hover"
               />
 
-              <motion.div
-                className="relative z-10 flex items-center gap-3"
-                whileHover="hover"
-              >
-                {/* Invisible trigger to make sure hover works reliably */}
-                <div className="absolute inset-[-20px] z-20" />
-
+              <div className="relative z-10 flex items-center gap-3">
                 <span className="font-onest font-medium text-[20px] md:text-[24px] text-[#020303] select-none">
                   Join the community
                 </span>
@@ -136,23 +133,23 @@ export function NeochildSolution() {
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </motion.svg>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
 
           {/* App Slider Card - 30% Peek & No Shadows */}
           <motion.div
-            className="bg-[#F97513] rounded-[16px] overflow-hidden flex flex-col justify-center h-[340px] relative p-6 md:p-10 lg:p-12"
+            className="bg-[#F97513] rounded-[16px] overflow-hidden flex flex-col justify-center h-[436px] md:h-[406px] lg:h-[636px] relative p-6 md:p-10 lg:p-12"
             variants={itemVariants}
           >
-            <div className="flex gap-4 overflow-visible h-full items-center relative">
+            <div className="flex h-full items-center relative overflow-hidden">
               <motion.div
-                className="flex gap-10 shrink-0 h-[85%]"
+                className="flex shrink-0 h-[85%] w-full"
                 animate={{ x: `-${activeCard * 70}%` }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
                 {cards.map((src, i) => (
-                  <div key={i} className="w-[70%] h-full shrink-0 flex items-center justify-center">
+                  <div key={i} className="w-[70%] h-full shrink-0 flex items-center justify-center px-4 lg:px-0">
                     <img src={src} alt={`App Screen ${i + 1}`} className="h-full w-auto object-contain shadow-none" />
                   </div>
                 ))}
@@ -163,84 +160,88 @@ export function NeochildSolution() {
         </div>
       </section>
 
-      {/* 3. Impact / Balloons Section - Fixed Overlapping & Lines */}
-      <section className="w-full px-0 md:px-6 mb-10 md:mb-6">
-        <div className="max-w-[1440px] rounded-[16px] mx-auto bg-[#F2F2F3] px-12 md:px-20 py-2 relative overflow-visible">
+      {/* 3. Impact / Balloons Section - Responsive Edge-to-Edge & Aligned with Design */}
+      <section className="w-full px-0 md:px-6 mb-10 md:mb-6 overflow-visible">
+        <div className="max-w-[1440px] rounded-none md:rounded-[16px] mx-auto bg-[#F2F2F3] px-0 md:px-20 py-0 md:py-2 relative overflow-visible">
           <div className="bg-white rounded-none w-full min-h-[550px] md:min-h-[700px] lg:min-h-[900px] relative flex items-center justify-center overflow-hidden">
 
-            {/* Background Floating Shapes */}
-            <FloatingShape color="#F97513" size="w-4 h-4" position="top-[15%] left-[20%]" type="circle" index={0} />
-            <FloatingShape color="#FEE3D0" size="w-6 h-6" position="top-[10%] left-[45%]" type="circle" index={1} />
-            <FloatingShape color="#F0FCFD" size="w-24 h-24" position="top-[50%] left-[5%]" type="circle" index={2} />
-            <FloatingShape color="#F0FCFD" size="w-3 h-3" position="bottom-[15%] left-[25%]" type="circle" index={3} />
+            {/* Background Floating Shapes - Exactly as per design */}
+            <FloatingShape color="#F97513" size="w-3 h-3 md:w-4 md:h-4" position="top-[15%] left-[15%]" type="circle" index={0} />
+            <FloatingShape color="#FEE3D0" size="w-5 h-5 md:w-6 md:h-6" position="top-[10%] left-[45%]" type="circle" index={1} />
+            <FloatingShape color="#F0FCFD" size="w-16 h-16 md:w-24 md:h-24" position="top-[55%] left-[5%] md:left-[10%]" type="circle" index={2} />
+            <FloatingShape color="#F0FCFD" size="w-4 h-4 md:w-5 md:h-5" position="bottom-[15%] left-[35%]" type="circle" index={3} />
 
-            <FloatingShape color="#009DA2" size="w-12 h-12" position="top-[8%] right-[10%]" type="star" index={4} />
-            <FloatingShape color="#CCEBEC" size="w-6 h-6" position="top-[30%] left-[30%]" type="star" index={5} />
-            <FloatingShape color="#AADEE0" size="w-5 h-5" position="bottom-[15%] right-[5%]" type="star" index={6} />
-            <FloatingShape color="#CCEBEC" size="w-4 h-4" position="bottom-[35%] right-[20%]" type="star" index={7} />
+            <FloatingShape color="#009DA2" size="w-10 h-10 md:w-12 md:h-12" position="top-[8%] right-[8%]" type="star" index={4} />
+            <FloatingShape color="#CCEBEC" size="w-5 h-5 md:w-6 md:h-6" position="bottom-[20%] left-[20%]" type="star" index={5} />
+            <FloatingShape color="#AADEE0" size="w-4 h-4 md:w-5 md:h-5" position="bottom-[25%] right-[20%]" type="star" index={6} />
+            <FloatingShape color="#CCEBEC" size="w-3 h-3 md:w-4 md:h-4" position="top-[20%] right-[40%]" type="star" index={7} />
 
             {/* Central Visuals */}
             <div className="relative w-full max-w-[800px] aspect-square flex items-center justify-center">
 
               {/* Main Images Container */}
-              <div className="relative z-10">
-                <img src="/neochild/mum-child.svg" alt="Mother and Child" className="w-[320px] md:w-[480px] lg:w-[620px] h-auto rounded-full object-cover" />
-                <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-18%] left-[28%] w-[180px] md:w-[280px] h-auto z-20" />
+              <div className="relative z-10 flex items-center justify-center">
+                <img src="/neochild/mum-child.svg" alt="Mother and Child" className="w-[300px] md:w-[440px] lg:w-[580px] h-auto rounded-full object-cover" />
+                <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-10%] left-[22%] md:left-[25%] w-[150px] md:w-[240px] h-auto z-20" />
               </div>
 
-              {/* Ropes/Lines Overlay - Convergent to bottom-rightish */}
+              {/* Ropes/Lines Overlay - 6 Ropes, non-convergent, spreading from bottom-right area */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" overflow="visible">
                 {/* 1000+ rope */}
-                <motion.line x1="100%" y1="100%" x2="80%" y2="10%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="98%" y1="98%" x2="85%" y2="25%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 88 rope */}
-                <motion.line x1="100%" y1="100%" x2="85%" y2="55%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="95%" y1="98%" x2="90%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 434 rope */}
-                <motion.line x1="100%" y1="100%" x2="70%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="92%" y1="98%" x2="80%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 11 rope */}
-                <motion.line x1="100%" y1="100%" x2="30%" y2="90%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="89%" y1="98%" x2="55%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Mum Image rope */}
+                <motion.line x1="86%" y1="98%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Baby Image rope */}
+                <motion.line x1="83%" y1="98%" x2="35%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
-              {/* Overlapping Stat Bubbles */}
-              {/* 1. 1000+ (Caregivers) - Top Edge */}
+              {/* Overlapping Stat Bubbles - Positioned as per design */}
+              {/* 1. 1000+ (Caregivers) - Top Right Area */}
               <ImpactBubble
                 label="1000+"
                 sublabel="Caregivers Engaged Online"
                 bgColor="#F97513"
-                size="w-48 h-48 md:w-122 md:h-122"
-                position="top-[2%] right-[-15%] md:right-[-1%] lg:right-[-24%]"
+                size="w-32 h-32 md:w-80 md:h-80 lg:w-122 lg:h-122"
+                position="top-[5%] right-[-5%] md:right-[-15%] lg:right-[-20%]"
                 zIndex="z-10"
                 delay={0.3}
               />
 
-              {/* 2. 88 - Top of Both */}
+              {/* 2. 88 - Mid Right Area */}
               <ImpactBubble
                 label="88"
                 sublabel="Children Vaccinated against Tetanus"
                 bgColor="#FA8C3A"
-                size="w-36 h-36 md:w-60 md:h-60"
-                position="top-[42%] right-[-5%] md:right-[-8%] lg:right-[-24%]"
+                size="w-24 h-24 md:w-48 md:h-48 lg:w-64 lg:h-64"
+                position="top-[40%] right-[-10%] md:right-[-20%] lg:right-[-25%]"
                 zIndex="z-30"
                 delay={0.5}
               />
 
-              {/* 3. 434 - Overlapped by 88 */}
+              {/* 3. 434 - Bottom Right Area */}
               <ImpactBubble
                 label="434"
                 sublabel="Children Reached"
                 bgColor="#F97513"
-                size="w-40 h-40 md:w-94 md:h-94"
-                position="bottom-[5%] right-[5%] md:right-[0%] lg:right-[-16%]"
+                size="w-28 h-28 md:w-64 md:h-64 lg:w-94 lg:h-94"
+                position="bottom-[10%] right-[5%] md:right-[5%] lg:right-[-10%]"
                 zIndex="z-10"
                 delay={0.4}
               />
 
-              {/* 4. 11 - Bottom Edge, Overlapping 434 */}
+              {/* 4. 11 - Bottom Area, aligned with design */}
               <ImpactBubble
                 label="11"
                 sublabel="Schools"
                 bgColor="#2AADB1"
-                size="w-28 h-28 md:w-48 md:h-48"
-                position="bottom-[4%] left-[18%] md:left-[22%] lg:left-[65%]"
+                size="w-20 h-20 md:w-36 md:h-36 lg:w-52 lg:h-52"
+                position="bottom-[2%] left-[45%] md:left-[50%] lg:left-[48%] -translate-x-1/2"
                 zIndex="z-20"
                 delay={0.6}
               />
