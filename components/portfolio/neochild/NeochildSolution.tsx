@@ -185,13 +185,13 @@ export function NeochildSolution() {
               {/* Main Images Container */}
               <div className="relative z-10">
                 <img src="/neochild/mum-child.svg" alt="Mother and Child" className="w-[320px] md:w-[480px] lg:w-[620px] h-auto rounded-full object-cover" />
-                <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[5%] left-[-2%] w-[180px] md:w-[280px] h-auto z-20" />
+                <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-18%] left-[28%] w-[180px] md:w-[280px] h-auto z-20" />
               </div>
 
               {/* Ropes/Lines Overlay - Convergent to bottom-rightish */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" overflow="visible">
                 {/* 1000+ rope */}
-                <motion.line x1="100%" y1="100%" x2="80%" y2="20%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="100%" x2="80%" y2="10%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 88 rope */}
                 <motion.line x1="100%" y1="100%" x2="85%" y2="55%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 434 rope */}
@@ -206,8 +206,8 @@ export function NeochildSolution() {
                 label="1000+"
                 sublabel="Caregivers Engaged Online"
                 bgColor="#F97513"
-                size="w-48 h-48 md:w-92 md:h-92"
-                position="top-[5%] right-[-15%] md:right-[-10%] lg:right-[-5%]"
+                size="w-48 h-48 md:w-122 md:h-122"
+                position="top-[2%] right-[-15%] md:right-[-1%] lg:right-[-24%]"
                 zIndex="z-10"
                 delay={0.3}
               />
@@ -217,8 +217,8 @@ export function NeochildSolution() {
                 label="88"
                 sublabel="Children Vaccinated against Tetanus"
                 bgColor="#FA8C3A"
-                size="w-36 h-36 md:w-56 md:h-56"
-                position="top-[38%] right-[-5%] md:right-[-8%] lg:right-[-10%]"
+                size="w-36 h-36 md:w-60 md:h-60"
+                position="top-[42%] right-[-5%] md:right-[-8%] lg:right-[-24%]"
                 zIndex="z-30"
                 delay={0.5}
               />
@@ -228,8 +228,8 @@ export function NeochildSolution() {
                 label="434"
                 sublabel="Children Reached"
                 bgColor="#F97513"
-                size="w-40 h-40 md:w-64 md:h-64"
-                position="bottom-[12%] right-[5%] md:right-[0%]"
+                size="w-40 h-40 md:w-94 md:h-94"
+                position="bottom-[5%] right-[5%] md:right-[0%] lg:right-[-16%]"
                 zIndex="z-10"
                 delay={0.4}
               />
@@ -239,8 +239,8 @@ export function NeochildSolution() {
                 label="11"
                 sublabel="Schools"
                 bgColor="#2AADB1"
-                size="w-28 h-28 md:w-44 md:h-44"
-                position="bottom-[0%] left-[18%] md:left-[22%] lg:left-[25%]"
+                size="w-28 h-28 md:w-48 md:h-48"
+                position="bottom-[4%] left-[18%] md:left-[22%] lg:left-[65%]"
                 zIndex="z-20"
                 delay={0.6}
               />
