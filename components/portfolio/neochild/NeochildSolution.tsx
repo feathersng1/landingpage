@@ -25,15 +25,15 @@ const floatVariants = {
 
 const ImpactBubble = ({ label, sublabel, bgColor, size, position, zIndex, delay }: { label: string, sublabel: string, bgColor: string, size: string, position: string, zIndex: string, delay: number }) => (
   <motion.div
-    className={`absolute rounded-full flex flex-col items-center justify-center text-white text-center px-4 shadow-none ${size} ${position} ${zIndex} font-inter`}
+    className={`absolute rounded-full flex flex-col items-center justify-center text-center px-2 md:px-4 shadow-none ${size} ${position} ${zIndex} font-inter`}
     style={{ backgroundColor: bgColor }}
     initial={{ scale: 0, opacity: 0 }}
     whileInView={{ scale: 1, opacity: 1 }}
     transition={{ delay, duration: 0.6, type: "spring", stiffness: 100 }}
     viewport={{ once: true }}
   >
-    <span className="font-bold text-2xl md:text-3xl lg:text-4xl leading-none tracking-tight">{label}</span>
-    <span className="font-normal text-[12px] md:text-[16px] lg:text-[18px] leading-tight mt-1 opacity-95">{sublabel}</span>
+    <span className="font-bold text-white text-[18px] md:text-3xl lg:text-4xl leading-none tracking-tight">{label}</span>
+    <span className="font-normal text-white text-[8px] md:text-[12px] lg:text-[16px] leading-tight mt-0.5 md:mt-1 opacity-95">{sublabel}</span>
   </motion.div>
 );
 
@@ -185,63 +185,63 @@ export function NeochildSolution() {
                 <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-10%] left-[22%] md:left-[25%] w-[150px] md:w-[240px] h-auto z-20" />
               </div>
 
-              {/* Ropes/Lines Overlay - 6 Ropes, non-convergent, spreading from bottom-right area */}
+              {/* Ropes/Lines Overlay - Fixed connections and responsiveness */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" overflow="visible">
                 {/* 1000+ rope */}
-                <motion.line x1="98%" y1="98%" x2="85%" y2="25%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="90%" y1="95%" x2="85%" y2="25%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 88 rope */}
-                <motion.line x1="95%" y1="98%" x2="90%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="88%" y1="95%" x2="90%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 434 rope */}
-                <motion.line x1="92%" y1="98%" x2="80%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="86%" y1="95%" x2="80%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* 11 rope */}
-                <motion.line x1="89%" y1="98%" x2="55%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="84%" y1="95%" x2="50%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Mum Image rope */}
-                <motion.line x1="86%" y1="98%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="82%" y1="95%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Baby Image rope */}
-                <motion.line x1="83%" y1="98%" x2="35%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="80%" y1="95%" x2="35%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
-              {/* Overlapping Stat Bubbles - Positioned as per design */}
-              {/* 1. 1000+ (Caregivers) - Top Right Area */}
+              {/* Overlapping Stat Bubbles - Refined for Mobile */}
+              {/* 1. 1000+ (Caregivers) */}
               <ImpactBubble
                 label="1000+"
                 sublabel="Caregivers Engaged Online"
                 bgColor="#F97513"
-                size="w-32 h-32 md:w-80 md:h-80 lg:w-122 lg:h-122"
-                position="top-[5%] right-[-5%] md:right-[-15%] lg:right-[-20%]"
+                size="w-24 h-24 md:w-80 md:h-80 lg:w-122 lg:h-122"
+                position="top-[10%] right-[0%] md:right-[-15%] lg:right-[-20%]"
                 zIndex="z-10"
                 delay={0.3}
               />
 
-              {/* 2. 88 - Mid Right Area */}
+              {/* 2. 88 */}
               <ImpactBubble
                 label="88"
-                sublabel="Children Vaccinated against Tetanus"
+                sublabel="Children Vaccinated"
                 bgColor="#FA8C3A"
-                size="w-24 h-24 md:w-48 md:h-48 lg:w-64 lg:h-64"
-                position="top-[40%] right-[-10%] md:right-[-20%] lg:right-[-25%]"
+                size="w-20 h-20 md:w-48 md:h-48 lg:w-64 lg:h-64"
+                position="top-[45%] right-[0%] md:right-[-20%] lg:right-[-25%]"
                 zIndex="z-30"
                 delay={0.5}
               />
 
-              {/* 3. 434 - Bottom Right Area */}
+              {/* 3. 434 */}
               <ImpactBubble
                 label="434"
                 sublabel="Children Reached"
                 bgColor="#F97513"
-                size="w-28 h-28 md:w-64 md:h-64 lg:w-94 lg:h-94"
-                position="bottom-[10%] right-[5%] md:right-[5%] lg:right-[-10%]"
+                size="w-22 h-22 md:w-64 md:h-64 lg:w-94 lg:h-94"
+                position="bottom-[15%] right-[5%] md:right-[5%] lg:right-[-10%]"
                 zIndex="z-10"
                 delay={0.4}
               />
 
-              {/* 4. 11 - Bottom Area, aligned with design */}
+              {/* 4. 11 */}
               <ImpactBubble
                 label="11"
                 sublabel="Schools"
                 bgColor="#2AADB1"
-                size="w-20 h-20 md:w-36 md:h-36 lg:w-52 lg:h-52"
-                position="bottom-[2%] left-[45%] md:left-[50%] lg:left-[48%] -translate-x-1/2"
+                size="w-16 h-16 md:w-36 md:h-36 lg:w-52 lg:h-52"
+                position="bottom-[5%] left-[65%] -translate-x-1/2"
                 zIndex="z-20"
                 delay={0.6}
               />
