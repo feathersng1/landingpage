@@ -161,9 +161,10 @@ export function NeochildSolution() {
       </section>
 
       {/* 3. Impact / Balloons Section - Responsive Edge-to-Edge & Aligned with Design */}
-      <section className="w-full px-0 md:px-6 mb-10 md:mb-6 overflow-visible">
-        <div className="max-w-[1440px] rounded-none md:rounded-[16px] mx-auto bg-[#F2F2F3] px-0 md:px-20 py-0 md:py-2 relative overflow-visible">
-          <div className="bg-white rounded-none w-full min-h-[550px] md:min-h-[700px] lg:min-h-[900px] relative flex items-center justify-center overflow-hidden">
+      <section className="w-full px-0 lg:px-6 mb-10 md:mb-6 overflow-visible">
+        <div className="max-w-[1440px] rounded-none lg:rounded-[16px] mx-auto bg-transparent lg:bg-[#F2F2F3] px-0 lg:px-20 py-0 lg:py-2 relative overflow-hidden">
+          <div className="bg-white rounded-none w-full min-h-[550px] md:min-h-[700px] lg:min-h-[900px] relative flex items-center justify-center overflow-visible">
+            {/* Ropes/Lines Overlay - Originating from bottom-right as per design */}
 
             {/* Background Floating Shapes - Exactly as per design */}
             <FloatingShape color="#F97513" size="w-3 h-3 md:w-4 md:h-4" position="top-[15%] left-[15%]" type="circle" index={0} />
@@ -178,28 +179,33 @@ export function NeochildSolution() {
 
             {/* Central Visuals */}
             <div className="relative w-full max-w-[800px] aspect-square flex items-center justify-center">
+              {/* Ropes/Lines Overlay - Originating from bottom-right as per design */}
+              {/* Ropes/Lines Overlay - Desktop (1024px+) */}
+              <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
+                <motion.line x1="100%" y1="105%" x2="98%" y2="56%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="88%" y2="30%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="82%" y2="80%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="65%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="10%" y2="55%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+              </svg>
+
+              {/* Ropes/Lines Overlay - Tablet/Mobile (<1024px) */}
+              <svg className="block lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
+                <motion.line x1="102%" y1="102%" x2="62%" y2="35%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="101%" y1="102%" x2="72%" y2="58%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="65%" y2="80%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="99%" y1="102%" x2="50%" y2="88%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="98%" y1="102%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="97%" y1="102%" x2="10%" y2="55%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+              </svg>
 
               {/* Main Images Container */}
               <div className="relative z-10 flex items-center justify-center">
-                <img src="/neochild/mum-child.svg" alt="Mother and Child" className="w-[300px] md:w-[440px] lg:w-[580px] h-auto rounded-full object-cover" />
-                <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-10%] left-[22%] md:left-[25%] w-[150px] md:w-[240px] h-auto z-20" />
+                <img src="/neochild/mum-child.svg" alt="Mother and Child" className="w-[280px] md:w-[400px] lg:w-[580px] h-auto rounded-full object-cover" />
+                <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-10%] left-[22%] md:left-[25%] w-[120px] md:w-[180px] lg:w-[240px] h-auto z-20" />
               </div>
 
-              {/* Ropes/Lines Overlay - Fixed connections and responsiveness */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" overflow="visible">
-                {/* 1000+ rope */}
-                <motion.line x1="90%" y1="95%" x2="85%" y2="25%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* 88 rope */}
-                <motion.line x1="88%" y1="95%" x2="90%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* 434 rope */}
-                <motion.line x1="86%" y1="95%" x2="80%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* 11 rope */}
-                <motion.line x1="84%" y1="95%" x2="50%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Mum Image rope */}
-                <motion.line x1="82%" y1="95%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Baby Image rope */}
-                <motion.line x1="80%" y1="95%" x2="35%" y2="85%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-              </svg>
 
               {/* Overlapping Stat Bubbles - Refined for Mobile */}
               {/* 1. 1000+ (Caregivers) */}
@@ -207,8 +213,8 @@ export function NeochildSolution() {
                 label="1000+"
                 sublabel="Caregivers Engaged Online"
                 bgColor="#F97513"
-                size="w-24 h-24 md:w-80 md:h-80 lg:w-122 lg:h-122"
-                position="top-[10%] right-[0%] md:right-[-15%] lg:right-[-20%]"
+                size="w-32 h-32 md:w-56 md:h-56 lg:w-80 lg:h-80"
+                position="top-[10%] right-[0%] md:right-[22%] lg:right-[0%]"
                 zIndex="z-10"
                 delay={0.3}
               />
@@ -218,8 +224,8 @@ export function NeochildSolution() {
                 label="88"
                 sublabel="Children Vaccinated"
                 bgColor="#FA8C3A"
-                size="w-20 h-20 md:w-48 md:h-48 lg:w-64 lg:h-64"
-                position="top-[45%] right-[0%] md:right-[-20%] lg:right-[-25%]"
+                size="w-20 h-20 md:w-36 md:h-36 lg:w-48 lg:h-48"
+                position="top-[45%] right-[0%] md:right-[15%] lg:right-[-5%]"
                 zIndex="z-30"
                 delay={0.5}
               />
@@ -229,8 +235,8 @@ export function NeochildSolution() {
                 label="434"
                 sublabel="Children Reached"
                 bgColor="#F97513"
-                size="w-22 h-22 md:w-64 md:h-64 lg:w-94 lg:h-94"
-                position="bottom-[15%] right-[5%] md:right-[5%] lg:right-[-10%]"
+                size="w-24 h-24 md:w-48 md:h-48 lg:w-64 lg:h-64"
+                position="bottom-[15%] right-[5%] md:right-[20%] lg:right-[5%]"
                 zIndex="z-10"
                 delay={0.4}
               />
@@ -240,8 +246,8 @@ export function NeochildSolution() {
                 label="11"
                 sublabel="Schools"
                 bgColor="#2AADB1"
-                size="w-16 h-16 md:w-36 md:h-36 lg:w-52 lg:h-52"
-                position="bottom-[5%] left-[65%] -translate-x-1/2"
+                size="w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40"
+                position="bottom-[2%] left-[60%] md:left-[50%] lg:left-[65%] -translate-x-1/2"
                 zIndex="z-20"
                 delay={0.6}
               />
