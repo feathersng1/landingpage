@@ -214,7 +214,7 @@ export function NeochildSolution() {
                 sublabel="Caregivers Engaged Online"
                 bgColor="#F97513"
                 size="w-32 h-32 md:w-56 md:h-56 lg:w-80 lg:h-80"
-                position="top-[10%] right-[0%] md:right-[22%] lg:right-[0%]"
+                position="top-[10%] right-[0%] md:right-[12%] md:top-[30%] lg:right-[0%]"
                 zIndex="z-10"
                 delay={0.3}
               />
@@ -236,7 +236,7 @@ export function NeochildSolution() {
                 sublabel="Children Reached"
                 bgColor="#F97513"
                 size="w-24 h-24 md:w-48 md:h-48 lg:w-64 lg:h-64"
-                position="bottom-[15%] right-[5%] md:right-[20%] lg:right-[5%]"
+                position="bottom-[15%] right-[5%] md:right-[20%] md:bottom-[20%] lg:right-[5%]"
                 zIndex="z-10"
                 delay={0.4}
               />
@@ -247,7 +247,7 @@ export function NeochildSolution() {
                 sublabel="Schools"
                 bgColor="#2AADB1"
                 size="w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40"
-                position="bottom-[2%] left-[60%] md:left-[50%] lg:left-[65%] -translate-x-1/2"
+                position="bottom-[2%] left-[60%] md:left-[60%] md:bottom-[12%] lg:left-[65%] -translate-x-1/2"
                 zIndex="z-20"
                 delay={0.6}
               />
