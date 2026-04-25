@@ -160,7 +160,7 @@ export function NeochildSolution() {
         </div>
       </section>
 
-      {/* 3. Impact / Balloons Section - Responsive Edge-to-Edge & Aligned with Design */}
+      {/* 3. Impact / Balloons Section - Responsive Edge-to-Edge */}
       <section className="w-full px-0 lg:px-6 mb-10 md:mb-6 overflow-visible">
         <div className="max-w-[1440px] rounded-none lg:rounded-[16px] mx-auto bg-transparent lg:bg-[#F2F2F3] px-0 lg:px-20 py-0 lg:py-2 relative overflow-hidden">
           <div className="bg-white rounded-none w-full min-h-[550px] md:min-h-[700px] lg:min-h-[900px] relative flex items-center justify-center overflow-visible">
