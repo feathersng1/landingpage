@@ -137,7 +137,7 @@ export function NeochildSolution() {
             </div>
           </motion.div>
 
-          {/* App Slider Card - 30% Peek & No Shadows */}
+          {/* App Slider Card - 30% Peek */}
           <motion.div
             className="bg-[#F97513] rounded-[16px] overflow-hidden flex flex-col justify-center h-[436px] md:h-[406px] lg:h-[636px] relative p-6 md:p-10 lg:p-12"
             variants={itemVariants}
