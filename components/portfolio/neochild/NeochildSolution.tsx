@@ -179,7 +179,6 @@ export function NeochildSolution() {
 
             {/* Central Visuals */}
             <div className="relative w-full max-w-[800px] aspect-square flex items-center justify-center">
-              {/* Ropes/Lines Overlay - Originating from bottom-right as per design */}
               {/* Ropes/Lines Overlay - Desktop (1024px+) */}
               <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
                 <motion.line x1="100%" y1="105%" x2="98%" y2="56%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
