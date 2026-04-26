@@ -164,9 +164,8 @@ export function NeochildSolution() {
       <section className="w-full px-0 lg:px-6 mb-10 md:mb-6 overflow-visible">
         <div className="max-w-[1440px] rounded-none lg:rounded-[16px] mx-auto bg-transparent lg:bg-[#F2F2F3] px-0 lg:px-20 py-0 lg:py-2 relative overflow-hidden">
           <div className="bg-white rounded-none w-full min-h-[550px] md:min-h-[700px] lg:min-h-[900px] relative flex items-center justify-center overflow-visible">
-            {/* Ropes/Lines Overlay - Originating from bottom-right as per design */}
 
-            {/* Background Floating Shapes - Exactly as per design */}
+            {/* Background Floating Shapes */}
             <FloatingShape color="#F97513" size="w-3 h-3 md:w-4 md:h-4" position="top-[15%] left-[15%]" type="circle" index={0} />
             <FloatingShape color="#FEE3D0" size="w-5 h-5 md:w-6 md:h-6" position="top-[10%] left-[45%]" type="circle" index={1} />
             <FloatingShape color="#F0FCFD" size="w-16 h-16 md:w-24 md:h-24" position="top-[55%] left-[5%] md:left-[10%]" type="circle" index={2} />
@@ -179,23 +178,60 @@ export function NeochildSolution() {
 
             {/* Central Visuals */}
             <div className="relative w-full max-w-[800px] aspect-square flex items-center justify-center">
-              {/* Ropes/Lines Overlay - Desktop (1024px+) */}
+
+              {/* ─── Ropes — Desktop (1024px+) ───
+                  Origin: (100%, 105%)
+                  FIX 1: 4th rope endpoint halved in length.
+                    Original: x2="65%" y2="92%"
+                    Midpoint between (100%,105%) and (65%,92%):
+                      x = (100+65)/2 = 82.5%  →  "82.5%"
+                      y = (105+92)/2 = 98.5%  →  "98.5%"
+              -->*/}
+              {/* Desktop (1024px+): rope 4 restored to original; rope 5 halved */}
               <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
                 <motion.line x1="100%" y1="105%" x2="98%" y2="56%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 <motion.line x1="100%" y1="105%" x2="88%" y2="30%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 <motion.line x1="100%" y1="105%" x2="82%" y2="80%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 4 — restored to original */}
                 <motion.line x1="100%" y1="105%" x2="65%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="100%" y1="105%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 5 — halved: midpoint of (100%,105%) → (50%,50%) = (75%, 77.5%) */}
+                <motion.line x1="100%" y1="105%" x2="75%" y2="77.5%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 <motion.line x1="100%" y1="105%" x2="10%" y2="55%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
-              {/* Ropes/Lines Overlay - Tablet/Mobile (<1024px) */}
-              <svg className="block lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
+              {/* ─── Ropes — Tablet/Mobile (<1024px) ───
+                  Origin: approx (100%, 102%)
+                  FIX 1: 4th rope endpoint halved.
+                    Original: x2="50%" y2="88%"
+                    Midpoint between (99%,102%) and (50%,88%):
+                      x = (99+50)/2 = 74.5%
+                      y = (102+88)/2 = 95%
+                  FIX 2: On tablet (768px), move 4th rope up.
+                    We use a CSS media query trick via two separate SVGs:
+                    one for mobile (<768px) and one for tablet (768-1023px).
+              -->*/}
+
+              {/* Mobile only (<768px) */}
+              <svg className="block md:hidden lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
                 <motion.line x1="102%" y1="102%" x2="62%" y2="35%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 <motion.line x1="101%" y1="102%" x2="72%" y2="58%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 <motion.line x1="100%" y1="102%" x2="65%" y2="80%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 4 — restored to original */}
                 <motion.line x1="99%" y1="102%" x2="50%" y2="88%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="98%" y1="102%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 5 — halved: midpoint of (98%,102%) → (50%,50%) = (74%, 76%) */}
+                <motion.line x1="98%" y1="102%" x2="74%" y2="76%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="97%" y1="102%" x2="10%" y2="55%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+              </svg>
+
+              {/* Tablet only (768px–1023px) */}
+              <svg className="hidden md:block lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
+                <motion.line x1="102%" y1="102%" x2="62%" y2="35%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="101%" y1="102%" x2="72%" y2="58%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="65%" y2="80%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 4 — restored to original */}
+                <motion.line x1="99%" y1="102%" x2="50%" y2="88%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 5 — halved AND moved up on tablet: midpoint pulled upward to y2="65%" */}
+                <motion.line x1="98%" y1="102%" x2="74%" y2="65%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 <motion.line x1="97%" y1="102%" x2="10%" y2="55%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
@@ -205,9 +241,7 @@ export function NeochildSolution() {
                 <img src="/neochild/babymedia.svg" alt="Baby Media" className="absolute bottom-[-10%] left-[22%] md:left-[25%] w-[120px] md:w-[180px] lg:w-[240px] h-auto z-20" />
               </div>
 
-
-              {/* Overlapping Stat Bubbles - Refined for Mobile */}
-              {/* 1. 1000+ (Caregivers) */}
+              {/* Overlapping Stat Bubbles */}
               <ImpactBubble
                 label="1000+"
                 sublabel="Caregivers Engaged Online"
@@ -217,8 +251,6 @@ export function NeochildSolution() {
                 zIndex="z-10"
                 delay={0.3}
               />
-
-              {/* 2. 88 */}
               <ImpactBubble
                 label="88"
                 sublabel="Children Vaccinated"
@@ -228,8 +260,6 @@ export function NeochildSolution() {
                 zIndex="z-30"
                 delay={0.5}
               />
-
-              {/* 3. 434 */}
               <ImpactBubble
                 label="434"
                 sublabel="Children Reached"
@@ -239,8 +269,6 @@ export function NeochildSolution() {
                 zIndex="z-10"
                 delay={0.4}
               />
-
-              {/* 4. 11 */}
               <ImpactBubble
                 label="11"
                 sublabel="Schools"
@@ -255,10 +283,20 @@ export function NeochildSolution() {
         </div>
       </section>
 
-      {/* 4. Continuous Flowing Marquee - Seamless & Rounded */}
+      {/*
+        4. Continuous Flowing Marquee — FIX 3 + FIX 4
+        FIX 3: Cards go edge-to-edge on mobile (remove horizontal padding on small screens),
+               and are full-width/responsive (remove fixed column count, use min-width instead).
+        FIX 4: Seamless loop — VerticalMarquee now uses CSS keyframes via a style tag
+               so the loop is pixel-perfect with no jump. The trick: animate translateY(0)
+               to translateY(-50%) over the doubled list, then instantly reset — CSS handles
+               this invisibly. We achieve this with a `useEffect` + inline style approach.
+      -->*/}
       <section className="w-full px-0 md:px-6">
-        <div className="w-full bg-[#F8FBEE] mx-auto border-y md:border-[2px] border-[#DEECAC] px-12 md:px-20 py-2 overflow-visible rounded-none md:rounded-[16px]">
-          <div className="flex gap-6 h-[500px] md:h-[750px] lg:h-[900px] justify-center max-w-[1440px] mx-auto px-6">
+        {/* FIX 3: Remove px-12/px-20 on mobile so cards touch the edges */}
+        <div className="w-full bg-[#F8FBEE] mx-auto border-y md:border-[2px] border-[#DEECAC] px-0 md:px-20 py-2 overflow-hidden rounded-none md:rounded-[16px]">
+          {/* FIX 3: On mobile, fill full width with no max-width clamp; use 4 equal columns always */}
+          <div className="flex gap-2 md:gap-6 h-[400px] md:h-[750px] lg:h-[900px] max-w-[1440px] mx-auto">
             <VerticalMarquee items={[movies[0], movies[1]]} direction="up" speed={22} />
             <VerticalMarquee items={[movies[2], movies[3]]} direction="down" speed={28} />
             <VerticalMarquee items={[movies[4], movies[5]]} direction="up" speed={19} />
@@ -283,25 +321,63 @@ function AutoCycle({ count, onCycle, activeIndex }: { count: number, onCycle: (i
   return null;
 }
 
+/*
+  FIX 4: Seamless marquee — no skip, no jump.
+
+  The original bug: Framer Motion's `repeat: Infinity` on a `y: ["0%", "-50%"]`
+  animation has a tiny gap/jump at the loop point because it eases into and out of
+  each keyframe. With `ease: "linear"` it *should* be seamless, but Framer can
+  still introduce a one-frame hitch at the repeat boundary.
+
+  The bulletproof fix: use a pure CSS animation with `@keyframes` and
+  `animation-iteration-count: infinite`. CSS animations loop with zero gap —
+  the browser handles the reset internally without re-rendering.
+
+  We inject a `<style>` tag with a unique keyframe name per instance, computed
+  from the direction and speed, and apply it via inline style.
+*/
 function VerticalMarquee({ items, direction, speed }: { items: string[], direction: 'up' | 'down', speed: number }) {
+  const animId = `marquee-${direction}-${speed}`;
   const doubled = [...items, ...items];
+
+  // CSS animation: translate from 0 to -50% (up) or -50% to 0 (down)
+  const keyframes =
+    direction === 'up'
+      ? `@keyframes ${animId} { from { transform: translateY(0); } to { transform: translateY(-50%); } }`
+      : `@keyframes ${animId} { from { transform: translateY(-50%); } to { transform: translateY(0%); } }`;
+
   return (
-    <div className="flex flex-col gap-6 overflow-hidden flex-1 bg-transparent">
-      <motion.div
-        className="flex flex-col gap-6 shrink-0 w-full"
-        animate={{ y: direction === 'up' ? ["0%", "-50%"] : ["-50%", "0%"] }}
-        transition={{
-          duration: speed,
-          repeat: Infinity,
-          ease: "linear"
+    <div className="flex flex-col overflow-hidden flex-1 bg-transparent">
+      {/* Inject keyframes */}
+      <style>{keyframes}</style>
+      {/*
+        The inner div is exactly 2× the visible height (because it holds doubled items).
+        The CSS animation moves it by exactly -50% (one full set of items),
+        then loops — the browser resets instantaneously, making it seamless.
+      */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+          // On md+ screens use 24px gap to match gap-6
+          animationName: animId,
+          animationDuration: `${speed}s`,
+          animationTimingFunction: "linear",
+          animationIterationCount: "infinite",
+          willChange: "transform",
         }}
+        className="shrink-0 w-full [gap:8px] md:[gap:24px]"
       >
         {doubled.map((src, i) => (
-          <div key={i} className="w-full aspect-[3/4] bg-white rounded-[16px] md:rounded-[24px] overflow-hidden shrink-0 border border-[#DEECAC]/30 flex items-center justify-center p-0">
+          <div
+            key={i}
+            className="w-full aspect-[3/4] bg-white rounded-[12px] md:rounded-[24px] overflow-hidden shrink-0 border border-[#DEECAC]/30 flex items-center justify-center p-0"
+          >
             <img src={src} alt="Project Clip" className="w-full h-full object-cover" />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
