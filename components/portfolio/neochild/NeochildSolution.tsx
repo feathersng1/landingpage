@@ -282,20 +282,8 @@ export function NeochildSolution() {
           </div>
         </div>
       </section>
-
-      {/*
-        4. Continuous Flowing Marquee — FIX 3 + FIX 4
-        FIX 3: Cards go edge-to-edge on mobile (remove horizontal padding on small screens),
-               and are full-width/responsive (remove fixed column count, use min-width instead).
-        FIX 4: Seamless loop — VerticalMarquee now uses CSS keyframes via a style tag
-               so the loop is pixel-perfect with no jump. The trick: animate translateY(0)
-               to translateY(-50%) over the doubled list, then instantly reset — CSS handles
-               this invisibly. We achieve this with a `useEffect` + inline style approach.
-      -->*/}
       <section className="w-full px-0 md:px-6">
-        {/* FIX 3: Remove px-12/px-20 on mobile so cards touch the edges */}
         <div className="w-full bg-[#F8FBEE] mx-auto border-y md:border-[2px] border-[#DEECAC] px-0 md:px-20 py-2 overflow-hidden rounded-none md:rounded-[16px]">
-          {/* FIX 3: On mobile, fill full width with no max-width clamp; use 4 equal columns always */}
           <div className="flex gap-2 md:gap-6 h-[400px] md:h-[750px] lg:h-[900px] max-w-[1440px] mx-auto">
             <VerticalMarquee items={[movies[0], movies[1]]} direction="up" speed={22} />
             <VerticalMarquee items={[movies[2], movies[3]]} direction="down" speed={28} />
