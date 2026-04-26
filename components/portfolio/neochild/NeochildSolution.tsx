@@ -320,22 +320,6 @@ function AutoCycle({ count, onCycle, activeIndex }: { count: number, onCycle: (i
   }, [activeIndex, count, onCycle]);
   return null;
 }
-
-/*
-  FIX 4: Seamless marquee — no skip, no jump.
-
-  The original bug: Framer Motion's `repeat: Infinity` on a `y: ["0%", "-50%"]`
-  animation has a tiny gap/jump at the loop point because it eases into and out of
-  each keyframe. With `ease: "linear"` it *should* be seamless, but Framer can
-  still introduce a one-frame hitch at the repeat boundary.
-
-  The bulletproof fix: use a pure CSS animation with `@keyframes` and
-  `animation-iteration-count: infinite`. CSS animations loop with zero gap —
-  the browser handles the reset internally without re-rendering.
-
-  We inject a `<style>` tag with a unique keyframe name per instance, computed
-  from the direction and speed, and apply it via inline style.
-*/
 function VerticalMarquee({ items, direction, speed }: { items: string[], direction: 'up' | 'down', speed: number }) {
   const animId = `marquee-${direction}-${speed}`;
   const doubled = [...items, ...items];
@@ -350,17 +334,11 @@ function VerticalMarquee({ items, direction, speed }: { items: string[], directi
     <div className="flex flex-col overflow-hidden flex-1 bg-transparent">
       {/* Inject keyframes */}
       <style>{keyframes}</style>
-      {/*
-        The inner div is exactly 2× the visible height (because it holds doubled items).
-        The CSS animation moves it by exactly -50% (one full set of items),
-        then loops — the browser resets instantaneously, making it seamless.
-      */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           gap: "8px",
-          // On md+ screens use 24px gap to match gap-6
           animationName: animId,
           animationDuration: `${speed}s`,
           animationTimingFunction: "linear",
