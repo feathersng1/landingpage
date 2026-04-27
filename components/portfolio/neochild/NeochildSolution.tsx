@@ -179,62 +179,77 @@ export function NeochildSolution() {
             {/* Central Visuals */}
             <div className="relative w-full max-w-[800px] aspect-square flex items-center justify-center">
 
-              {/* ─── Ropes — Desktop (1024px+) ───
-                  Origin: (100%, 105%)
-                  FIX 1: 4th rope endpoint halved in length.
-                    Original: x2="65%" y2="92%"
-                    Midpoint between (100%,105%) and (65%,92%):
-                      x = (100+65)/2 = 82.5%  →  "82.5%"
-                      y = (105+92)/2 = 98.5%  →  "98.5%"
-              -->*/}
-              {/* Desktop (1024px+): rope 4 restored to original; rope 5 halved */}
+              {/* ─── Ropes — 6 lines, one per target (4 bubbles + 2 images) ─── */}
+              {/* Desktop (1024px+)
+                  Origin: (100%, 105%) — bottom-right corner
+                  Rope 1 → "1000+" bubble:  center at ~(76%, 20%) — bubble is upper-right, partially overlapping image
+                  Rope 2 → "88" bubble:     center at ~(97%, 45%)
+                  Rope 3 → "434" bubble:    center at ~(79%, 72%)
+                  Rope 4 → "11" bubble:     center at ~(65%, 93%)
+                  Rope 5 → mum-child img:   center of image ~(40%, 45%)
+                  Rope 6 → babymedia img:   small circle bottom-center ~(42%, 88%)
+              */}
               <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
-                <motion.line x1="100%" y1="105%" x2="98%" y2="56%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="100%" y1="105%" x2="88%" y2="30%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="100%" y1="105%" x2="82%" y2="80%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 4 — restored to original */}
-                <motion.line x1="100%" y1="105%" x2="65%" y2="92%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 5 — shortened further: midpoint of origin→previous halved end = (87.5%, 91.25%) */}
-                <motion.line x1="100%" y1="105%" x2="87.5%" y2="91.25%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 6 — extended: pushed further left/up to reach the bubble */}
-                <motion.line x1="100%" y1="105%" x2="5%" y2="50%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 1 → 1000+ bubble (upper-right) */}
+                <motion.line x1="100%" y1="105%" x2="76%" y2="20%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 2 → 88 bubble (mid-right) */}
+                <motion.line x1="100%" y1="105%" x2="97%" y2="45%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 3 → 434 bubble (lower-right) */}
+                <motion.line x1="100%" y1="105%" x2="79%" y2="72%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 4 → 11 Schools bubble (bottom-center-left) */}
+                <motion.line x1="100%" y1="105%" x2="65%" y2="93%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 5 → mum-child main image (image center ~left of center) */}
+                <motion.line x1="100%" y1="105%" x2="40%" y2="45%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 6 → babymedia image (small circle, bottom-center) */}
+                <motion.line x1="100%" y1="105%" x2="42%" y2="88%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
-              {/* ─── Ropes — Tablet/Mobile (<1024px) ───
-                  Origin: approx (100%, 102%)
-                  FIX 1: 4th rope endpoint halved.
-                    Original: x2="50%" y2="88%"
-                    Midpoint between (99%,102%) and (50%,88%):
-                      x = (99+50)/2 = 74.5%
-                      y = (102+88)/2 = 95%
-                  FIX 2: On tablet (768px), move 4th rope up.
-                    We use a CSS media query trick via two separate SVGs:
-                    one for mobile (<768px) and one for tablet (768-1023px).
-              -->*/}
-
-              {/* Mobile only (<768px) */}
+              {/* Mobile only (<768px)
+                  Origin: (100%, 102%) — bottom-right
+                  Rope 1 → "1000+" bubble:  top-[10%] right-[0%], w-32 → center at ~(92%, 22%)
+                  Rope 2 → "88" bubble:     top-[45%] right-[0%], w-20 → center at ~(97%, 45%)
+                  Rope 3 → "434" bubble:    bottom-[15%] right-[5%], w-24 → center at ~(90%, 79%)
+                  Rope 4 → "11" bubble:     bottom-[2%] left-[60%], w-20 → center at ~(63%, 94%)
+                  Rope 5 → mum-child img:   w-280px centered at (50%, 50%)
+                  Rope 6 → babymedia img:   bottom-[-10%] left-[22%], w-120px → center at ~(28%, 96%)
+              */}
               <svg className="block md:hidden lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
-                <motion.line x1="102%" y1="102%" x2="62%" y2="35%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="101%" y1="102%" x2="72%" y2="58%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="100%" y1="102%" x2="65%" y2="80%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 4 — restored to original */}
-                <motion.line x1="99%" y1="102%" x2="50%" y2="88%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 5 — shortened further: midpoint of origin→previous halved end = (86%, 89%) */}
-                <motion.line x1="98%" y1="102%" x2="86%" y2="89%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="97%" y1="102%" x2="10%" y2="55%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 1 → 1000+ bubble — shortened, bubble sits at ~(92%, 22%) on mobile */}
+                <motion.line x1="100%" y1="102%" x2="92%" y2="22%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 2 → 88 bubble */}
+                <motion.line x1="100%" y1="102%" x2="97%" y2="45%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 3 → 434 bubble */}
+                <motion.line x1="100%" y1="102%" x2="90%" y2="79%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 4 → 11 Schools bubble */}
+                <motion.line x1="100%" y1="102%" x2="63%" y2="94%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 5 → mum-child main image (center) */}
+                <motion.line x1="100%" y1="102%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 6 → babymedia small circle image, left-[22%] bottom-[-10%] */}
+                <motion.line x1="100%" y1="102%" x2="28%" y2="96%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
-              {/* Tablet only (768px–1023px) */}
+              {/* Tablet only (768px–1023px)
+                  Origin: (100%, 102%) — bottom-right
+                  Rope 1 → "1000+" bubble:  md:top-[30%] md:right-[12%], w-56 → center at ~(78%, 18%)
+                  Rope 2 → "88" bubble:     md:right-[15%] md:top-[45%], w-36 → center at ~(88%, 38%)
+                  Rope 3 → "434" bubble:    md:bottom-[20%] md:right-[20%], w-48 → center at ~(74%, 70%)
+                  Rope 4 → "11" bubble:     md:bottom-[12%] md:left-[60%], w-28 → center at ~(63%, 87%)
+                  Rope 5 → mum-child img:   w-400px centered at (50%, 50%)
+                  Rope 6 → babymedia img:   md:left-[25%] bottom-[-10%], w-180px → center at ~(36%, 96%)
+              */}
               <svg className="hidden md:block lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
-                <motion.line x1="102%" y1="102%" x2="62%" y2="35%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="101%" y1="102%" x2="72%" y2="58%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                <motion.line x1="100%" y1="102%" x2="65%" y2="80%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 4 — restored to original */}
-                <motion.line x1="99%" y1="102%" x2="50%" y2="88%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 5 — shortened further: midpoint of origin→previous halved end = (86%, 83.5%) */}
-                <motion.line x1="98%" y1="102%" x2="86%" y2="83.5%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
-                {/* Rope 6 — same length, endpoint shifted right to touch the bubble */}
-                <motion.line x1="97%" y1="102%" x2="18%" y2="55%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 1 → 1000+ bubble — shortened to ~(78%, 18%) */}
+                <motion.line x1="100%" y1="102%" x2="78%" y2="18%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 2 → 88 bubble — corrected to ~(88%, 38%) */}
+                <motion.line x1="100%" y1="102%" x2="88%" y2="38%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 3 → 434 bubble */}
+                <motion.line x1="100%" y1="102%" x2="74%" y2="70%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 4 → 11 Schools bubble */}
+                <motion.line x1="100%" y1="102%" x2="63%" y2="87%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 5 → mum-child main image (center) */}
+                <motion.line x1="100%" y1="102%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                {/* Rope 6 → babymedia image — y pulled up into frame */}
+                <motion.line x1="100%" y1="102%" x2="36%" y2="96%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
               {/* Main Images Container */}
