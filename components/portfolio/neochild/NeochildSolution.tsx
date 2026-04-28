@@ -191,17 +191,17 @@ export function NeochildSolution() {
               */}
               <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
                 {/* Rope 1 → 1000+ bubble (upper-right) */}
-                <motion.line x1="100%" y1="105%" x2="76%" y2="20%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="76%" y2="45%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 2 → 88 bubble (mid-right) */}
                 <motion.line x1="100%" y1="105%" x2="97%" y2="45%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 3 → 434 bubble (lower-right) */}
                 <motion.line x1="100%" y1="105%" x2="79%" y2="72%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 4 → 11 Schools bubble (bottom-center-left) */}
-                <motion.line x1="100%" y1="105%" x2="65%" y2="93%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="50%" y2="93%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 5 → mum-child main image (image center ~left of center) */}
                 <motion.line x1="100%" y1="105%" x2="40%" y2="45%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 6 → babymedia image (small circle, bottom-center) */}
-                <motion.line x1="100%" y1="105%" x2="42%" y2="88%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="105%" x2="42%" y2="68%" stroke="#777F88" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
               {/* Mobile only (<768px)
@@ -215,9 +215,9 @@ export function NeochildSolution() {
               */}
               <svg className="block md:hidden lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
                 {/* Rope 1 → 1000+ bubble — shortened, bubble sits at ~(92%, 22%) on mobile */}
-                <motion.line x1="100%" y1="102%" x2="92%" y2="22%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="92%" y2="45%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 2 → 88 bubble */}
-                <motion.line x1="100%" y1="102%" x2="97%" y2="45%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="85%" y2="25%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 3 → 434 bubble */}
                 <motion.line x1="100%" y1="102%" x2="90%" y2="79%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 4 → 11 Schools bubble */}
@@ -225,7 +225,7 @@ export function NeochildSolution() {
                 {/* Rope 5 → mum-child main image (center) */}
                 <motion.line x1="100%" y1="102%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 6 → babymedia small circle image, left-[22%] bottom-[-10%] */}
-                <motion.line x1="100%" y1="102%" x2="28%" y2="96%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="28%" y2="66%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
               {/* Tablet only (768px–1023px)
@@ -239,17 +239,17 @@ export function NeochildSolution() {
               */}
               <svg className="hidden md:block lg:hidden absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
                 {/* Rope 1 → 1000+ bubble — shortened to ~(78%, 18%) */}
-                <motion.line x1="100%" y1="102%" x2="78%" y2="18%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="78%" y2="48%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 2 → 88 bubble — corrected to ~(88%, 38%) */}
-                <motion.line x1="100%" y1="102%" x2="88%" y2="38%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="80%" y2="65%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 3 → 434 bubble */}
                 <motion.line x1="100%" y1="102%" x2="74%" y2="70%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 4 → 11 Schools bubble */}
                 <motion.line x1="100%" y1="102%" x2="63%" y2="87%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 5 → mum-child main image (center) */}
-                <motion.line x1="100%" y1="102%" x2="50%" y2="50%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="50%" y2="60%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
                 {/* Rope 6 → babymedia image — y pulled up into frame */}
-                <motion.line x1="100%" y1="102%" x2="36%" y2="96%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
+                <motion.line x1="100%" y1="102%" x2="60%" y2="80%" stroke="#777F88" strokeWidth="0.8" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} />
               </svg>
 
               {/* Main Images Container */}
@@ -273,7 +273,7 @@ export function NeochildSolution() {
                 sublabel="Children Vaccinated"
                 bgColor="#FA8C3A"
                 size="w-20 h-20 md:w-36 md:h-36 lg:w-48 lg:h-48"
-                position="top-[45%] right-[0%] md:right-[15%] lg:right-[-5%]"
+                position="top-[45%] right-[0%] md:right-[12%] md:top-[50%] lg:right-[-12%] lg:top-[50%]"
                 zIndex="z-30"
                 delay={0.5}
               />
