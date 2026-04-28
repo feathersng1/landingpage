@@ -1,0 +1,59 @@
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
+
+export function NeochildFinalDesign() {
+  return (
+    <motion.section 
+      className="relative w-full bg-white px-6 py-20 md:py-32"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      <div className="max-w-[1440px] mx-auto flex flex-col items-center">
+        <div className="max-w-[1000px] w-full flex flex-col items-center text-center">
+          {/* Body Text */}
+          <div className="flex flex-col space-y-6 md:space-y-8 max-w-[900px]">
+            <motion.p 
+              variants={itemVariants}
+              className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#525252]"
+            >
+              Finally, the design employs repetition and clear visual grouping to reinforce key messages and aid navigation, especially on longer scrolls. The impact statistics are presented in a simple, balloon-inspired infographic-style layout, making data easily understandable at a glance.
+            </motion.p>
+            <motion.p 
+              variants={itemVariants}
+              className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#525252]"
+            >
+              This modular logic extends to the footer, where services, company information, and community sign-up are distinctly grouped, offering multiple pathways for further engagement. The consistency in the use of visual elements, combined with the strategic chunking of information and prominent guidance towards actionable steps, creates a user experience that is both intuitive and persuasive, effectively supporting the site&apos;s dual goals of informing parents and driving them toward Neo&apos;s services.
+            </motion.p>
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}

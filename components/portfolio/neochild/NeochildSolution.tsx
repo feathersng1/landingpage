@@ -311,7 +311,7 @@ export function NeochildSolution() {
       -->*/}
       <section className="w-full px-0 md:px-6">
         {/* FIX 3: Remove px-12/px-20 on mobile so cards touch the edges */}
-        <div className="w-full bg-[#F8FBEE] mx-auto border-y md:border-[2px] border-[#DEECAC] px-0 md:px-20 py-2 overflow-hidden rounded-none md:rounded-[16px]">
+        <div className="w-full bg-[#F8FBEE] mx-auto border-y md:border-[2px] border-[#DEECAC] px-0 py-2 overflow-hidden rounded-none md:rounded-[16px]">
           {/* FIX 3: On mobile, fill full width with no max-width clamp; use 4 equal columns always */}
           <div className="flex gap-2 md:gap-6 h-[400px] md:h-[750px] lg:h-[900px] max-w-[1440px] mx-auto">
             <VerticalMarquee items={[movies[0], movies[1]]} direction="up" speed={22} />
