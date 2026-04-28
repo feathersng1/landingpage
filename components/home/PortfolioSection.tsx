@@ -193,9 +193,9 @@ const STATIC_PROJECTS = [
   },
   {
     id: 'notrify',
-    title: 'Smart Notifications, Seamless Flow',
+    title: 'One Place for Medical Care',
     client_name: 'NOTRIFY',
-    image_url: 'https://images.unsplash.com/photo-1594736797933-d0c71e0249cc?w=800&h=600&fit=crop', // Placeholder for now
+    image_url: '/notrify/notrify-hero.svg',
     projectKey: 'notrify'
   }
 ];

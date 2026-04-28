@@ -5,6 +5,7 @@ import { Home } from "./components/Home";
 import { Preview } from "./components/Preview";
 import { PortfolioAllInOne } from "./components/portfolio/PortfolioAllInOne";
 import { PortfolioNeochild } from "./components/portfolio/PortfolioNeochild";
+import { PortfolioNotrify } from "./components/portfolio/PortfolioNotrify";
 import { Blog } from "./components/Blog";
 import { AdminDashboard } from "./components/admin/AdminDashboard";
 
@@ -71,6 +72,12 @@ export default function App() {
             />
           ) : selectedProject === 'neochildcare' ? (
             <PortfolioNeochild
+              onNavigateHome={() => setCurrentPage('home')}
+              onNavigatePreview={() => setCurrentPage('preview')}
+              onNavigateBlog={() => setCurrentPage('blog')}
+            />
+          ) : selectedProject === 'notrify' ? (
+            <PortfolioNotrify
               onNavigateHome={() => setCurrentPage('home')}
               onNavigatePreview={() => setCurrentPage('preview')}
               onNavigateBlog={() => setCurrentPage('blog')}
