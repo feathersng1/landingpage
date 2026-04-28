@@ -4,6 +4,9 @@ import { Footer } from "../Footer";
 import { NotrifyHero } from "./notrify/NotrifyHero";
 import { NotrifyProjectDetails } from "./notrify/NotrifyProjectDetails";
 import { NotrifyGallery } from "./notrify/NotrifyGallery";
+import { NotrifyDesignApproach } from "./notrify/NotrifyDesignApproach";
+import { NotrifySecondaryMedia } from "./notrify/NotrifySecondaryMedia";
+import { NotrifyAppDesign } from "./notrify/NotrifyAppDesign";
 
 interface PortfolioNotrifyProps {
   onNavigateHome: () => void;
@@ -73,6 +76,18 @@ export function PortfolioNotrify({ onNavigateHome, onNavigatePreview, onNavigate
 
           <motion.div variants={sectionVariants}>
             <NotrifyGallery />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NotrifyDesignApproach />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NotrifySecondaryMedia />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NotrifyAppDesign />
           </motion.div>
 
           {/* Further sections will be added here one by one */}
