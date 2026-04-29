@@ -52,7 +52,7 @@ export function NotrifyGallery() {
 
         {/* Row 2: Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-0">
-          {/* Card 1: All in one place (Glistening text) */}
+          {/* Card 1: All in one place (Glisteningtext) */}
           <motion.div
             variants={itemVariants}
             className="w-full bg-[#E1E5F5] rounded-[16px] aspect-square flex items-center justify-center relative p-8 md:p-12"
@@ -79,13 +79,13 @@ export function NotrifyGallery() {
           className="relative w-full bg-[#F6F6F6] rounded-none md:rounded-[16px] px-6 flex items-center justify-center aspect-[16/9] md:aspect-[21/9]"
         >
           <div className="w-full max-w-[580px] bg-white border-2 border-[#F0F0F0] rounded-full h-[64px] md:h-[80px] flex items-center px-6 md:px-8 gap-4 shadow-sm">
-            <svg 
-              className="w-5 h-5 md:w-6 md:h-6 shrink-0" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="#A6B6F5" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
+            <svg
+              className="w-5 h-5 md:w-6 md:h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A6B6F5"
+              strokeWidth="2.5"
+              strokeLinecap="round"
               strokeLinejoin="round"
             >
               <circle cx="11" cy="11" r="8"></circle>
