@@ -365,7 +365,6 @@ function VerticalMarquee({ items, direction, speed }: { items: string[], directi
 
   return (
     <div className="flex flex-col overflow-hidden flex-1 bg-transparent">
-      {/* Inject keyframes */}
       <style>{keyframes}</style>
       {/*
         The inner div is exactly 2× the visible height (because it holds doubled items).
