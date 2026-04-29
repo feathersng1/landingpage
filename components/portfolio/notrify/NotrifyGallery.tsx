@@ -52,7 +52,7 @@ export function NotrifyGallery() {
 
         {/* Row 2: Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-0">
-          {/* Card 1: All in one place (Glisteningtext) */}
+          {/* Card 1: All in one place (Glistening text) */}
           <motion.div
             variants={itemVariants}
             className="w-full bg-[#E1E5F5] rounded-[16px] aspect-square flex items-center justify-center relative p-8 md:p-12"
