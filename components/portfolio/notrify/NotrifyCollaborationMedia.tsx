@@ -42,17 +42,17 @@ export function NotrifyCollaborationMedia() {
           className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-[#E5E7EB] overflow-hidden flex flex-col items-center justify-center rounded-none md:rounded-[16px]"
         >
           {/* Background Image */}
-          <img 
-            src="/notrify/groupsbg.jpg" 
-            alt="Groups Background" 
+          <img
+            src="/notrify/groupsbg.jpg"
+            alt="Groups Background"
             className="absolute inset-0 w-full h-full object-cover object-center rounded-none md:rounded-[16px]"
           />
           {/* Black Overlay */}
           <div className="absolute inset-0 bg-black/40 rounded-none md:rounded-[16px]" />
-          
-          {/* App Screens Overlay - Horizontal scroll on mobile, flex on desktop */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center p-6 md:p-12 lg:p-20">
-            <div className="flex flex-nowrap items-center justify-center gap-4 md:gap-8 lg:gap-12 w-full h-full overflow-x-auto no-scrollbar md:overflow-visible">
+
+          {/* App Screens Overlay - Constrained width with justify-between for perfect gaps and symmetry */}
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-6 md:p-6 lg:p-20">
+            <div className="flex flex-nowrap items-center justify-between w-full max-w-[1000px] md:max-w-[1100px] lg:max-w-[1200px] h-full overflow-x-auto no-scrollbar md:overflow-visible gap-4 md:gap-0">
               {[
                 "/notrify/groups1.svg",
                 "/notrify/groups2.svg",
