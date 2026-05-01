@@ -23,13 +23,13 @@ const containerVariants = {
 };
 
 const sectionVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 30,
     scale: 0.98
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -50,9 +50,9 @@ export function Blog({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
       <Footer />
-      
+
       {/* Main content that scrolls over the footer */}
-      <motion.div 
+      <motion.div
         className="relative z-10"
         variants={containerVariants}
         initial="hidden"
@@ -61,18 +61,18 @@ export function Blog({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
         {/* All content sections with solid white background */}
         <div className="bg-[#ffffff]">
           <motion.div variants={sectionVariants}>
-            <UnifiedHeader 
+            <UnifiedHeader
               currentPage={currentPage}
               onNavigateHome={onNavigateHome}
               onNavigatePreview={onNavigatePreview}
               onNavigateBlog={onNavigateBlog}
             />
           </motion.div>
-          
+
           <motion.div variants={sectionVariants}>
             <BlogHero />
           </motion.div>
-          
+
           {/* Blog Posts Grid */}
           <div className="flex flex-col items-center justify-center overflow-clip relative w-full">
             <div className="box-border content-stretch flex flex-col gap-2.5 items-center justify-center px-6 py-0 relative w-full">
@@ -108,10 +108,10 @@ export function Blog({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
             </div>
           </div>
         </div>
-        
+
         {/* Spacer to reveal footer - matches footer height exactly */}
         <div className="h-[700px] bg-transparent"></div>
       </motion.div>
     </div>
   );
-}
+}

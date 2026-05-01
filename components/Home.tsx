@@ -25,13 +25,13 @@ const containerVariants = {
 };
 
 const sectionVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 30,
     scale: 0.98
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -46,9 +46,9 @@ export function Home({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
       <Footer />
-      
+
       {/* Main content that scrolls over the footer */}
-      <motion.div 
+      <motion.div
         className="relative z-10"
         variants={containerVariants}
         initial="hidden"
@@ -57,27 +57,27 @@ export function Home({ currentPage, onNavigateHome, onNavigatePreview, onNavigat
         {/* All content sections with solid white background */}
         <div className="bg-[#ffffff]">
           <motion.div variants={sectionVariants}>
-            <UnifiedHeader 
+            <UnifiedHeader
               currentPage={currentPage}
               onNavigateHome={onNavigateHome}
               onNavigatePreview={onNavigatePreview}
               onNavigateBlog={onNavigateBlog}
             />
           </motion.div>
-          
+
           <motion.div variants={sectionVariants}>
             <HomeHero />
           </motion.div>
-          
+
           <motion.div variants={sectionVariants}>
             <PortfolioSection onNavigatePortfolio={onNavigatePortfolio} />
           </motion.div>
-          
+
           <motion.div variants={sectionVariants}>
             <HomeServices />
           </motion.div>
         </div>
-        
+
         {/* Spacer to reveal footer - matches footer height exactly */}
         <div className="h-[700px] bg-transparent"></div>
       </motion.div>

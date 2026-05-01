@@ -28,17 +28,17 @@ export function HomeHero() {
         <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-6 py-0 relative w-full">
           <div className="basis-0 grow max-w-[1440px] min-h-px min-w-px relative shrink-0">
             <div className="flex flex-row items-center max-w-inherit relative size-full">
-              <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-start max-w-inherit pb-20 pt-[120px] px-0 relative w-full">
-                <div className="basis-0 font-['Monarque:Regular',_sans-serif] grow min-h-px min-w-px not-italic relative shrink-0 text-[#141414] text-left tracking-[-4.8px]">
+              <div className="flex flex-col items-start justify-start pb-20 pt-[80px] md:pt-[120px] px-0 relative w-full">
+                <div className="w-full relative text-[#141414] text-left">
                   <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                   >
-                    <h1 className="leading-[120px] text-[120px] md:text-[120px] sm:text-[80px] xs:text-[60px]">
+                    <div className="font-['Monarque:Regular',_sans-serif] text-[72px] leading-[0.85] sm:text-[90px] md:text-[120px] md:leading-[100px] tracking-[-2px] md:tracking-[-4.8px]">
                       <motion.span
                         variants={textVariants}
-                        className="font-monarque-regular tracking-[-4.8px] inline-block"
+                        className="font-monarque-regular inline-block"
                       >
                         Where brands
                       </motion.span>
@@ -56,7 +56,7 @@ export function HomeHero() {
                       >
                         & unforgettable
                       </motion.span>
-                    </h1>
+                    </div>
                   </motion.div>
                 </div>
               </div>

@@ -86,7 +86,7 @@ export function Footer() {
 
           <div className="max-w-[1440px] relative shrink-0 w-full z-10">
             <div className="flex flex-col items-center max-w-inherit relative size-full">
-              <div className="box-border content-stretch flex flex-col gap-[32px] md:gap-[46px] items-center justify-start max-w-inherit pb-[100px] md:pb-[297px] pt-12 md:pt-20 px-0 relative w-full">
+              <div className="box-border content-stretch flex flex-col gap-[32px] md:gap-[46px] items-center justify-start max-w-inherit pb-16 md:pb-24 pt-12 md:pt-20 px-0 relative w-full">
 
                 {/* Main Heading Text */}
                 <div className="box-border content-stretch flex flex-row gap-4 md:gap-20 items-center justify-center p-0 relative shrink-0">

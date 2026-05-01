@@ -2,18 +2,18 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-function ServiceCard({ 
-  title, 
-  description, 
-  services, 
-  index, 
+function ServiceCard({
+  title,
+  description,
+  services,
+  index,
   isHovered,
   onHover,
   onLeave
-}: { 
-  title: string; 
-  description: string; 
-  services: string[]; 
+}: {
+  title: string;
+  description: string;
+  services: string[];
   index: number;
   isHovered: boolean;
   onHover: () => void;
@@ -22,25 +22,25 @@ function ServiceCard({
   const { ref, isVisible } = useScrollReveal(0.1);
 
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
-      className="basis-0 grow max-w-[380px] min-h-px min-w-[250px] relative shrink-0"
+      className="w-full md:max-w-[380px] md:min-w-[250px] relative shrink-0"
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         ease: [0.16, 1, 0.3, 1],
         delay: index * 0.1
       }}
     >
       <div className="flex flex-col justify-center max-w-inherit min-w-inherit relative size-full">
-        <motion.div 
+        <motion.div
           className="box-border content-stretch flex flex-col gap-4 items-start justify-center max-w-inherit min-w-inherit pb-9 pt-0 px-0 relative w-full cursor-pointer"
-          animate={{ 
+          animate={{
             opacity: isHovered ? 1 : 0.4,
           }}
-          transition={{ 
-            duration: 0.3, 
+          transition={{
+            duration: 0.3,
             ease: [0.16, 1, 0.3, 1]
           }}
           onMouseEnter={onHover}
@@ -54,13 +54,13 @@ function ServiceCard({
           </div>
           <div className="box-border content-stretch flex flex-col font-['Onest:Regular',_sans-serif] gap-2 items-start justify-start p-0 relative shrink-0 text-[#141414] text-[16px] tracking-[-0.64px] w-full">
             {services.map((service, serviceIndex) => (
-              <motion.div 
-                key={serviceIndex} 
+              <motion.div
+                key={serviceIndex}
                 className="relative shrink-0 w-full"
                 initial={{ opacity: 0, x: -10 }}
                 animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                transition={{ 
-                  duration: 0.4, 
+                transition={{
+                  duration: 0.4,
                   ease: [0.16, 1, 0.3, 1],
                   delay: (index * 0.1) + (serviceIndex * 0.05)
                 }}
@@ -88,7 +88,7 @@ export function HomeServices() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
       className="relative shrink-0 w-full bg-white"
       initial={{ opacity: 0 }}
@@ -101,10 +101,10 @@ export function HomeServices() {
             <div className="flex flex-col items-center justify-center max-w-inherit overflow-clip relative size-full">
               <div className="box-border content-stretch flex flex-col gap-2.5 items-center justify-center max-w-inherit px-0 py-[60px] relative w-full">
                 <div className="box-border content-stretch flex flex-col gap-16 items-start justify-start p-0 relative shrink-0 w-full">
-                  
+
                   {/* Header */}
-                  <div className="box-border content-stretch flex flex-col gap-10 items-start justify-start p-0 relative shrink-0 w-full">
-                    <motion.div 
+                  <div className="flex flex-col gap-10 items-start justify-start p-0 relative w-full">
+                    <motion.div
                       className="relative rounded-lg shrink-0"
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
@@ -120,21 +120,21 @@ export function HomeServices() {
                       </div>
                     </motion.div>
                     
-                    <motion.div 
-                      className="font-['Monarque:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#141414] text-[0px] text-left tracking-[-3.2px]"
+                    <motion.div
+                      className="w-full relative"
                       initial={{ opacity: 0, y: 30 }}
                       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                     >
-                      <p className="leading-[80px] text-[80px] md:text-[80px] sm:text-[64px]">
-                        <span className="font-monarque-regular tracking-[-3.2px]">{`We turn ideas into `}</span>
+                      <p className="font-['Monarque:Regular',_sans-serif] text-[48px] leading-[1.1] sm:text-[64px] md:text-[80px] md:leading-[80px] tracking-[-1px] md:tracking-[-3.2px] text-[#141414]">
+                        <span className="font-monarque-regular">{`We turn ideas into `}</span>
                         <span>
                           <br />
                         </span>
                         <span className="font-monarque-italic">
                           scalable{` `}
                         </span>
-                        <span className="font-monarque-regular tracking-[-3.2px]">
+                        <span className="font-monarque-regular">
                           experiences
                         </span>
                       </p>
@@ -142,8 +142,8 @@ export function HomeServices() {
                   </div>
 
                   {/* Service Cards */}
-                  <div className="[flex-flow:wrap] box-border content-start flex gap-6 items-start justify-start p-0 relative shrink-0 w-full">
-                    <div className="[flex-flow:wrap] basis-0 box-border content-start flex gap-6 grow items-start justify-start min-h-px min-w-[500px] p-0 relative shrink-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full relative">
+                    <div className="flex flex-col gap-6 w-full relative">
                       <ServiceCard
                         title="Brand Audit<br />& Market Research"
                         description="We assess your current brand and study the market to uncover insights, gaps, and opportunities for clarity and differentiation."
@@ -159,7 +159,7 @@ export function HomeServices() {
                         onHover={() => handleCardHover(0)}
                         onLeave={handleCardLeave}
                       />
-                      
+
                       <ServiceCard
                         title="Brand Strategy<br />& Positioning"
                         description="We define your brand's voice, values, and audience — building a focused strategy that helps you stand out and scale with purpose."
@@ -177,8 +177,8 @@ export function HomeServices() {
                         onLeave={handleCardLeave}
                       />
                     </div>
-                    
-                    <div className="[flex-flow:wrap] basis-0 box-border content-start flex gap-6 grow items-start justify-start min-h-px min-w-[500px] p-0 relative shrink-0">
+
+                    <div className="flex flex-col gap-6 w-full relative">
                       <ServiceCard
                         title="Brand Identity<br />& Design"
                         description="From naming to logo, typography to visuals, we design cohesive brand systems that express who you are and what you stand for."
@@ -194,7 +194,7 @@ export function HomeServices() {
                         onHover={() => handleCardHover(2)}
                         onLeave={handleCardLeave}
                       />
-                      
+
                       <ServiceCard
                         title="Web & Product<br />Development"
                         description="We design and build functional, user-centered websites and digital products that reflect your brand and drive engagement."
