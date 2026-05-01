@@ -78,38 +78,38 @@ export function NotrifyCollaborationMedia() {
         {/* Row 2: Permissions & Members Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-0">
 
-          {/* Card 1: Members Management */}
+          {/* Card 1: Members Management (Bleed to bottom-left with symmetrical top/right padding) */}
           <motion.div
             variants={itemVariants}
-            className="w-full bg-[#1B42E0] rounded-[16px] aspect-square flex flex-col items-center justify-center overflow-hidden group p-8 md:p-12 lg:p-20"
+            className="w-full bg-[#1B42E0] rounded-[16px] aspect-square relative overflow-hidden group"
           >
             <motion.div
-              className="w-full h-full flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
+              className="absolute top-8 md:top-12 lg:top-20 right-8 md:right-12 lg:right-20 bottom-0 left-0 flex items-end justify-start"
+              whileHover={{ x: 15, y: -15 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <img
                 src="/notrify/members.svg"
                 alt="Member Management"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain object-left-bottom"
               />
             </motion.div>
           </motion.div>
 
-          {/* Card 2: Admin Permissions */}
+          {/* Card 2: Admin Permissions (Bleed to left/top/bottom) */}
           <motion.div
             variants={itemVariants}
-            className="w-full bg-[#A6B6F5] rounded-[16px] aspect-square flex flex-col items-end justify-center overflow-hidden group pr-8 md:pr-12 lg:pr-20"
+            className="w-full bg-[#A6B6F5] rounded-[16px] aspect-square relative overflow-hidden group"
           >
-            <motion.div
-              className="w-full h-full flex items-center justify-end"
-              whileHover={{ x: -10 }}
-              transition={{ type: "spring", stiffness: 300 }}
+            <motion.div 
+              className="absolute inset-y-0 left-0 right-8 md:right-12 lg:right-20 flex items-center justify-start"
+              whileHover={{ x: 10 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <img
-                src="/notrify/admin.svg"
-                alt="Admin Permissions"
-                className="h-full w-auto object-contain object-right"
+              <img 
+                src="/notrify/admin.svg" 
+                alt="Admin Permissions" 
+                className="h-full w-auto object-contain object-left"
                 style={{ borderRadius: 0 }}
               />
             </motion.div>

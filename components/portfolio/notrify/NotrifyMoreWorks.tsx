@@ -25,11 +25,11 @@ const itemVariants = {
   }
 };
 
-interface NeochildMoreWorksProps {
+interface NotrifyMoreWorksProps {
   onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
 }
 
-export function NeochildMoreWorks({ onNavigatePortfolio }: NeochildMoreWorksProps) {
+export function NotrifyMoreWorks({ onNavigatePortfolio }: NotrifyMoreWorksProps) {
   return (
     <motion.section
       className="w-full bg-white py-20 md:py-32 px-6"
@@ -72,24 +72,24 @@ export function NeochildMoreWorks({ onNavigatePortfolio }: NeochildMoreWorksProp
             </div>
           </motion.div>
 
-          {/* Project 2: Notrify */}
+          {/* Project 2: Neochild */}
           <motion.div 
             variants={itemVariants} 
             className="flex flex-col group cursor-pointer"
-            onClick={() => onNavigatePortfolio('notrify')}
+            onClick={() => onNavigatePortfolio('neochildcare')}
           >
-            <div className="relative w-full aspect-[4/3] bg-[#1B42E0] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20 transition-transform duration-500 group-hover:scale-[0.98]">
+            <div className="relative w-full aspect-[4/3] bg-[#F2F2F3] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20 transition-transform duration-500 group-hover:scale-[0.98]">
               <div className="relative w-full h-full bg-white rounded-[12px] overflow-hidden flex items-center justify-center border border-neutral-100">
                 <img 
-                  src="/notrify/notrify-hero.svg" 
-                  alt="Comprehensive Health Management" 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  src="/neochild/neochild-hero1.png" 
+                  alt="Modern Healthcare Solution" 
+                  className="max-w-[70%] max-h-full object-contain transform group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl"
                 />
               </div>
             </div>
             <div className="flex flex-col space-y-1">
-              <h3 className="font-onest text-[18px] md:text-[20px] font-medium text-[#141414]">Comprehensive Health Management</h3>
-              <p className="font-onest text-[12px] md:text-[14px] font-medium text-[#525252] uppercase tracking-wider">NOTRIFY</p>
+              <h3 className="font-onest text-[18px] md:text-[20px] font-medium text-[#141414]">Modern Healthcare Solution</h3>
+              <p className="font-onest text-[12px] md:text-[14px] font-medium text-[#525252] uppercase tracking-wider">NEOCHILDCARE</p>
             </div>
           </motion.div>
 

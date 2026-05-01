@@ -10,11 +10,15 @@ import { NotrifyAppDesign } from "./notrify/NotrifyAppDesign";
 import { NotrifyMainMedia } from "./notrify/NotrifyMainMedia";
 import { NotrifyCareCoordination } from "./notrify/NotrifyCareCoordination";
 import { NotrifyCollaborationMedia } from "./notrify/NotrifyCollaborationMedia";
+import { NotrifyTestimonial } from "./notrify/NotrifyTestimonial";
+import { NotrifyFinalImage } from "./notrify/NotrifyFinalImage";
+import { NotrifyMoreWorks } from "./notrify/NotrifyMoreWorks";
 
 interface PortfolioNotrifyProps {
   onNavigateHome: () => void;
   onNavigatePreview: () => void;
   onNavigateBlog: () => void;
+  onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
 }
 
 const containerVariants = {
@@ -45,7 +49,7 @@ const sectionVariants = {
   }
 };
 
-export function PortfolioNotrify({ onNavigateHome, onNavigatePreview, onNavigateBlog }: PortfolioNotrifyProps) {
+export function PortfolioNotrify({ onNavigateHome, onNavigatePreview, onNavigateBlog, onNavigatePortfolio }: PortfolioNotrifyProps) {
   return (
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
@@ -103,6 +107,18 @@ export function PortfolioNotrify({ onNavigateHome, onNavigatePreview, onNavigate
 
           <motion.div variants={sectionVariants}>
             <NotrifyCollaborationMedia />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NotrifyTestimonial />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NotrifyFinalImage />
+          </motion.div>
+
+          <motion.div variants={sectionVariants}>
+            <NotrifyMoreWorks onNavigatePortfolio={onNavigatePortfolio} />
           </motion.div>
 
           {/* Further sections will be added here one by one */}

@@ -17,6 +17,7 @@ interface PortfolioNeochildProps {
   onNavigateHome: () => void;
   onNavigatePreview: () => void;
   onNavigateBlog: () => void;
+  onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
 }
 
 const containerVariants = {
@@ -47,7 +48,7 @@ const sectionVariants = {
   }
 };
 
-export function PortfolioNeochild({ onNavigateHome, onNavigatePreview, onNavigateBlog }: PortfolioNeochildProps) {
+export function PortfolioNeochild({ onNavigateHome, onNavigatePreview, onNavigateBlog, onNavigatePortfolio }: PortfolioNeochildProps) {
   return (
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
@@ -112,7 +113,7 @@ export function PortfolioNeochild({ onNavigateHome, onNavigatePreview, onNavigat
           </motion.div>
 
           <motion.div variants={sectionVariants}>
-            <NeochildMoreWorks />
+            <NeochildMoreWorks onNavigatePortfolio={onNavigatePortfolio} />
           </motion.div>
 
         </div>

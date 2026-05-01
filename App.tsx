@@ -69,18 +69,33 @@ export default function App() {
               onNavigateHome={() => setCurrentPage('home')}
               onNavigatePreview={() => setCurrentPage('preview')}
               onNavigateBlog={() => setCurrentPage('blog')}
+              onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
+                setSelectedProject(project);
+                setCurrentPage('portfolio');
+                window.scrollTo(0, 0);
+              }}
             />
           ) : selectedProject === 'neochildcare' ? (
             <PortfolioNeochild
               onNavigateHome={() => setCurrentPage('home')}
               onNavigatePreview={() => setCurrentPage('preview')}
               onNavigateBlog={() => setCurrentPage('blog')}
+              onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
+                setSelectedProject(project);
+                setCurrentPage('portfolio');
+                window.scrollTo(0, 0);
+              }}
             />
           ) : selectedProject === 'notrify' ? (
             <PortfolioNotrify
               onNavigateHome={() => setCurrentPage('home')}
               onNavigatePreview={() => setCurrentPage('preview')}
               onNavigateBlog={() => setCurrentPage('blog')}
+              onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
+                setSelectedProject(project);
+                setCurrentPage('portfolio');
+                window.scrollTo(0, 0);
+              }}
             />
           ) : (
             <div className="min-h-screen flex items-center justify-center">
