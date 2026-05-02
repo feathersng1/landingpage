@@ -92,7 +92,7 @@ export function NeochildGallery() {
           </motion.div>
         </div>
 
-        {/* Row 3: Baby Photos Card */}
+        {/* Row 3: Baby PhotosCard */}
         <motion.div
           variants={itemVariants}
           className="relative w-full bg-[#FEE3D0] rounded-none md:rounded-[16px] p-12 md:p-24 overflow-hidden"
