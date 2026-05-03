@@ -109,7 +109,7 @@ export function NeochildGallery() {
             </div>
             {/* Baby 1 with Animated Circle */}
             <motion.div
-              className="relative w-full max-w-[320px]"
+              className="relative w-full max-w-[320px] overflow-visible"
               whileHover="animateCircle"
             >
               <img
@@ -117,28 +117,22 @@ export function NeochildGallery() {
                 alt="Baby 1"
                 className="w-full h-auto block"
               />
-              {/* Orange Circle Overlay - 24-point smooth oval path */}
+              {/* Orange Circle Overlay - Smooth 9-point contour loop */}
               <motion.div
-                className="absolute top-[10%] left-[81%] w-[18%] aspect-square bg-[#FA8C3A] rounded-full z-10"
+                className="absolute w-[18%] aspect-square bg-[#FA8C3A] rounded-full z-10"
+                style={{ x: "-50%", y: "-50%" }}
                 initial={{ top: "10%", left: "81%" }}
                 variants={{
                   animateCircle: {
-                    left: [
-                      "81%", "75%", "68%", "60%", "50%", "40%", "32%", "25%", "19%", "14%", "10%", "9%",
-                      "10%", "14%", "19%", "25%", "32%", "40%", "50%", "60%", "68%", "75%", "81%", "86%", "89%", "91%", "89%", "86%", "81%"
-                    ],
-                    top: [
-                      "10%", "8.5%", "9%", "9%", "9%", "9%", "10%", "15%", "22%", "30%", "40%", "50%",
-                      "60%", "70%", "78%", "85%", "90%", "91%", "91%", "91%", "90%", "85%", "78%", "70%", "60%", "50%", "40%", "25%", "10%"
-                    ],
+                    left: ["81%", "100%", "85%", "52%", "15%", "0%", "10%", "46%", "81%"],
+                    top:  ["10%", "45%", "85%", "100%", "88%", "45%", "10%", "0%", "10%"],
                     transition: {
-                      duration: 4,
+                      duration: 5,
                       ease: "linear",
-                      repeat: 0
-                    },
-                  },
+                      repeat: Infinity
+                    }
+                  }
                 }}
-                transition={{ duration: 0 }} // Prevents snap-back animation on mouse leave
               />
             </motion.div>
 
@@ -164,7 +158,7 @@ export function NeochildGallery() {
             </div>
             {/* Baby 1 (Mobile second, with circle) */}
             <motion.div
-              className="relative w-[80%] max-w-[280px]"
+              className="relative w-[80%] max-w-[280px] overflow-visible"
               whileHover="animateCircle"
             >
               <img
@@ -172,27 +166,22 @@ export function NeochildGallery() {
                 alt="Baby 1"
                 className="w-full h-auto block"
               />
+              {/* Orange Circle Overlay - Smooth 9-point contour loop */}
               <motion.div
-                className="absolute top-[10%] left-[81%] w-[18%] aspect-square bg-[#FA8C3A] rounded-full z-10"
+                className="absolute w-[18%] aspect-square bg-[#FA8C3A] rounded-full z-10"
+                style={{ x: "-50%", y: "-50%" }}
                 initial={{ top: "10%", left: "81%" }}
                 variants={{
                   animateCircle: {
-                    left: [
-                      "81%", "75%", "68%", "60%", "50%", "40%", "32%", "25%", "19%", "14%", "10%", "9%",
-                      "10%", "14%", "19%", "25%", "32%", "40%", "50%", "60%", "68%", "75%", "81%", "86%", "89%", "91%", "89%", "86%", "81%"
-                    ],
-                    top: [
-                      "10%", "8.5%", "9%", "9%", "9%", "9%", "10%", "15%", "22%", "30%", "40%", "50%",
-                      "60%", "70%", "78%", "85%", "90%", "91%", "91%", "91%", "90%", "85%", "78%", "70%", "60%", "50%", "40%", "25%", "10%"
-                    ],
+                    left: ["81%", "100%", "85%", "52%", "15%", "0%", "10%", "46%", "81%"],
+                    top:  ["10%", "45%", "85%", "100%", "88%", "45%", "10%", "0%", "10%"],
                     transition: {
-                      duration: 4,
+                      duration: 5,
                       ease: "linear",
-                      repeat: 0
-                    },
-                  },
+                      repeat: Infinity
+                    }
+                  }
                 }}
-                transition={{ duration: 0 }} // Prevents snap-back animation on mouse leave
               />
             </motion.div>
             {/* Baby 2 */}

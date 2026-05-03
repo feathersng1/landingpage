@@ -112,12 +112,12 @@ export function NeochildSolution() {
             <div className="relative flex items-center h-full w-full justify-center">
               {/* The high-fidelity stretching circle */}
               <motion.div
-                className="absolute left-[50%] top-[50%] -translate-x-[115px] md:-translate-x-[125px] lg:-translate-x-[135px] -translate-y-1/2 bg-[#FDD1B0] rounded-full z-0 pointer-events-none"
-                style={{ height: 48, width: 48 }}
+                className="absolute left-[50%] top-[50%] -translate-x-[125px] md:-translate-x-[135px] lg:-translate-x-[145px] -translate-y-1/2 bg-[#FDD1B0] z-0 pointer-events-none"
+                style={{ height: 64, width: 64, borderRadius: 32 }}
                 variants={{
                   hover: {
-                    width: 280,
-                    borderRadius: "24px",
+                    width: 310,
+                    borderRadius: 32,
                     transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
                   }
                 }}
@@ -388,9 +388,13 @@ function VerticalMarquee({ items, direction, speed }: { items: string[], directi
         {doubled.map((src, i) => (
           <div
             key={i}
-            className="w-full aspect-[3/4] bg-white rounded-[12px] md:rounded-[24px] overflow-hidden shrink-0 border border-[#DEECAC]/30 flex items-center justify-center p-0"
+            className="w-full aspect-[2/3] bg-white rounded-[12px] md:rounded-[24px] overflow-hidden shrink-0 border border-[#DEECAC]/30 p-0"
           >
-            <img src={src} alt="Project Clip" className="w-full h-full object-cover" />
+            <img 
+              src={src} 
+              alt="Project Clip" 
+              className="w-full h-full object-cover object-top" 
+            />
           </div>
         ))}
       </div>
