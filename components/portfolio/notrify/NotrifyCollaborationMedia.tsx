@@ -39,7 +39,7 @@ export function NotrifyCollaborationMedia() {
         {/* Row 1: Groups Flow */}
         <motion.div
           variants={itemVariants}
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-[#E5E7EB] overflow-hidden flex flex-col items-center justify-center rounded-none md:rounded-[16px]"
+          className="relative w-full aspect-[16/11] md:aspect-[21/9] bg-[#E5E7EB] overflow-hidden flex flex-col items-center justify-center rounded-none md:rounded-[16px]"
         >
           {/* Background Image */}
           <img
@@ -51,8 +51,8 @@ export function NotrifyCollaborationMedia() {
           <div className="absolute inset-0 bg-black/40 rounded-none md:rounded-[16px]" />
 
           {/* App Screens Overlay - Constrained width with justify-between for perfect gaps and symmetry */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center p-6 md:p-6 lg:p-20">
-            <div className="flex flex-nowrap items-center justify-between w-full max-w-[1000px] md:max-w-[1100px] lg:max-w-[1200px] h-full overflow-x-auto no-scrollbar md:overflow-visible gap-4 md:gap-0">
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-6 md:p-8 lg:p-24">
+            <div className="flex flex-nowrap items-center justify-between w-full max-w-[1000px] md:max-w-[1150px] lg:max-w-[1300px] h-full overflow-x-auto no-scrollbar md:overflow-visible gap-4 md:gap-0">
               {[
                 "/notrify/groups1.svg",
                 "/notrify/groups2.svg",
@@ -67,7 +67,7 @@ export function NotrifyCollaborationMedia() {
                   <img
                     src={img}
                     alt={`Group screen ${idx + 1}`}
-                    className="h-full w-auto object-contain rounded-[8px] md:rounded-[12px] lg:rounded-[16px]"
+                    className="h-full w-auto object-contain rounded-[8px] md:rounded-[12px] lg:rounded-[16px] drop-shadow-2xl"
                   />
                 </motion.div>
               ))}

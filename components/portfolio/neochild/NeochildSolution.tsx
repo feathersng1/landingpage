@@ -390,14 +390,14 @@ function VerticalMarquee({ items, direction, speed }: { items: string[], directi
             key={i}
             className="w-full aspect-[2/3] bg-white rounded-[12px] md:rounded-[24px] overflow-hidden shrink-0 border border-[#DEECAC]/30 p-0"
           >
-            <img 
-              src={src} 
-              alt="Project Clip" 
-              className="w-full h-full object-cover object-top" 
+            <img
+              src={src}
+              alt="Project Clip"
+              className="w-full h-full object-cover object-top"
             />
           </div>
         ))}
       </div>
-    </div>
+    </div >
   );
 }

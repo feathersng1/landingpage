@@ -37,6 +37,11 @@ export default function App() {
     return () => { delete (window as any).navigateToAdmin; };
   }, []);
 
+  // Scroll to top on page or project change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage, selectedProject]);
+
   return (
     <AnimatePresence mode="wait">
       {currentPage === 'preview' ? (
