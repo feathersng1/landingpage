@@ -36,9 +36,6 @@ const CalculatorCard = () => {
     setSqft(Number(e.target.value));
   };
 
-  // Logic to match the screenshot's $4,020 for 2,500 sqft approximately
-  // Or use the previously provided formula: (449 + extraSqft * 0.16)
-  // For the design parity, we'll use a formula that feels "right" for the visual
   const estimatedCost = (sqft * 1.6 + 20).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
   return (
@@ -63,7 +60,6 @@ const CalculatorCard = () => {
             '--padding-x': '1rem',
           } as any}
         >
-          {/* Custom style overrides for breakpoints since CSS variables in Tailwind classes are tricky here */}
           <style dangerouslySetInnerHTML={{
             __html: `
             @media (min-width: 768px) { .p-\\[var\\(--padding-x\\)\\] { --padding-x: 1.25rem; } }
@@ -139,8 +135,8 @@ const CalculatorCard = () => {
             </div>
           </div>
 
-          <hr 
-            className="border-t border-[#F0F0F0]" 
+          <hr
+            className="border-t border-[#F0F0F0]"
             style={{
               marginLeft: 'calc(var(--padding-x, 1rem) * -1)',
               marginRight: 'calc(var(--padding-x, 1rem) * -1)',
