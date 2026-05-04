@@ -36,10 +36,16 @@ export function AllInOneTestimonial() {
     >
       <div className="max-w-[1000px] mx-auto flex flex-col items-center text-center">
         
+        {/* Brand Accent */}
+        <motion.div
+          variants={itemVariants}
+          className="w-12 h-1 bg-[#B80733] mb-12 rounded-full"
+        />
+
         {/* Quote Block */}
         <motion.p
           variants={itemVariants}
-          className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#141414] mb-10 md:mb-12"
+          className="font-onest text-[20px] md:text-[28px] font-medium leading-[30px] md:leading-[40px] text-[#141414] mb-12 md:mb-16 tracking-tight italic"
         >
           “We rebuilt the site to convert, not just impress. The numbers prove it: 40% more online bookings, 25% fewer abandoned forms, and 30% more engagement with our septic services—all in the first 3 weeks. The inspection calculator alone cut booking time by 15%. When you make the process this simple, people act.”
         </motion.p>
@@ -47,15 +53,15 @@ export function AllInOneTestimonial() {
         {/* Author Block */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col items-center gap-1"
+          className="flex flex-col items-center gap-2"
         >
           <span
-            className="font-onest text-[16px] md:text-[24px] font-normal text-[#525252] uppercase"
+            className="font-onest text-[16px] md:text-[18px] font-bold text-[#141414] uppercase tracking-widest"
           >
             DELTA NAPOLITANO
           </span>
           <span
-            className="font-onest text-[16px] md:text-[24px] font-normal text-[#A3A3A3]"
+            className="font-onest text-[14px] md:text-[16px] font-medium text-[#737373] uppercase tracking-tighter"
           >
             Director of Marketing, All-In-One
           </span>

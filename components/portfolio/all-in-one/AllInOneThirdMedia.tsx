@@ -49,7 +49,7 @@ export function AllInOneThirdMedia() {
               <img
                 src="/aio/booking.svg"
                 alt="Booking Flow Preview"
-                className="w-full h-auto max-w-[1000px] block"
+                className="w-full h-auto max-w-[1000px] block drop-shadow-2xl"
               />
             </div>
           </div>
@@ -58,7 +58,7 @@ export function AllInOneThirdMedia() {
         {/* Row 2: Secondary Grid (1x1 on mobile, 1x2 on tablet/desktop) */}
         <div className="px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+
             {/* Card 1: Order Summary */}
             <motion.div
               variants={itemVariants}
@@ -67,19 +67,20 @@ export function AllInOneThirdMedia() {
               <img
                 src="/aio/summary.svg"
                 alt="Order Summary Mockup"
-                className="max-w-full max-h-full object-contain block shadow-2xl"
+                className="max-w-full max-h-full object-contain block drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
               />
             </motion.div>
 
             {/* Card 2: Success Screen (Full Bleed Image) */}
             <motion.div
               variants={itemVariants}
-              className="w-full rounded-[16px] overflow-hidden flex items-center justify-center aspect-square md:aspect-[3/4] lg:aspect-square"
+              whileHover={{ scale: 1.02 }}
+              className="w-full rounded-[16px] overflow-hidden flex items-center justify-center aspect-square md:aspect-[3/4] lg:aspect-square group cursor-pointer"
             >
               <img
                 src="/aio/success.svg"
                 alt="Success Screen"
-                className="w-full h-full object-cover rounded-[16px]"
+                className="w-full h-full object-cover rounded-[16px] transition-transform duration-700 group-hover:scale-105"
               />
             </motion.div>
 
