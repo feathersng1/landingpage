@@ -118,7 +118,7 @@ export function PortfolioNeochild({ onNavigateHome, onNavigatePreview, onNavigat
 
         </div>
 
-        {/* Spacer to reveal footer - matches  */}
+        {/* Spacer to reveal footer - */}
         <div className="h-[700px] bg-transparent"></div>
       </motion.div>
     </div>
