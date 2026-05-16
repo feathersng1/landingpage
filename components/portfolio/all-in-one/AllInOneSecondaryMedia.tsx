@@ -27,7 +27,7 @@ const itemVariants = {
   }
 };
 
-// Sub-components -
+// Sub-components
 
 const CalculatorCard = () => {
   const [sqft, setSqft] = useState(2500);
