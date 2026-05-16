@@ -27,7 +27,7 @@ const itemVariants = {
   }
 };
 
-// Sub-components
+//Sub-components
 
 const CalculatorCard = () => {
   const [sqft, setSqft] = useState(2500);
@@ -40,7 +40,7 @@ const CalculatorCard = () => {
 
   return (
     <div className="w-full h-full bg-[#B80733] flex flex-col items-center justify-center xl:justify-evenly py-14 md:py-12 lg:py-6 xl:py-2 px-6 md:px-8 relative overflow-hidden rounded-[16px]">
-      {/* Dotted Pattern Overlay */}
+      {/*Dotted Pattern Overlay */}
       <div
         className="absolute inset-0 opacity-10"
         style={{
