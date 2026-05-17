@@ -211,7 +211,7 @@ export function AllInOneSecondaryMedia() {
             </motion.div>
           </div>
 
-          {/* Pair 2: Menu & Animated Services */}
+          {/*Pair 2: Menu & Animated Services */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <motion.div
               variants={itemVariants}
