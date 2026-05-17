@@ -191,7 +191,7 @@ export function AllInOneSecondaryMedia() {
         {/*Row 2: Secondary Grid (Split into two pairs as requested) */}
         <div className="px-6 md:px-6 flex flex-col gap-6">
 
-          {/* Pair 1: Calculator & Phone Visual */}
+          {/*Pair 1: Calculator & Phone Visual */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <motion.div
               variants={itemVariants}
