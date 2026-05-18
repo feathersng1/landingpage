@@ -237,7 +237,7 @@ export function AllInOneSecondaryMedia() {
 
         </div>
 
-        {/* Row 3: Team Section (Edge-to-edge on mobile) */}
+        {/*Row 3: Team Section (Edge-to-edge on mobile) */}
         <motion.div
           variants={itemVariants}
           className="relative w-full md:px-6"
