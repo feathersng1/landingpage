@@ -46,7 +46,7 @@ export function AllInOneDesignApproach() {
             A WEBSITE DESIGNED FOR CLARITY AND ACTION
           </motion.h2>
 
-          {/*Body Text */}
+          {/*Body Text*/}
           <div className="flex flex-col space-y-6 md:space-y-8 max-w-[900px]">
             <motion.p
               variants={itemVariants}
