@@ -38,7 +38,7 @@ export function AllInOneDesignApproach() {
       <div className="max-w-[1440px] mx-auto flex flex-col items-center">
         <div className="max-w-[1000px] w-full flex flex-col items-center text-center">
 
-          {/*Main Heading */}
+          {/*Main Heading*/}
           <motion.h2
             variants={itemVariants}
             className="font-onest text-[24px] md:text-[32px] font-medium leading-[32px] md:leading-[40px] tracking-tight text-[#141414] uppercase mb-6 md:mb-[24px]"
