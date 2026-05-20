@@ -28,7 +28,7 @@ const itemVariants = {
 
 export function AllInOneDesignApproach() {
   return (
-    <motion.section 
+    <motion.section
       className="relative w-full bg-white px-6 py-20 md:py-32"
       variants={containerVariants}
       initial="hidden"
@@ -37,9 +37,9 @@ export function AllInOneDesignApproach() {
     >
       <div className="max-w-[1440px] mx-auto flex flex-col items-center">
         <div className="max-w-[1000px] w-full flex flex-col items-center text-center">
-          
-          {/* Main Heading */}
-          <motion.h2 
+
+          {/*Main Heading */}
+          <motion.h2
             variants={itemVariants}
             className="font-onest text-[24px] md:text-[32px] font-medium leading-[32px] md:leading-[40px] tracking-tight text-[#141414] uppercase mb-6 md:mb-[24px]"
           >
@@ -48,13 +48,13 @@ export function AllInOneDesignApproach() {
 
           {/* Body Text */}
           <div className="flex flex-col space-y-6 md:space-y-8 max-w-[900px]">
-            <motion.p 
+            <motion.p
               variants={itemVariants}
               className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#525252]"
             >
               The website redesign centered on eliminating friction in the user journey. Research revealed that visitors needed immediate clarity on three key points: services offered, audience served, and how to book. The structure was optimized to guide users—primarily homebuyers, agents, and homeowners in the DMV—toward conversion with minimal steps. A prominent inspection cost calculator was integrated into the homepage, reducing barriers to scheduling while setting clear expectations.
             </motion.p>
-            <motion.p 
+            <motion.p
               variants={itemVariants}
               className="font-onest text-[16px] md:text-[24px] font-normal leading-[24px] md:leading-[32px] text-[#525252]"
             >
