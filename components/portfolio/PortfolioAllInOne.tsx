@@ -109,7 +109,6 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
           <motion.div variants={sectionVariants}>
             <AllInOneMoreWorks />
           </motion.div>
-
         </div>
 
         {/* Spacer to reveal footer - matches footer height exactly */}
