@@ -111,7 +111,6 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
           </motion.div>
         </div>
 
-        {/* Spacer to reveal footer - matches footer height exactly */}
         <div className="h-[700px] bg-transparent"></div>
       </motion.div>
     </div>
