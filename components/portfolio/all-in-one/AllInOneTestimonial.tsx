@@ -52,7 +52,6 @@ export function AllInOneTestimonial() {
               Director of Marketing, All-In-One
             </p>
           </motion.div>
-
         </div>
       </div>
     </motion.section>
