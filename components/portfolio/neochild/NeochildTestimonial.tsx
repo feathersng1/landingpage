@@ -31,7 +31,7 @@ export function NeochildTestimonial() {
             &ldquo;Our mission is to provide compassionate, accessible care. The Feathers team translated that mission into a digital experience with remarkable clarity and empathy. Their design choices guide, reassure, and empower our users, while their robust development work ensures this critical platform is reliable for the families who depend on it. They built more than an interface; they built a gateway to better health.&rdquo;
           </motion.p>
 
-          {/* Attribution */}
+          {/* Author  */}
           <motion.div 
             variants={itemVariants}
             className="flex flex-col items-center space-y-1"
