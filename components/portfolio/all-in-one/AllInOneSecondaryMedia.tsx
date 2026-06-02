@@ -154,6 +154,56 @@ const CalculatorCard = () => {
   );
 };
 
+const ScrollingServices = () => {
+  const images = [
+    "/aio/home-inspection-card.svg",
+    "/aio/water-septic.svg",
+    "/aio/ancillary.svg",
+  ];
+
+  // Pattern: A, B, C, A, B to ensure State(A+20%B) is at both start and end of loop
+  const displayImages = [...images, images[0], images[1]];
+
+  return (
+    <div className="w-full h-full overflow-hidden bg-[#20333D] relative flex items-center">
+      <motion.div
+        className="flex h-full items-center flex-nowrap"
+        animate={{
+          // Moves by 20% of its own width (which is 80% of parent width)
+          x: ["0%", "0%", "-20%", "-20%", "-40%", "-40%", "-60%"],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          times: [0, 0.25, 0.33, 0.58, 0.66, 0.91, 1],
+          ease: ["linear", "easeInOut", "linear", "easeInOut", "linear", "easeInOut"],
+        }}
+        style={{ 
+          width: `${displayImages.length * 80}%`, // 5 images * 80% = 400%
+          flexShrink: 0 
+        }}
+      >
+        {displayImages.map((src, index) => (
+          <div
+            key={index}
+            className="h-full flex items-center justify-center p-4 sm:p-6"
+            style={{ 
+              width: `${100 / displayImages.length}%`, // Each item is 1/5th of 400% = 80%
+              flexShrink: 0 
+            }}
+          >
+            <img
+              src={src}
+              alt=""
+              className="w-full h-full object-contain pointer-events-none"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
 export function AllInOneSecondaryMedia() {
   return (
     <motion.section
@@ -225,13 +275,9 @@ export function AllInOneSecondaryMedia() {
             </motion.div>
             <motion.div
               variants={itemVariants}
-              className="w-full rounded-[16px] overflow-hidden flex items-center justify-center aspect-square md:aspect-[3/4] lg:aspect-square bg-[#FDF7F7]"
+              className="w-full rounded-[16px] overflow-hidden aspect-square md:aspect-[3/4] lg:aspect-square"
             >
-              <img
-                src="/aio/services.svg"
-                alt="Services Section"
-                className="w-full h-full object-cover"
-              />
+              <ScrollingServices />
             </motion.div>
           </div>
 
