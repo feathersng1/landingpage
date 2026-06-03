@@ -16,6 +16,7 @@ interface PortfolioAllInOneProps {
   onNavigateHome: () => void;
   onNavigatePreview: () => void;
   onNavigateBlog: () => void;
+  onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
 }
 
 const containerVariants = {
@@ -46,7 +47,7 @@ const sectionVariants = {
   }
 };
 
-export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigateBlog }: PortfolioAllInOneProps) {
+export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigateBlog, onNavigatePortfolio }: PortfolioAllInOneProps) {
   return (
     <div className="relative">
       {/* Fixed Footer - positioned at bottom with its natural height */}
@@ -107,7 +108,7 @@ export function PortfolioAllInOne({ onNavigateHome, onNavigatePreview, onNavigat
           </motion.div>
 
           <motion.div variants={sectionVariants}>
-            <AllInOneMoreWorks />
+            <AllInOneMoreWorks onNavigatePortfolio={onNavigatePortfolio} />
           </motion.div>
         </div>
         <div className="h-[700px] bg-transparent"></div>

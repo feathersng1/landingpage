@@ -25,7 +25,11 @@ const itemVariants = {
   }
 };
 
-export function AllInOneMoreWorks() {
+interface AllInOneMoreWorksProps {
+  onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
+}
+
+export function AllInOneMoreWorks({ onNavigatePortfolio }: AllInOneMoreWorksProps) {
   return (
     <motion.section
       className="w-full bg-white py-20 md:py-32 px-6"
@@ -47,33 +51,45 @@ export function AllInOneMoreWorks() {
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-6 w-full">
           
-          {/* Project 1 */}
-          <motion.div variants={itemVariants} className="flex flex-col group cursor-pointer">
-            <div className="relative w-full aspect-[4/3] bg-[#B80733] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20">
+          {/* Project 1: Neochild */}
+          <motion.div 
+            variants={itemVariants} 
+            className="flex flex-col group cursor-pointer"
+            onClick={() => onNavigatePortfolio('neochildcare')}
+          >
+            <div className="relative w-full aspect-[4/3] bg-[#F97513] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20">
               <div className="relative w-full h-full flex items-center justify-center">
                 <img 
-                  src="/aio/hand-holding-phone.svg" 
-                  alt="Statement first; lifestyle always" 
+                  src="/neochild/neochild-hero1.png" 
+                  alt="Neochild Healthcare" 
                   className="max-w-full max-h-full object-contain rounded-[12px] shadow-2xl transform group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
             <div className="flex flex-col space-y-1">
-              <h3 className="font-onest text-[18px] md:text-[20px] font-medium text-[#141414]">Statement first; lifestyle always</h3>
-              <p className="font-onest text-[12px] md:text-[14px] font-medium text-[#525252] uppercase tracking-wider">SUPREME</p>
+              <h3 className="font-onest text-[18px] md:text-[20px] font-medium text-[#141414]">Redesigning Healthcare Access for African Mothers</h3>
+              <p className="font-onest text-[12px] md:text-[14px] font-medium text-[#525252] uppercase tracking-wider">NEOCHILDCARE</p>
             </div>
           </motion.div>
 
-          {/* Project 2 (Placeholder) */}
-          <motion.div variants={itemVariants} className="flex flex-col group cursor-pointer">
-            <div className="relative w-full aspect-[4/3] bg-[#E5E5E5] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20">
-              <div className="relative w-full h-full bg-[#FAFAFA] rounded-[12px] overflow-hidden flex items-center justify-center border border-neutral-100">
-                <div className="text-neutral-400 font-onest uppercase tracking-tighter text-[14px]">[ Project Preview ]</div>
+          {/* Project 2: Notrify */}
+          <motion.div 
+            variants={itemVariants} 
+            className="flex flex-col group cursor-pointer"
+            onClick={() => onNavigatePortfolio('notrify')}
+          >
+            <div className="relative w-full aspect-[4/3] bg-[#0047FF] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <img 
+                  src="/notrify/notrify-hero.svg" 
+                  alt="Notrify Medical Care" 
+                  className="max-w-full max-h-full object-contain rounded-[12px] shadow-2xl transform group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
             </div>
             <div className="flex flex-col space-y-1">
-              <h3 className="font-onest text-[18px] md:text-[20px] font-medium text-[#141414]">Statement first; lifestyle always</h3>
-              <p className="font-onest text-[12px] md:text-[14px] font-medium text-[#525252] uppercase tracking-wider">SUPREME</p>
+              <h3 className="font-onest text-[18px] md:text-[20px] font-medium text-[#141414]">One Place for Medical Care</h3>
+              <p className="font-onest text-[12px] md:text-[14px] font-medium text-[#525252] uppercase tracking-wider">NOTRIFY</p>
             </div>
           </motion.div>
 
