@@ -311,22 +311,13 @@
                 to translateY(-50%) over the doubled list, then instantly reset — CSS handles
                 this invisibly. We achieve this with a `useEffect` + inline style approach.
         -->*/}
-        <section className="w-full px-0 md:px-6">
+      <section className="w-full px-0 md:px-6">
   <div className="w-full max-w-[1440px] mx-auto bg-[#F8FBEE] border-y md:border-[2px] border-[#DEECAC] overflow-hidden rounded-none md:rounded-[16px]">
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "8px",
-        height: "500px",
-        padding: "8px",
-      }}
-      className="md:!h-[750px] lg:!h-[900px] md:![gap:16px] md:![padding:16px]"
-    >
-      <VerticalMarquee items={[movies[0], movies[1], movies[2]]} direction="up" speed={25} />
-      <VerticalMarquee items={[movies[3], movies[4], movies[5]]} direction="down" speed={30} />
-      <VerticalMarquee items={[movies[6], movies[7], movies[8]]} direction="up" speed={22} />
-      <VerticalMarquee items={[movies[9], movies[0], movies[1]]} direction="down" speed={35} />
+    <div style={{ display: "flex", gap: "8px", padding: "8px", height: "900px", width: "100%" }}>
+      <VerticalMarquee items={[movies[0], movies[1], movies[2]]} direction="up"   speed={25} index={0} />
+      <VerticalMarquee items={[movies[3], movies[4], movies[5]]} direction="down" speed={30} index={1} />
+      <VerticalMarquee items={[movies[6], movies[7], movies[8]]} direction="up"   speed={22} index={2} />
+      <VerticalMarquee items={[movies[9], movies[0], movies[1]]} direction="down" speed={35} index={3} />
     </div>
   </div>
 </section>
@@ -362,76 +353,90 @@
     We inject a `<style>` tag with a unique keyframe name per instance, computed
     from the direction and speed, and apply it via inline style.
   */
-  function VerticalMarquee({ items, direction, speed }: { items: string[], direction: 'up' | 'down', speed: number }) {
+ // Put this outside NeochildSolution, alongside AutoCycle
+function VerticalMarquee({
+  items,
+  direction,
+  speed,
+  index,
+}: {
+  items: string[];
+  direction: "up" | "down";
+  speed: number;
+  index: number;
+}) {
   const colRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const animId = useRef(`marquee-${direction}-${speed}-${Math.random().toString(36).substr(2, 9)}`).current;
+  const id = `kf-${index}`;
+  const GAP = 8;
+  // Fixed card height — tune this number to taste for your layout
+  // 420px works well at desktop, we'll adjust per breakpoint via JS
+  const CARD_H = typeof window !== "undefined" && window.innerWidth >= 1024
+    ? 420
+    : typeof window !== "undefined" && window.innerWidth >= 768
+    ? 320
+    : 240;
+
   const doubled = [...items, ...items];
+  // half = 3 cards + gaps between them (2 full + 1 half at seam)
+  const halfH = CARD_H * 3 + GAP * 2.5;
 
   useEffect(() => {
-    const col = colRef.current;
     const track = trackRef.current;
-    if (!col || !track) return;
+    if (!track) return;
 
-    const GAP = 8;
-    const ASPECT = 2 / 3.2;
+    const existing = document.getElementById(id);
+    if (existing) existing.remove();
 
-    function inject() {
-      const colW = col.offsetWidth;
-      const cardH = colW / ASPECT;
-      // 6 cards total (3 doubled), 5 gaps between them, half = first 3 cards + gaps
-      const halfH = cardH * 3 + GAP * 2.5;
+    const style = document.createElement("style");
+    style.id = id;
+    style.textContent =
+      direction === "up"
+        ? `@keyframes ${id}{from{transform:translateY(0)}to{transform:translateY(-${halfH}px)}}`
+        : `@keyframes ${id}{from{transform:translateY(-${halfH}px)}to{transform:translateY(0)}}`;
+    document.head.appendChild(style);
 
-      const existing = document.getElementById(animId);
-      if (existing) existing.remove();
-      const style = document.createElement('style');
-      style.id = animId;
-      style.textContent =
-        direction === 'up'
-          ? `@keyframes ${animId} { from { transform: translateY(0); } to { transform: translateY(-${halfH}px); } }`
-          : `@keyframes ${animId} { from { transform: translateY(-${halfH}px); } to { transform: translateY(0); } }`;
-      document.head.appendChild(style);
+    track.style.animationName = "none";
+    void track.offsetWidth;
+    track.style.animationName = id;
+    track.style.animationDuration = `${speed}s`;
+    track.style.animationTimingFunction = "linear";
+    track.style.animationIterationCount = "infinite";
 
-      track.style.animationName = animId;
-      track.style.animationDuration = `${speed}s`;
-      track.style.animationTimingFunction = 'linear';
-      track.style.animationIterationCount = 'infinite';
-    }
-
-    inject();
-
-    const ro = new ResizeObserver(inject);
-    ro.observe(col);
-    return () => { ro.disconnect(); document.getElementById(animId)?.remove(); };
-  }, [direction, speed, animId]);
+    return () => { document.getElementById(id)?.remove(); };
+  }, [CARD_H]);
 
   return (
-    <div ref={colRef} style={{ overflow: 'hidden', height: '100%', position: 'relative' }}>
+    <div
+      ref={colRef}
+      style={{ flex: "1 1 0", minWidth: 0, overflow: "hidden", height: "100%", position: "relative" }}
+    >
       <div
         ref={trackRef}
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-          position: 'absolute',
+          position: "absolute",
           top: 0, left: 0, right: 0,
+          display: "flex",
+          flexDirection: "column",
+          gap: `${GAP}px`,
+          willChange: "transform",
         }}
       >
         {doubled.map((src, i) => (
           <div
             key={i}
             style={{
-              width: '100%',
-              aspectRatio: '2 / 3.2',
-              borderRadius: '12px',
-              overflow: 'hidden',
+              width: "100%",
+              height: `${CARD_H}px`,
+              borderRadius: "12px",
+              overflow: "hidden",
               flexShrink: 0,
             }}
           >
             <img
               src={src}
               alt="Project Clip"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
         ))}
