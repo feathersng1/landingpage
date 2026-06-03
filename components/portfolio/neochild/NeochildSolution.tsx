@@ -312,15 +312,18 @@
                 this invisibly. We achieve this with a `useEffect` + inline style approach.
         -->*/}
       <section className="w-full px-0 md:px-6">
-  <div className="w-full max-w-[1440px] mx-auto bg-[#F8FBEE] border-y md:border-[2px] border-[#DEECAC] overflow-hidden rounded-none md:rounded-[16px]">
-    <div style={{ display: "flex", gap: "8px", padding: "8px", height: "900px", width: "100%" }}>
-      <VerticalMarquee items={[movies[0], movies[1], movies[2]]} direction="up"   speed={25} index={0} />
-      <VerticalMarquee items={[movies[3], movies[4], movies[5]]} direction="down" speed={30} index={1} />
-      <VerticalMarquee items={[movies[6], movies[7], movies[8]]} direction="up"   speed={22} index={2} />
-      <VerticalMarquee items={[movies[9], movies[0], movies[1]]} direction="down" speed={35} index={3} />
-    </div>
-  </div>
-</section>
+        <div className="w-full max-w-[1440px] mx-auto bg-[#F8FBEE] border-y md:border-[2px] border-[#DEECAC] px-0 overflow-hidden rounded-none md:rounded-[16px]">
+          <div className="flex gap-[4px] h-[500px] md:h-[750px] lg:h-[900px] w-full mx-auto py-0">
+            <VerticalMarquee items={[movies[0], movies[1], movies[2]]} direction="up" speed={25} index={0} />
+            <VerticalMarquee items={[movies[3], movies[4], movies[5]]} direction="down" speed={30} index={1} />
+            <VerticalMarquee items={[movies[6], movies[7], movies[8]]} direction="up" speed={22} index={2} />
+            <VerticalMarquee items={[movies[9], movies[0], movies[1]]} direction="down" speed={35} index={3} className="hidden md:block" />
+            <VerticalMarquee items={[movies[2], movies[3], movies[4]]} direction="up" speed={28} index={4} className="hidden md:block" />
+            <VerticalMarquee items={[movies[5], movies[6], movies[7]]} direction="down" speed={31} index={5} className="hidden lg:block" />
+            <VerticalMarquee items={[movies[8], movies[9], movies[0]]} direction="up" speed={26} index={6} className="hidden lg:block" />
+          </div>
+        </div>
+      </section>
 
       </div>
     );
@@ -359,27 +362,28 @@ function VerticalMarquee({
   direction,
   speed,
   index,
+  className = "",
 }: {
   items: string[];
   direction: "up" | "down";
   speed: number;
   index: number;
+  className?: string;
 }) {
   const colRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const id = `kf-${index}`;
-  const GAP = 8;
-  // Fixed card height — tune this number to taste for your layout
-  // 420px works well at desktop, we'll adjust per breakpoint via JS
-  const CARD_H = typeof window !== "undefined" && window.innerWidth >= 1024
-    ? 420
-    : typeof window !== "undefined" && window.innerWidth >= 768
-    ? 320
-    : 240;
+  const GAP = 4;
+  const CARD_H = typeof window !== "undefined"
+    ? (window.innerWidth >= 1024 ? 450 : window.innerWidth >= 768 ? 320 : 240)
+    : 450;
+
+  // Stagger offsets per column index
+  const offsets = [0, -150, -60, -220, -100, -180, -30];
+  const startOffset = offsets[index % offsets.length];
 
   const doubled = [...items, ...items];
-  // half = 3 cards + gaps between them (2 full + 1 half at seam)
-  const halfH = CARD_H * 3 + GAP * 2.5;
+  const halfH = CARD_H * 3 + GAP * 3;
 
   useEffect(() => {
     const track = trackRef.current;
@@ -392,8 +396,8 @@ function VerticalMarquee({
     style.id = id;
     style.textContent =
       direction === "up"
-        ? `@keyframes ${id}{from{transform:translateY(0)}to{transform:translateY(-${halfH}px)}}`
-        : `@keyframes ${id}{from{transform:translateY(-${halfH}px)}to{transform:translateY(0)}}`;
+        ? `@keyframes ${id}{from{transform:translateY(${startOffset}px)}to{transform:translateY(${startOffset - halfH}px)}}`
+        : `@keyframes ${id}{from{transform:translateY(${startOffset - halfH}px)}to{transform:translateY(${startOffset}px)}}`;
     document.head.appendChild(style);
 
     track.style.animationName = "none";
@@ -409,6 +413,7 @@ function VerticalMarquee({
   return (
     <div
       ref={colRef}
+      className={className}
       style={{ flex: "1 1 0", minWidth: 0, overflow: "hidden", height: "100%", position: "relative" }}
     >
       <div
@@ -428,17 +433,14 @@ function VerticalMarquee({
             style={{
               width: "100%",
               height: `${CARD_H}px`,
-              borderRadius: "12px",
+              borderRadius: "24px",
               overflow: "hidden",
               flexShrink: 0,
+              backgroundImage: `url(${src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
-          >
-            <img
-              src={src}
-              alt="Project Clip"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
-          </div>
+          />
         ))}
       </div>
     </div>
