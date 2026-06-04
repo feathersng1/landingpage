@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useFeaturedPortfolio } from '../../hooks/useSupabase';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 const containerVariants = {
@@ -132,46 +131,6 @@ function MobileProjectCard({
   );
 }
 
-function PortfolioSkeleton() {
-  return (
-    <>
-      {/* Desktop skeleton */}
-      <div className="aspect-[1440/2088] basis-0 box-border gap-6 grid grid-cols-[repeat(12,_minmax(0px,_1fr))] grid-rows-[repeat(3,_minmax(0px,_1fr))] grow min-h-px min-w-px overflow-visible p-0 relative shrink-0 hidden md:grid">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className={`${i === 0 ? '[grid-area:1_/_1_/_auto_/_span_12]' :
-                i === 1 ? '[grid-area:2_/_1_/_auto_/_span_7]' :
-                  i === 2 ? '[grid-area:2_/_8_/_auto_/_span_5]' :
-                    i === 3 ? '[grid-area:3_/_1_/_auto_/_span_5]' :
-                      '[grid-area:3_/_6_/_auto_/_span_7]'
-              } flex flex-col gap-4 animate-pulse`}
-          >
-            <div className="bg-neutral-200 rounded-2xl flex-1 min-h-[200px]" />
-            <div className="flex flex-col gap-2">
-              <div className="h-8 bg-neutral-200 rounded w-3/4" />
-              <div className="h-6 bg-neutral-200 rounded w-1/2" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Mobile skeleton */}
-      <div className="flex flex-col gap-6 w-full md:hidden">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="flex flex-col gap-4 animate-pulse">
-            <div className="h-[280px] bg-neutral-200 rounded-2xl" />
-            <div className="flex flex-col gap-2">
-              <div className="h-7 bg-neutral-200 rounded w-3/4" />
-              <div className="h-5 bg-neutral-200 rounded w-1/2" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
-
 interface PortfolioSectionProps {
   onNavigatePortfolio: (project: 'all-in-one' | 'neochildcare' | 'notrify') => void;
 }
@@ -201,19 +160,8 @@ const STATIC_PROJECTS = [
 ];
 
 export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps) {
-  const { portfolio: dynamicPortfolio, loading, error } = useFeaturedPortfolio(5);
-
-  if (error) {
-    console.error('Error loading portfolio:', error);
-  }
-
   // Merge static projects with dynamic ones, ensuring static ones come first
-  const displayPortfolio = [
-    ...STATIC_PROJECTS,
-    ...(dynamicPortfolio || []).filter(item =>
-      !STATIC_PROJECTS.some(p => p.client_name === item.client_name || p.title === item.title)
-    )
-  ].slice(0, 5);
+  const displayPortfolio = STATIC_PROJECTS;
 
   // Grid areas for bento layout
   const gridAreas = [
@@ -237,46 +185,40 @@ export function PortfolioSection({ onNavigatePortfolio }: PortfolioSectionProps)
             <div className="flex flex-row items-center max-w-inherit relative size-full">
               <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-start max-w-inherit px-0 py-20 md:py-20 sm:py-12 relative w-full">
 
-                {loading && displayPortfolio.length < 3 ? (
-                  <PortfolioSkeleton />
-                ) : (
-                  <>
-                    {/* Desktop & Tablet: Bento Layout Container - 12-column grid system */}
-                    <div className="aspect-[1440/2088] basis-0 box-border gap-6 grid grid-cols-[repeat(12,_minmax(0px,_1fr))] grid-rows-[repeat(3,_minmax(0px,_1fr))] grow min-h-px min-w-px overflow-visible p-0 relative shrink-0 hidden md:grid">
-                      {displayPortfolio.map((item, index) => {
-                        const projectKey = (item as any).projectKey || 'all-in-one';
-                        return (
-                          <ProjectCard
-                            key={item.id}
-                            image={item.image_url}
-                            title={item.title}
-                            brand={item.client_name}
-                            gridArea={gridAreas[index]}
-                            index={index}
-                            onClick={() => onNavigatePortfolio(projectKey as any)}
-                          />
-                        );
-                      })}
-                    </div>
+                {/* Desktop & Tablet: Bento Layout Container - 12-column grid system */}
+                <div className="aspect-[1440/1200] basis-0 box-border gap-6 grid grid-cols-[repeat(12,_minmax(0px,_1fr))] grid-rows-[repeat(2,_minmax(0px,_1fr))] grow min-h-px min-w-px overflow-visible p-0 relative shrink-0 hidden md:grid">
+                  {displayPortfolio.map((item, index) => {
+                    const projectKey = (item as any).projectKey || 'all-in-one';
+                    return (
+                      <ProjectCard
+                        key={item.id}
+                        image={item.image_url}
+                        title={item.title}
+                        brand={item.client_name}
+                        gridArea={gridAreas[index]}
+                        index={index}
+                        onClick={() => onNavigatePortfolio(projectKey as any)}
+                      />
+                    );
+                  })}
+                </div>
 
-                    {/* Mobile: Single Column Stack Layout */}
-                    <div className="flex flex-col gap-6 w-full md:hidden">
-                      {displayPortfolio.map((item, index) => {
-                        const projectKey = (item as any).projectKey || 'all-in-one';
-                        return (
-                          <MobileProjectCard
-                            key={item.id}
-                            image={item.image_url}
-                            title={item.title}
-                            brand={item.client_name}
-                            index={index}
-                            onClick={() => onNavigatePortfolio(projectKey as any)}
-                          />
-                        );
-                      })}
-                    </div>
-                  </>
-                )}
+                {/* Mobile: Single Column Stack Layout */}
+                <div className="flex flex-col gap-6 w-full md:hidden">
+                  {displayPortfolio.map((item, index) => {
+                    const projectKey = (item as any).projectKey || 'all-in-one';
+                    return (
+                      <MobileProjectCard
+                        key={item.id}
+                        image={item.image_url}
+                        title={item.title}
+                        brand={item.client_name}
+                        index={index}
+                        onClick={() => onNavigatePortfolio(projectKey as any)}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Toaster } from "sonner";
 import { Home } from "./components/Home";
@@ -21,154 +22,110 @@ const pageTransition = {
   duration: 0.5
 };
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'preview' | 'portfolio' | 'blog' | 'admin'>('home');
-  const [selectedProject, setSelectedProject] = useState<'all-in-one' | 'neochildcare' | 'notrify' | null>(null);
-
-  // Handle URL-based navigation and expose for hidden footer link
-  useEffect(() => {
-    // Check for ?admin in URL
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('admin')) {
-      setCurrentPage('admin');
-    }
-
-    (window as any).navigateToAdmin = () => setCurrentPage('admin');
-    return () => { delete (window as any).navigateToAdmin; };
-  }, []);
-
-  // Scroll to top on page or project change
+// Scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentPage, selectedProject]);
+  }, [pathname]);
+  return null;
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <AnimatePresence mode="wait">
-      {currentPage === 'preview' ? (
-        <motion.div
-          key="preview"
-          initial="initial"
-          animate="in"
-          exit="out"
-          variants={pageVariants}
-          transition={pageTransition}
-        >
-          <Preview
-            currentPage="preview"
-            onNavigateHome={() => setCurrentPage('home')}
-            onNavigatePreview={() => setCurrentPage('preview')}
-            onNavigateBlog={() => setCurrentPage('blog')}
-          />
-        </motion.div>
-      ) : currentPage === 'portfolio' ? (
-        <motion.div
-          key={`portfolio-${selectedProject}`}
-          initial="initial"
-          animate="in"
-          exit="out"
-          variants={pageVariants}
-          transition={pageTransition}
-        >
-          {selectedProject === 'all-in-one' ? (
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+            <Home
+              currentPage="home"
+              onNavigateHome={() => navigate('/')}
+              onNavigatePreview={() => navigate('/preview')}
+              onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
+              onNavigateBlog={() => navigate('/blog')}
+            />
+          </motion.div>
+        } />
+        <Route path="/preview" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+            <Preview
+              currentPage="preview"
+              onNavigateHome={() => navigate('/')}
+              onNavigatePreview={() => navigate('/preview')}
+              onNavigateBlog={() => navigate('/blog')}
+            />
+          </motion.div>
+        } />
+        <Route path="/portfolio/all-in-one" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <PortfolioAllInOne
-              onNavigateHome={() => setCurrentPage('home')}
-              onNavigatePreview={() => setCurrentPage('preview')}
-              onNavigateBlog={() => setCurrentPage('blog')}
-              onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
-                setSelectedProject(project);
-                setCurrentPage('portfolio');
-                window.scrollTo(0, 0);
-              }}
+              onNavigateHome={() => navigate('/')}
+              onNavigatePreview={() => navigate('/preview')}
+              onNavigateBlog={() => navigate('/blog')}
+              onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
             />
-          ) : selectedProject === 'neochildcare' ? (
+          </motion.div>
+        } />
+        <Route path="/portfolio/neochildcare" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <PortfolioNeochild
-              onNavigateHome={() => setCurrentPage('home')}
-              onNavigatePreview={() => setCurrentPage('preview')}
-              onNavigateBlog={() => setCurrentPage('blog')}
-              onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
-                setSelectedProject(project);
-                setCurrentPage('portfolio');
-                window.scrollTo(0, 0);
-              }}
+              onNavigateHome={() => navigate('/')}
+              onNavigatePreview={() => navigate('/preview')}
+              onNavigateBlog={() => navigate('/blog')}
+              onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
             />
-          ) : selectedProject === 'notrify' ? (
+          </motion.div>
+        } />
+        <Route path="/portfolio/notrify" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <PortfolioNotrify
-              onNavigateHome={() => setCurrentPage('home')}
-              onNavigatePreview={() => setCurrentPage('preview')}
-              onNavigateBlog={() => setCurrentPage('blog')}
-              onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
-                setSelectedProject(project);
-                setCurrentPage('portfolio');
-                window.scrollTo(0, 0);
-              }}
+              onNavigateHome={() => navigate('/')}
+              onNavigatePreview={() => navigate('/preview')}
+              onNavigateBlog={() => navigate('/blog')}
+              onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
             />
-          ) : (
-            <div className="min-h-screen flex items-center justify-center">
-              <p className="text-neutral-500">Coming Soon: {selectedProject}</p>
-              <button onClick={() => setCurrentPage('home')} className="ml-4 text-black underline">Back Home</button>
+          </motion.div>
+        } />
+        <Route path="/blog" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+            <Blog
+              currentPage="blog"
+              onNavigateHome={() => navigate('/')}
+              onNavigatePreview={() => navigate('/preview')}
+              onNavigateBlog={() => navigate('/blog')}
+            />
+          </motion.div>
+        } />
+        <Route path="/admin" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+            <div className="min-h-screen bg-white">
+              <div className="p-4 border-b flex justify-between items-center">
+                <button
+                  onClick={() => navigate('/')}
+                  className="text-sm font-medium text-neutral-600 hover:text-black transition-colors"
+                >
+                  ← Back to Site
+                </button>
+                <span className="text-sm font-bold tracking-tighter">FEATHERS ADMIN</span>
+              </div>
+              <AdminDashboard />
             </div>
-          )}
-        </motion.div>
-      ) : currentPage === 'blog' ? (
-        <motion.div
-          key="blog"
-          initial="initial"
-          animate="in"
-          exit="out"
-          variants={pageVariants}
-          transition={pageTransition}
-        >
-          <Blog
-            currentPage="blog"
-            onNavigateHome={() => setCurrentPage('home')}
-            onNavigatePreview={() => setCurrentPage('preview')}
-            onNavigateBlog={() => setCurrentPage('blog')}
-          />
-        </motion.div>
-      ) : currentPage === 'admin' ? (
-        <motion.div
-          key="admin"
-          initial="initial"
-          animate="in"
-          exit="out"
-          variants={pageVariants}
-          transition={pageTransition}
-        >
-          <div className="min-h-screen bg-white">
-            <div className="p-4 border-b flex justify-between items-center">
-              <button
-                onClick={() => setCurrentPage('home')}
-                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors"
-              >
-                ← Back to Site
-              </button>
-              <span className="text-sm font-bold tracking-tighter">FEATHERS ADMIN</span>
-            </div>
-            <AdminDashboard />
-          </div>
-        </motion.div>
-      ) : (
-        <motion.div
-          key="home"
-          initial="initial"
-          animate="in"
-          exit="out"
-          variants={pageVariants}
-          transition={pageTransition}
-        >
-          <Home
-            currentPage="home"
-            onNavigateHome={() => setCurrentPage('home')}
-            onNavigatePreview={() => setCurrentPage('preview')}
-            onNavigatePortfolio={(project: 'all-in-one' | 'neochildcare' | 'notrify') => {
-              setSelectedProject(project);
-              setCurrentPage('portfolio');
-            }}
-            onNavigateBlog={() => setCurrentPage('blog')}
-          />
-        </motion.div>
-      )}
-      <Toaster position="top-center" />
+          </motion.div>
+        } />
+      </Routes>
     </AnimatePresence>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <AnimatedRoutes />
+      <Toaster position="top-center" />
+    </BrowserRouter>
   );
 }
