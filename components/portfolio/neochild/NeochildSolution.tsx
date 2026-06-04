@@ -139,12 +139,27 @@
               </div>
             </motion.div>
 
-            {/* App Slider Card - 30% Peek */}
+            {/* App Slider Card - 30% Peek & Swipe */}
             <motion.div
-              className="bg-[#F97513] rounded-[16px] overflow-hidden flex flex-col justify-center h-[436px] md:h-[406px] lg:h-[636px] relative p-6 md:p-10 lg:p-12"
+              className="bg-[#F97513] rounded-[16px] overflow-hidden flex flex-col justify-center h-[436px] md:h-[406px] lg:h-[636px] relative py-6 pl-6 md:py-10 md:pl-10 lg:py-12 lg:pl-12 pr-0 touch-none"
               variants={itemVariants}
             >
-              <div className="flex h-full items-center relative overflow-hidden">
+              {/* Invisible Drag Layer */}
+              <motion.div
+                className="absolute inset-0 z-40 cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0}
+                onDragEnd={(_, info) => {
+                  const SWIPE_THRESHOLD = 30;
+                  if (info.offset.x < -SWIPE_THRESHOLD) {
+                    setActiveCard((prev) => (prev + 1) % cards.length);
+                  } else if (info.offset.x > SWIPE_THRESHOLD) {
+                    setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
+                  }
+                }}
+              />
+              <div className="flex h-full items-center relative overflow-hidden pointer-events-none">
                 <motion.div
                   className="flex shrink-0 h-[85%] w-full"
                   animate={{ x: `-${activeCard * 70}%` }}
@@ -157,7 +172,9 @@
                   ))}
                 </motion.div>
               </div>
-              <AutoCycle count={5} onCycle={setActiveCard} activeIndex={activeCard} />
+              <div className="pointer-events-none relative z-50">
+                <AutoCycle count={5} onCycle={setActiveCard} activeIndex={activeCard} />
+              </div>
             </motion.div>
           </div>
         </section>
@@ -313,7 +330,7 @@
         -->*/}
       <section className="w-full px-0 md:px-6">
         <div className="w-full max-w-[1440px] mx-auto bg-[#F8FBEE] border-y md:border-[2px] border-[#DEECAC] px-0 overflow-hidden rounded-none md:rounded-[16px]">
-          <div className="flex gap-[4px] h-[500px] md:h-[750px] lg:h-[900px] w-full mx-auto py-0">
+          <div className="flex gap-[12px] md:gap-[24px] h-[500px] md:h-[750px] lg:h-[900px] w-full mx-auto py-0">
             <VerticalMarquee items={[movies[0], movies[1], movies[2]]} direction="up" speed={25} index={0} />
             <VerticalMarquee items={[movies[3], movies[4], movies[5]]} direction="down" speed={30} index={1} />
             <VerticalMarquee items={[movies[6], movies[7], movies[8]]} direction="up" speed={22} index={2} />
@@ -373,17 +390,16 @@ function VerticalMarquee({
   const colRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const id = `kf-${index}`;
-  const GAP = 4;
+  const GAP = typeof window !== "undefined" && window.innerWidth >= 768 ? 24 : 12;
   const CARD_H = typeof window !== "undefined"
-    ? (window.innerWidth >= 1024 ? 450 : window.innerWidth >= 768 ? 320 : 240)
-    : 450;
+    ? (window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 220)
+    : 400;
 
   // Stagger offsets per column index
   const offsets = [0, -150, -60, -220, -100, -180, -30];
   const startOffset = offsets[index % offsets.length];
 
   const doubled = [...items, ...items];
-  const halfH = CARD_H * 3 + GAP * 3;
 
   useEffect(() => {
     const track = trackRef.current;
@@ -396,19 +412,17 @@ function VerticalMarquee({
     style.id = id;
     style.textContent =
       direction === "up"
-        ? `@keyframes ${id}{from{transform:translateY(${startOffset}px)}to{transform:translateY(${startOffset - halfH}px)}}`
-        : `@keyframes ${id}{from{transform:translateY(${startOffset - halfH}px)}to{transform:translateY(${startOffset}px)}}`;
+        ? `@keyframes ${id}{from{transform:translate3d(0,${startOffset}px,0)}to{transform:translate3d(0,calc(${startOffset}px - 50%),0)}}`
+        : `@keyframes ${id}{from{transform:translate3d(0,calc(${startOffset}px - 50%),0)}to{transform:translate3d(0,${startOffset}px,0)}}`;
     document.head.appendChild(style);
 
-    track.style.animationName = "none";
-    void track.offsetWidth;
     track.style.animationName = id;
     track.style.animationDuration = `${speed}s`;
     track.style.animationTimingFunction = "linear";
     track.style.animationIterationCount = "infinite";
 
     return () => { document.getElementById(id)?.remove(); };
-  }, [CARD_H]);
+  }, [id, direction, startOffset, speed]);
 
   return (
     <div
@@ -424,6 +438,7 @@ function VerticalMarquee({
           display: "flex",
           flexDirection: "column",
           gap: `${GAP}px`,
+          paddingBottom: `${GAP}px`, // Essential for seamless loop with gaps
           willChange: "transform",
         }}
       >
@@ -433,12 +448,13 @@ function VerticalMarquee({
             style={{
               width: "100%",
               height: `${CARD_H}px`,
-              borderRadius: "24px",
+              borderRadius: "12px",
               overflow: "hidden",
               flexShrink: 0,
               backgroundImage: `url(${src})`,
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
               backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
             }}
           />
         ))}

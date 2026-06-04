@@ -57,7 +57,7 @@ export function AllInOneMoreWorks({ onNavigatePortfolio }: AllInOneMoreWorksProp
             className="flex flex-col group cursor-pointer"
             onClick={() => onNavigatePortfolio('neochildcare')}
           >
-            <div className="relative w-full aspect-[4/3] bg-[#F97513] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20">
+            <div className="relative w-full aspect-[4/3] bg-[#F2F2F3] rounded-[16px] overflow-hidden mb-6 flex items-center justify-center p-6 sm:p-12 md:p-20 transition-transform duration-500 group-hover:scale-[0.98]">
               <div className="relative w-full h-full flex items-center justify-center">
                 <img 
                   src="/neochild/neochild-hero1.png" 

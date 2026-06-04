@@ -107,7 +107,7 @@ export function Footer() {
                   <div className="box-border content-stretch flex flex-col font-onest gap-3 items-center justify-start p-0 relative shrink-0 text-center w-full">
                     <motion.a
                       href="mailto:hello@feathers.com.co"
-                      className="text-neutral-300 hover:text-white transition-colors text-[16px] md:text-[18px] underline underline-offset-4"
+                      className="text-neutral-300 hover:text-white transition-colors text-[16px] md:text-[18px] underline underline-offset-4 cursor-pointer"
                       whileHover={{ y: -2 }}
                     >
                       hello@feathers.com.co
@@ -126,7 +126,7 @@ export function Footer() {
                         <motion.a
                           key={social}
                           href="#"
-                          className="hover:text-white transition-colors tracking-widest"
+                          className="hover:text-white transition-colors tracking-widest cursor-pointer"
                           whileHover={{ y: -2 }}
                         >
                           {social}
