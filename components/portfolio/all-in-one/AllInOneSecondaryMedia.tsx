@@ -155,51 +155,71 @@ const CalculatorCard = () => {
 };
 
 const ScrollingServices = () => {
+  const [activeCard, setActiveCard] = useState(0);
+
   const images = [
     "/aio/home-inspection-card.svg",
     "/aio/water-septic.svg",
     "/aio/ancillary.svg",
   ];
 
-  // Pattern: A, B, C, A, B to ensure State(A+20%B) is at both start and end of loop
-  const displayImages = [...images, images[0], images[1]];
-
   return (
-    <div className="w-full h-full overflow-hidden bg-[#20333D] relative flex items-center">
+    <div className="w-full h-full bg-[#20333D] relative overflow-hidden rounded-[16px] touch-none">
+
+      {/* Invisible drag layer — sits on top, captures swipe */}
       <motion.div
-        className="flex h-full items-center flex-nowrap"
-        animate={{
-          // Moves by 20% of its own width (which is 80% of parent width)
-          x: ["0%", "0%", "-20%", "-20%", "-40%", "-40%", "-60%"],
+        className="absolute inset-0 z-40 cursor-grab active:cursor-grabbing"
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0}
+        onDragEnd={(_, info) => {
+          const SWIPE_THRESHOLD = 30;
+          if (info.offset.x < -SWIPE_THRESHOLD) {
+            setActiveCard((prev) => (prev + 1) % images.length);
+          } else if (info.offset.x > SWIPE_THRESHOLD) {
+            setActiveCard((prev) => (prev - 1 + images.length) % images.length);
+          }
         }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          times: [0, 0.25, 0.33, 0.58, 0.66, 0.91, 1],
-          ease: ["linear", "easeInOut", "linear", "easeInOut", "linear", "easeInOut"],
-        }}
-        style={{ 
-          width: `${displayImages.length * 80}%`, // 5 images * 80% = 400%
-          flexShrink: 0 
-        }}
-      >
-        {displayImages.map((src, index) => (
+      />
+
+      {/* Slider track */}
+      <div className="flex h-full items-center relative overflow-hidden pointer-events-none">
+        <motion.div
+          className="flex shrink-0 h-full w-full"
+          animate={{ x: `-${activeCard * 80}%` }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {images.map((src, i) => (
+            <div
+              key={i}
+              className="h-full flex items-center justify-center p-6 shrink-0"
+              style={{ width: "80%" }}
+            >
+              <img
+                src={src}
+                alt=""
+                className="w-full h-full object-contain pointer-events-none"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Dot indicators */}
+      {/* <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-50 pointer-events-none">
+        {images.map((_, i) => (
           <div
-            key={index}
-            className="h-full flex items-center justify-center p-4 sm:p-6"
-            style={{ 
-              width: `${100 / displayImages.length}%`, // Each item is 1/5th of 400% = 80%
-              flexShrink: 0 
+            key={i}
+            className="rounded-full transition-all duration-300"
+            style={{
+              width: i === activeCard ? "20px" : "6px",
+              height: "6px",
+              backgroundColor: i === activeCard ? "#ffffff" : "rgba(255,255,255,0.4)",
             }}
-          >
-            <img
-              src={src}
-              alt=""
-              className="w-full h-full object-contain pointer-events-none"
-            />
-          </div>
+          />
         ))}
-      </motion.div>
+      </div> */}
+
     </div>
   );
 };
