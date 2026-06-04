@@ -43,18 +43,18 @@ function AnimatedRoutes() {
             <Home
               currentPage="home"
               onNavigateHome={() => navigate('/')}
-              onNavigatePreview={() => navigate('/preview')}
+              onNavigatePreview={() => navigate('/the-people')}
               onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
               onNavigateBlog={() => navigate('/blog')}
             />
           </motion.div>
         } />
-        <Route path="/preview" element={
+        <Route path="/the-people" element={
           <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <Preview
               currentPage="preview"
               onNavigateHome={() => navigate('/')}
-              onNavigatePreview={() => navigate('/preview')}
+              onNavigatePreview={() => navigate('/the-people')}
               onNavigateBlog={() => navigate('/blog')}
             />
           </motion.div>
@@ -63,7 +63,7 @@ function AnimatedRoutes() {
           <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <PortfolioAllInOne
               onNavigateHome={() => navigate('/')}
-              onNavigatePreview={() => navigate('/preview')}
+              onNavigatePreview={() => navigate('/the-people')}
               onNavigateBlog={() => navigate('/blog')}
               onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
             />
@@ -73,7 +73,7 @@ function AnimatedRoutes() {
           <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <PortfolioNeochild
               onNavigateHome={() => navigate('/')}
-              onNavigatePreview={() => navigate('/preview')}
+              onNavigatePreview={() => navigate('/the-people')}
               onNavigateBlog={() => navigate('/blog')}
               onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
             />
@@ -83,7 +83,7 @@ function AnimatedRoutes() {
           <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <PortfolioNotrify
               onNavigateHome={() => navigate('/')}
-              onNavigatePreview={() => navigate('/preview')}
+              onNavigatePreview={() => navigate('/the-people')}
               onNavigateBlog={() => navigate('/blog')}
               onNavigatePortfolio={(project) => navigate(`/portfolio/${project}`)}
             />
