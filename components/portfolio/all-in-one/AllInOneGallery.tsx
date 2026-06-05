@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { AnimatedHomeInspectionIcon } from "./AnimatedHomeInspectionIcon";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -79,11 +80,7 @@ export function AllInOneGallery() {
             variants={itemVariants}
             className="w-full bg-[#B80733] rounded-[16px] aspect-square flex items-center justify-center p-12 overflow-hidden"
           >
-            <img
-              src="/aio/home-inspection.svg"
-              alt="Home Inspection Icon"
-              className="w-full h-auto max-w-[200px] block"
-            />
+            <AnimatedHomeInspectionIcon />
           </motion.div>
 
         </div>
